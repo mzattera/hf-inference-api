@@ -19,6 +19,11 @@ This contains a `pom.xml` to configure and run the OpenAPI generator. Right clic
 This is a Maven project that is automatically created by the OpenAPI generator.
 
 Please notice the generator is not deleting any existing file upon re-generation and that JUnit test provided will not be overwritten.
+
+## How to Use
+
+Simple test code in [DeafaultApiTest.java](https://github.com/mzattera/hf-inference-api/tree/master/eclipse/hf-inference-api/src/test/java/io/github/mzattera/hfinferenceapi/client/api) shows basic usage of the API, which is detailed in the `openapi.yaml` file.
+
  	
 
 
