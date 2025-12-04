@@ -1,0 +1,436 @@
+openapi: 3.0.3
+info:
+  title: HuggingFace Inference Provider API
+  version: 1.0.0
+  description: 'API for GenAI services: image generation, chat completions, embeddings'
+
+servers:
+  - url: https://router.huggingface.co
+    description: Production server
+
+paths:
+  /{provider}/v1/images/generations:
+    parameters:
+      - name: provider
+        in: path
+        required: true
+        description: The specific inference provider.
+        schema:
+          type: string	
+    post:
+      summary: Text to Image generation
+      operationId: textToImage
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageGenerationRequest'
+      responses:
+        '200':
+          description: Generated image returned as raw bytes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageGenerationResponse'
+        '400':
+          description: Bad request — invalid input
+        '401':
+          description: Unauthorized — invalid or missing token
+
+  /v1/chat/completions:
+    post:
+      summary: Chat completion using messages
+      operationId: chatCompletion
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatCompletionRequest'
+      responses:
+        '200':
+          description: Chat completion response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatCompletionResponse'
+        '400':
+          description: Bad request — invalid input
+        '401':
+          description: Unauthorized — invalid or missing token
+
+  /{provider}/v1/embeddings:
+    parameters:
+      - name: provider
+        in: path
+        required: true
+        description: The specific inference provider.
+        schema:
+          type: string
+    post:
+      summary: Get embeddings for input(s)
+      operationId: featureExtraction
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbeddingsRequest'
+      responses:
+        '200':
+          description: Embeddings computed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddingsResponse'
+        '400':
+          description: Bad request — invalid input
+        '401':
+          description: Unauthorized — invalid or missing token
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ImageGenerationRequest:
+      type: object
+      required:
+        - model
+        - prompt
+      properties:
+        model:
+          type: string
+          description: Model to use 
+        prompt:
+          type: string
+          description: The input text prompt for image generation.
+        n:
+          type: integer
+          description: The number of images to generate.
+        parameters:
+          type: object
+          description: Optional parameters for image generation
+          properties:
+            guidance_scale:
+              type: number
+              description: A higher guidance scale value encourages the model to generate images closely linked to the text prompt, but values too high may cause saturation and other artifacts.
+            negative_prompt:
+              type: string
+              description: A prompt to guide what NOT to include in image generation.
+            num_inference_steps:
+              type: integer
+              description: The number of denoising steps. More steps → higher quality image at expense of slower inference.
+            width:
+              type: integer
+              description: The width in pixels of the output image
+            height:
+              type: integer
+              description: The height in pixels of the output image
+            scheduler:
+              type: string
+              description: Override the scheduler with a compatible one.
+            seed:
+              type: integer
+              description: Seed for the random number generator.
+
+    ImageGenerationResponse:
+      type: object
+      description: Images being generated
+      properties:
+        created:
+          type: integer
+          description: Creation timestamp.
+        data:
+          type: array
+          description: Array with image data
+          items:
+            type: object
+            properties:
+              b64_json:
+                type: string	
+                description: Image encoded as base 64		  
+
+    ChatCompletionRequest:
+      type: object
+      required:
+        - model
+        - messages
+      properties:
+        model:
+          type: string
+          description: Model to use in the format "provider/model_name:selector" 
+        frequency_penalty:
+          type: number
+          description: Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text.
+        logprobs:
+          type: boolean
+          description: Whether to return log probabilities of the output tokens.
+        max_tokens:
+          type: integer
+          description: The maximum number of tokens that can be generated.
+        messages:
+          type: array
+          description: A list of messages comprising the conversation so far.
+          items:
+            $ref: '#/components/schemas/Message'
+        presence_penalty:
+          type: number
+          description: Number between -2.0 and 2.0. Positive values penalize appearance of new tokens.
+        response_format:
+          type: object
+          description: Response format options.
+          oneOf:
+            - type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - text
+            - type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - json_schema
+                json_schema:
+                  type: object
+                  description: The schema for the response format, described as JSON Schema.
+                strict:
+                  type: boolean
+                  description: Whether to enforce strict adherence to the schema.
+        seed:
+          type: integer
+          description: Seed for the random number generator.
+        stop:
+          type: array
+          description: Up to 4 sequences where the API will stop generating further tokens.
+          items:
+            type: string
+        stream:
+          type: boolean
+          description: Whether to use streaming (SSE) when true.
+        stream_options:
+          type: object
+          properties:
+            include_usage:
+              type: boolean
+              description: If set, an additional usage chunk will be streamed before the data.
+        temperature:
+          type: number
+          description: What sampling temperature to use, between 0 and 2.
+        tool_choice:
+          type: object
+          description: Tool choice option.
+          oneOf:
+            - type: string
+              enum:
+                - auto
+                - none
+                - required
+            - type: object
+              properties:
+                function:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+        top_logprobs:
+          type: integer
+          description: An integer between 0 and 5 specifying the number of most likely tokens to return per position.
+        top_p:
+          type: number
+          description: Nucleus sampling parameter.
+
+    ChatCompletionResponse:
+      type: object
+      properties:
+        object:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Choice'
+        created:
+          type: integer
+        id:
+          type: string
+        model:
+          type: string
+        usage_breakdown:
+          type: object
+        system_fingerprint:
+          type: string
+        service_tier:
+          type: string
+        x_groq:
+          type: object
+          properties:
+            id:
+              type: string
+            seed:
+              type: integer		  
+        usage:
+          $ref: '#/components/schemas/Usage'
+
+    Message:
+      type: object
+      required:
+        - role
+      properties:
+        role:
+          type: string
+          description: Role of the message sender (eg "user", "assistant")
+        content:
+          oneOf:
+            - type: string
+            - $ref: '#/components/schemas/StructuredContent'
+        reasoning:
+          type: string
+        tool_call_id:
+          type: string
+          description: Identifier for the tool call if applicable.
+
+    StructuredContent:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - text
+            - image_url
+        text:
+          type: string
+          description: Text content when type = text
+        image_url:
+          type: object
+          required:
+            - url
+          properties:
+            url:
+              type: string
+              format: uri
+
+    Choice:
+      type: object
+      properties:
+        finish_reason:
+          type: string
+        index:
+          type: integer
+        logprobs:
+          $ref: '#/components/schemas/LogProbs'
+        message:
+          $ref: '#/components/schemas/Message'
+
+    LogProbs:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenLogProb'
+
+    TokenLogProb:
+      type: object
+      properties:
+        logprob:
+          type: number
+        token:
+          type: string
+
+    Usage:
+      type: object
+      properties:
+        completion_tokens:
+          type: integer
+        completion_time:
+          type: number
+        completion_tokens_details:
+          type: object
+          properties:
+            reasoning_tokens:
+              type: integer
+        prompt_tokens:
+          type: integer
+        prompt_time:
+          type: number
+        prompt_tokens_details:
+          description: This appears in result returned bz feature extraction (embedding) but is null and undocumented
+          type: object
+        total_tokens:
+          type: integer
+        total_time:
+          type: number
+        queue_time:
+          type: number
+
+    EmbeddingsRequest:
+      type: object
+      required:
+        - model
+        - input
+      properties:
+        model:
+          type: string
+          description: Model to use in the format "provider/model_name:selector" 
+        input:
+          description: 'Array of strings with inputs'
+          type: array
+          items:
+            type: string
+        normalize:
+          type: boolean
+          description: If true, normalize embeddings
+        prompt_name:
+          type: string
+          description: The name of the prompt that should be used for encoding.
+        truncate:
+          type: boolean
+          description: Whether to truncate inputs
+        truncation_direction:
+          type: string
+          enum:
+            - left
+            - right
+
+    EmbeddingsResponse:
+      type: object
+      properties:
+        object:
+          type: string
+        id:
+          type: string			
+        created:
+          type: integer			
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmbeddingData'
+
+    EmbeddingData:
+      type: object
+      properties:
+        object:
+          type: string
+        index:
+          type: integer
+        embedding:
+          type: array
+          items:
+            type: number

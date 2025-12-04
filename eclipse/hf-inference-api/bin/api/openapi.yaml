@@ -1,0 +1,506 @@
+openapi: 3.0.3
+info:
+  description: "API for GenAI services: image generation, chat completions, embeddings"
+  title: HuggingFace NScale GenAI Services API
+  version: 1.0.0
+servers:
+- description: Production server
+  url: https://router.huggingface.co/v1
+paths:
+  /images/completions:
+    post:
+      operationId: createImage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImageGenerationRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: Generated image returned as raw bytes
+        "400":
+          description: Bad request — invalid input
+        "401":
+          description: Unauthorized — invalid or missing token
+      security:
+      - bearerAuth: []
+      summary: Text to Image generation
+      x-content-type: application/json
+      x-accepts:
+      - application/octet-stream
+  /chat/completions:
+    post:
+      operationId: createChatCompletion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChatCompletionRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatCompletionResponse"
+          description: Chat completion response
+        "400":
+          description: Bad request — invalid input
+        "401":
+          description: Unauthorized — invalid or missing token
+      security:
+      - bearerAuth: []
+      summary: Chat completion using messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /{provider}/v1/embeddings:
+    post:
+      operationId: createEmbeddings
+      parameters:
+      - description: The specific inference provider.
+        explode: false
+        in: path
+        name: provider
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmbeddingsRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmbeddingsResponse"
+          description: Embeddings computed successfully
+        "400":
+          description: Bad request — invalid input
+        "401":
+          description: Unauthorized — invalid or missing token
+      security:
+      - bearerAuth: []
+      summary: Get embeddings for input(s)
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    ImageGenerationRequest:
+      example:
+        inputs: inputs
+        model: model
+        parameters:
+          scheduler: scheduler
+          seed: 5
+          negative_prompt: negative_prompt
+          guidance_scale: 0.8008281904610115
+          width: 1
+          num_inference_steps: 6
+          height: 5
+      properties:
+        model:
+          description: Model to use in the format "provider/model_name:selector"
+          type: string
+        inputs:
+          description: The input text prompt for image generation
+          type: string
+        parameters:
+          $ref: "#/components/schemas/ImageGenerationRequest_parameters"
+      required:
+      - inputs
+      - model
+      type: object
+    ChatCompletionRequest:
+      example:
+        top_logprobs: 2
+        seed: 5
+        max_tokens: 6
+        presence_penalty: 1.4658129805029452
+        logprobs: true
+        top_p: 7.061401241503109
+        frequency_penalty: 0.8008281904610115
+        response_format:
+          type: text
+        stop:
+        - stop
+        - stop
+        stream: true
+        temperature: 5.637376656633329
+        messages:
+        - role: role
+          tool_call_id: tool_call_id
+          content: Message_content
+        - role: role
+          tool_call_id: tool_call_id
+          content: Message_content
+        tool_choice: auto
+        model: model
+        stream_options:
+          include_usage: true
+      properties:
+        model:
+          description: Model to use in the format "provider/model_name:selector"
+          type: string
+        frequency_penalty:
+          description: Number between -2.0 and 2.0. Positive values penalize new tokens
+            based on their existing frequency in the text.
+          type: number
+        logprobs:
+          description: Whether to return log probabilities of the output tokens.
+          type: boolean
+        max_tokens:
+          description: The maximum number of tokens that can be generated.
+          type: integer
+        messages:
+          description: A list of messages comprising the conversation so far.
+          items:
+            $ref: "#/components/schemas/Message"
+          type: array
+        presence_penalty:
+          description: Number between -2.0 and 2.0. Positive values penalize appearance
+            of new tokens.
+          type: number
+        response_format:
+          $ref: "#/components/schemas/ChatCompletionRequest_response_format"
+        seed:
+          description: Seed for the random number generator.
+          type: integer
+        stop:
+          description: Up to 4 sequences where the API will stop generating further
+            tokens.
+          items:
+            type: string
+          type: array
+        stream:
+          description: Whether to use streaming (SSE) when true.
+          type: boolean
+        stream_options:
+          $ref: "#/components/schemas/ChatCompletionRequest_stream_options"
+        temperature:
+          description: "What sampling temperature to use, between 0 and 2."
+          type: number
+        tool_choice:
+          $ref: "#/components/schemas/ChatCompletionRequest_tool_choice"
+        top_logprobs:
+          description: An integer between 0 and 5 specifying the number of most likely
+            tokens to return per position.
+          type: integer
+        top_p:
+          description: Nucleus sampling parameter.
+          type: number
+      required:
+      - messages
+      - model
+      type: object
+    ChatCompletionResponse:
+      example:
+        created: 1
+        usage:
+          completion_tokens: 5
+          prompt_tokens: 5
+          total_tokens: 2
+        model: model
+        id: id
+        choices:
+        - finish_reason: finish_reason
+          index: 0
+          message:
+            role: role
+            tool_call_id: tool_call_id
+            content: Message_content
+          logprobs:
+            content:
+            - logprob: 6.027456183070403
+              token: token
+            - logprob: 6.027456183070403
+              token: token
+        - finish_reason: finish_reason
+          index: 0
+          message:
+            role: role
+            tool_call_id: tool_call_id
+            content: Message_content
+          logprobs:
+            content:
+            - logprob: 6.027456183070403
+              token: token
+            - logprob: 6.027456183070403
+              token: token
+        system_fingerprint: system_fingerprint
+      properties:
+        choices:
+          items:
+            $ref: "#/components/schemas/Choice"
+          type: array
+        created:
+          type: integer
+        id:
+          type: string
+        model:
+          type: string
+        system_fingerprint:
+          type: string
+        usage:
+          $ref: "#/components/schemas/ChatCompletionResponse_usage"
+      type: object
+    Message:
+      example:
+        role: role
+        tool_call_id: tool_call_id
+        content: Message_content
+      properties:
+        role:
+          description: "Role of the message sender (eg \"user\", \"assistant\")"
+          type: string
+        content:
+          $ref: "#/components/schemas/Message_content"
+        tool_call_id:
+          description: Identifier for the tool call if applicable.
+          type: string
+      required:
+      - role
+      type: object
+    StructuredContent:
+      properties:
+        type:
+          enum:
+          - text
+          - image_url
+          type: string
+        text:
+          description: Text content when type = text
+          type: string
+        image_url:
+          $ref: "#/components/schemas/StructuredContent_image_url"
+      required:
+      - type
+      type: object
+    Choice:
+      example:
+        finish_reason: finish_reason
+        index: 0
+        message:
+          role: role
+          tool_call_id: tool_call_id
+          content: Message_content
+        logprobs:
+          content:
+          - logprob: 6.027456183070403
+            token: token
+          - logprob: 6.027456183070403
+            token: token
+      properties:
+        finish_reason:
+          type: string
+        index:
+          type: integer
+        logprobs:
+          $ref: "#/components/schemas/LogProbs"
+        message:
+          $ref: "#/components/schemas/Message"
+      type: object
+    LogProbs:
+      example:
+        content:
+        - logprob: 6.027456183070403
+          token: token
+        - logprob: 6.027456183070403
+          token: token
+      properties:
+        content:
+          items:
+            $ref: "#/components/schemas/TokenLogProb"
+          type: array
+      type: object
+    TokenLogProb:
+      example:
+        logprob: 6.027456183070403
+        token: token
+      properties:
+        logprob:
+          type: number
+        token:
+          type: string
+      type: object
+    EmbeddingsRequest:
+      example:
+        truncate: true
+        inputs: EmbeddingsRequest_inputs
+        normalize: true
+        model: model
+        truncation_direction: left
+        prompt_name: prompt_name
+      properties:
+        model:
+          description: Model to use in the format "provider/model_name:selector"
+          type: string
+        inputs:
+          $ref: "#/components/schemas/EmbeddingsRequest_inputs"
+        normalize:
+          description: "If true, normalize embeddings"
+          type: boolean
+        prompt_name:
+          description: The name of the prompt that should be used for encoding.
+          type: string
+        truncate:
+          description: Whether to truncate inputs
+          type: boolean
+        truncation_direction:
+          enum:
+          - left
+          - right
+          type: string
+      required:
+      - inputs
+      - model
+      type: object
+    EmbeddingsResponse:
+      description: Output is an array of arrays
+      items:
+        items:
+          type: number
+        type: array
+      type: array
+    ImageGenerationRequest_parameters:
+      description: Optional parameters for image generation
+      example:
+        scheduler: scheduler
+        seed: 5
+        negative_prompt: negative_prompt
+        guidance_scale: 0.8008281904610115
+        width: 1
+        num_inference_steps: 6
+        height: 5
+      properties:
+        guidance_scale:
+          description: "A higher guidance scale value encourages the model to generate\
+            \ images closely linked to the text prompt, but values too high may cause\
+            \ saturation and other artifacts."
+          type: number
+        negative_prompt:
+          description: A prompt to guide what NOT to include in image generation.
+          type: string
+        num_inference_steps:
+          description: The number of denoising steps. More steps → higher quality
+            image at expense of slower inference.
+          type: integer
+        width:
+          description: The width in pixels of the output image
+          type: integer
+        height:
+          description: The height in pixels of the output image
+          type: integer
+        scheduler:
+          description: Override the scheduler with a compatible one.
+          type: string
+        seed:
+          description: Seed for the random number generator.
+          type: integer
+      type: object
+    ChatCompletionRequest_response_format_oneOf:
+      example:
+        type: text
+      properties:
+        type:
+          enum:
+          - text
+          type: string
+      type: object
+    ChatCompletionRequest_response_format_oneOf_1:
+      properties:
+        type:
+          enum:
+          - json_schema
+          type: string
+        json_schema:
+          description: "The schema for the response format, described as JSON Schema."
+          type: object
+        strict:
+          description: Whether to enforce strict adherence to the schema.
+          type: boolean
+      type: object
+    ChatCompletionRequest_response_format:
+      description: Response format options.
+      oneOf:
+      - $ref: "#/components/schemas/ChatCompletionRequest_response_format_oneOf"
+      - $ref: "#/components/schemas/ChatCompletionRequest_response_format_oneOf_1"
+      type: object
+    ChatCompletionRequest_stream_options:
+      example:
+        include_usage: true
+      properties:
+        include_usage:
+          description: "If set, an additional usage chunk will be streamed before\
+            \ the data."
+          type: boolean
+      type: object
+    ChatCompletionRequest_tool_choice_oneOf_function:
+      properties:
+        name:
+          type: string
+      type: object
+    ChatCompletionRequest_tool_choice_oneOf:
+      properties:
+        function:
+          $ref: "#/components/schemas/ChatCompletionRequest_tool_choice_oneOf_function"
+      type: object
+    ChatCompletionRequest_tool_choice:
+      description: Tool choice option.
+      oneOf:
+      - enum:
+        - auto
+        - none
+        - required
+        type: string
+      - $ref: "#/components/schemas/ChatCompletionRequest_tool_choice_oneOf"
+      type: object
+    ChatCompletionResponse_usage:
+      example:
+        completion_tokens: 5
+        prompt_tokens: 5
+        total_tokens: 2
+      properties:
+        completion_tokens:
+          type: integer
+        prompt_tokens:
+          type: integer
+        total_tokens:
+          type: integer
+      type: object
+    Message_content:
+      oneOf:
+      - type: string
+      - $ref: "#/components/schemas/StructuredContent"
+    StructuredContent_image_url:
+      properties:
+        url:
+          format: uri
+          type: string
+      required:
+      - url
+      type: object
+    EmbeddingsRequest_inputs:
+      description: "One of the following: string, array of strings"
+      oneOf:
+      - type: string
+      - items:
+          type: string
+        type: array
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+
