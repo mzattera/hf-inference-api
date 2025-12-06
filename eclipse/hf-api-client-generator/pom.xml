@@ -353,9 +353,9 @@
 				        <groupId>io.github.mzattera</groupId>				         
 					  	<licenseName>Apache License Version 2.0, January 2004</licenseName>
 						<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
-					    <scmConnection>scm:git:git@github.com:mzattera/hf-api-client.git</scmConnection>
-					    <scmDeveloperConnection>scm:git:git@github.com:mzattera/hf-api-client.git</scmDeveloperConnection>
-					    <scmUurl>http://github.com/mzattera/hf-api-client</scmUurl>
+					    <scmConnection>scm:git:https://github.com/mzattera/hf-inference-api.git</scmConnection>
+					    <scmDeveloperConnection>scm:git:https://github.com:mzattera/hf-inference-api.git</scmDeveloperConnection>
+					    <scmUrl>https://github.com/mzattera/hf-inference-api</scmUrl>
         				<serializationLibrary>jackson</serializationLibrary>
         				<snapshotVersion>false</snapshotVersion>
         				<useRuntimeException>true</useRuntimeException>
