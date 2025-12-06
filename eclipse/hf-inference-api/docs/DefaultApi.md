@@ -210,7 +210,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Generated image returned as raw bytes |  -  |
+| **200** | Generated image(s) returned as Base64 encoding in the response. |  -  |
 | **400** | Bad request — invalid input |  -  |
 | **401** | Unauthorized — invalid or missing token |  -  |
 

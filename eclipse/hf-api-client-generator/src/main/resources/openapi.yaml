@@ -2,11 +2,11 @@ openapi: 3.0.3
 info:
   title: HuggingFace Inference Provider API
   version: 1.0.0
-  description: 'API for GenAI services: image generation, chat completions, embeddings'
+  description: 'Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.'
 
 servers:
   - url: https://router.huggingface.co
-    description: Production server
+    description: Hugging Face Inference router endpoint.
 
 paths:
   /{provider}/v1/images/generations:
@@ -30,7 +30,7 @@ paths:
               $ref: '#/components/schemas/ImageGenerationRequest'
       responses:
         '200':
-          description: Generated image returned as raw bytes
+          description: Generated image(s) returned as Base64 encoding in the response. 
           content:
             application/json:
               schema:
@@ -110,7 +110,7 @@ components:
       properties:
         model:
           type: string
-          description: Model to use 
+          description: Model to use. 
         prompt:
           type: string
           description: The input text prompt for image generation.
@@ -119,7 +119,7 @@ components:
           description: The number of images to generate.
         parameters:
           type: object
-          description: Optional parameters for image generation
+          description: Optional parameters for image generation.
           properties:
             guidance_scale:
               type: number
@@ -145,20 +145,20 @@ components:
 
     ImageGenerationResponse:
       type: object
-      description: Images being generated
+      description: Image(s) being generated
       properties:
         created:
           type: integer
           description: Creation timestamp.
         data:
           type: array
-          description: Array with image data
+          description: Array with image data.
           items:
             type: object
             properties:
               b64_json:
                 type: string	
-                description: Image encoded as base 64		  
+                description: Image encoded as Base64.		  
 
     ChatCompletionRequest:
       type: object
@@ -168,7 +168,7 @@ components:
       properties:
         model:
           type: string
-          description: Model to use in the format "provider/model_name:selector" 
+          description: Model to use. 
         frequency_penalty:
           type: number
           description: Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text.
@@ -253,6 +253,7 @@ components:
 
     ChatCompletionResponse:
       type: object
+      description: Chat completion response.
       properties:
         object:
           type: string
@@ -289,7 +290,7 @@ components:
       properties:
         role:
           type: string
-          description: Role of the message sender (eg "user", "assistant")
+          description: Role of the message sender (eg "user", "assistant").
         content:
           oneOf:
             - type: string
@@ -312,7 +313,7 @@ components:
             - image_url
         text:
           type: string
-          description: Text content when type = text
+          description: Text content when type = text.
         image_url:
           type: object
           required:
@@ -367,7 +368,7 @@ components:
         prompt_time:
           type: number
         prompt_tokens_details:
-          description: This appears in result returned bz feature extraction (embedding) but is null and undocumented
+          description: This appears in result returned by feature extraction (embedding) but is null and undocumented.
           type: object
         total_tokens:
           type: integer
@@ -384,15 +385,15 @@ components:
       properties:
         model:
           type: string
-          description: Model to use in the format "provider/model_name:selector" 
+          description: Model to use. 
         input:
-          description: 'Array of strings with inputs'
+          description: Array of strings with inputs.
           type: array
           items:
             type: string
         normalize:
           type: boolean
-          description: If true, normalize embeddings
+          description: If true, normalize embeddings.
         prompt_name:
           type: string
           description: The name of the prompt that should be used for encoding.
@@ -407,6 +408,7 @@ components:
 
     EmbeddingsResponse:
       type: object
+      description: Generated embeddings.
       properties:
         object:
           type: string
@@ -416,6 +418,7 @@ components:
           type: integer			
         model:
           type: string
+          description: Model used to create the embeddings.
         usage:
           $ref: '#/components/schemas/Usage'
         data:

@@ -1,6 +1,6 @@
 /*
  * HuggingFace Inference Provider API
- * API for GenAI services: image generation, chat completions, embeddings
+ * Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -368,7 +368,7 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Generated image returned as raw bytes </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Generated image(s) returned as Base64 encoding in the response. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
      </table>
@@ -446,7 +446,7 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Generated image returned as raw bytes </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Generated image(s) returned as Base64 encoding in the response. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
      </table>
@@ -467,7 +467,7 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Generated image returned as raw bytes </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Generated image(s) returned as Base64 encoding in the response. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
      </table>
@@ -490,7 +490,7 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Generated image returned as raw bytes </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Generated image(s) returned as Base64 encoding in the response. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
      </table>

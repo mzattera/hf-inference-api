@@ -1,6 +1,6 @@
 /*
  * HuggingFace Inference Provider API
- * API for GenAI services: image generation, chat completions, embeddings
+ * Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
  *
  * The version of the OpenAPI document: 1.0.0
  * 

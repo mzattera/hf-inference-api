@@ -2,7 +2,7 @@
 
 # ImageGenerationRequestParameters
 
-Optional parameters for image generation
+Optional parameters for image generation.
 
 ## Properties
 

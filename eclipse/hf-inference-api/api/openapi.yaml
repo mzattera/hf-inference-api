@@ -1,10 +1,11 @@
 openapi: 3.0.3
 info:
-  description: "API for GenAI services: image generation, chat completions, embeddings"
+  description: "Client for Hugging Face Chat Completions, Feature Extraction, and\
+    \ Text to Image APIs."
   title: HuggingFace Inference Provider API
   version: 1.0.0
 servers:
-- description: Production server
+- description: Hugging Face Inference router endpoint.
   url: https://router.huggingface.co
 paths:
   /{provider}/v1/images/generations:
@@ -31,7 +32,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ImageGenerationResponse"
-          description: Generated image returned as raw bytes
+          description: Generated image(s) returned as Base64 encoding in the response.
         "400":
           description: Bad request — invalid input
         "401":
@@ -120,7 +121,7 @@ components:
         "n": 0
       properties:
         model:
-          description: Model to use
+          description: Model to use.
           type: string
         prompt:
           description: The input text prompt for image generation.
@@ -135,7 +136,7 @@ components:
       - prompt
       type: object
     ImageGenerationResponse:
-      description: Images being generated
+      description: Image(s) being generated
       example:
         data:
         - b64_json: b64_json
@@ -146,7 +147,7 @@ components:
           description: Creation timestamp.
           type: integer
         data:
-          description: Array with image data
+          description: Array with image data.
           items:
             $ref: "#/components/schemas/ImageGenerationResponse_data_inner"
           type: array
@@ -182,7 +183,7 @@ components:
           include_usage: true
       properties:
         model:
-          description: Model to use in the format "provider/model_name:selector"
+          description: Model to use.
           type: string
         frequency_penalty:
           description: Number between -2.0 and 2.0. Positive values penalize new tokens
@@ -236,6 +237,7 @@ components:
       - model
       type: object
     ChatCompletionResponse:
+      description: Chat completion response.
       example:
         x_groq:
           seed: 5
@@ -317,7 +319,7 @@ components:
         content: Message_content
       properties:
         role:
-          description: "Role of the message sender (eg \"user\", \"assistant\")"
+          description: "Role of the message sender (eg \"user\", \"assistant\")."
           type: string
         content:
           $ref: "#/components/schemas/Message_content"
@@ -337,7 +339,7 @@ components:
           - image_url
           type: string
         text:
-          description: Text content when type = text
+          description: Text content when type = text.
           type: string
         image_url:
           $ref: "#/components/schemas/StructuredContent_image_url"
@@ -416,8 +418,8 @@ components:
         prompt_time:
           type: number
         prompt_tokens_details:
-          description: This appears in result returned bz feature extraction (embedding)
-            but is null and undocumented
+          description: This appears in result returned by feature extraction (embedding)
+            but is null and undocumented.
           type: object
         total_tokens:
           type: integer
@@ -438,15 +440,15 @@ components:
         prompt_name: prompt_name
       properties:
         model:
-          description: Model to use in the format "provider/model_name:selector"
+          description: Model to use.
           type: string
         input:
-          description: Array of strings with inputs
+          description: Array of strings with inputs.
           items:
             type: string
           type: array
         normalize:
-          description: "If true, normalize embeddings"
+          description: "If true, normalize embeddings."
           type: boolean
         prompt_name:
           description: The name of the prompt that should be used for encoding.
@@ -464,6 +466,7 @@ components:
       - model
       type: object
     EmbeddingsResponse:
+      description: Generated embeddings.
       example:
         data:
         - index: 6
@@ -499,6 +502,7 @@ components:
         created:
           type: integer
         model:
+          description: Model used to create the embeddings.
           type: string
         usage:
           $ref: "#/components/schemas/Usage"
@@ -525,7 +529,7 @@ components:
           type: array
       type: object
     ImageGenerationRequest_parameters:
-      description: Optional parameters for image generation
+      description: Optional parameters for image generation.
       example:
         scheduler: scheduler
         seed: 2
@@ -565,7 +569,7 @@ components:
         b64_json: b64_json
       properties:
         b64_json:
-          description: Image encoded as base 64
+          description: Image encoded as Base64.
           type: string
       type: object
     ChatCompletionRequest_response_format_oneOf:

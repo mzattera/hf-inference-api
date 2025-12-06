@@ -2,14 +2,14 @@
 
 # ImageGenerationResponse
 
-Images being generated
+Image(s) being generated
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**created** | **Integer** | Creation timestamp. |  [optional] |
-|**data** | [**List&lt;ImageGenerationResponseDataInner&gt;**](ImageGenerationResponseDataInner.md) | Array with image data |  [optional] |
+|**data** | [**List&lt;ImageGenerationResponseDataInner&gt;**](ImageGenerationResponseDataInner.md) | Array with image data. |  [optional] |
 
 
 

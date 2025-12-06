@@ -2,6 +2,7 @@
 
 # ChatCompletionResponse
 
+Chat completion response.
 
 ## Properties
 

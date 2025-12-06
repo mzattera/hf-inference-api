@@ -1,6 +1,6 @@
 /*
  * HuggingFace Inference Provider API
- * API for GenAI services: image generation, chat completions, embeddings
+ * Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * Representing a Server configuration.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-04T08:01:40.423980900+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
 public class ServerConfiguration {
     public String URL;
     public String description;
