@@ -25,14 +25,12 @@ import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
 
 import io.github.mzattera.hfinferenceapi.ApiClient;
 import io.github.mzattera.hfinferenceapi.ApiException;
-import io.github.mzattera.hfinferenceapi.ApiResponse;
 import io.github.mzattera.hfinferenceapi.JSON;
 import io.github.mzattera.hfinferenceapi.auth.Authentication;
 import io.github.mzattera.hfinferenceapi.auth.HttpBearerAuth;
@@ -51,8 +49,6 @@ import io.github.mzattera.hfinferenceapi.client.model.Message;
 import io.github.mzattera.hfinferenceapi.client.model.Message.RoleEnum;
 import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart;
 import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart.TypeEnum;
-import io.github.mzattera.hfinferenceapi.client.model.ModelInfo;
-import io.github.mzattera.hfinferenceapi.client.model.ModelSearchRequest;
 import io.github.mzattera.hfinferenceapi.client.model.TextContentPart;
 import io.github.mzattera.hfinferenceapi.client.model.Tool;
 import io.github.mzattera.hfinferenceapi.client.model.ToolMessage;
@@ -66,10 +62,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
  * API tests for DefaultApi
  */
 public class DefaultApiTest {
-	
+
 //	private static String MODEL = "Qwen/Qwen2.5-VL-3B-Instruct";
 	private static String MODEL = "openai/gpt-oss-120b";
-			
+
 	// The static field to hold the initialized API client
 	private static DefaultApi api;
 
@@ -146,10 +142,9 @@ public class DefaultApiTest {
 		Message msg;
 		ChatCompletionRequest chatCompletionRequest;
 		ChatCompletionResponse response;
-		
+
 		msg = new UserMessage().content(new UserMessageAllOfContent("Hi")).role(RoleEnum.USER);
-		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg)
-				.model(MODEL);
+		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL).logprobs(true);
 		response = api.chatCompletion(chatCompletionRequest);
 		System.out.println(response + "\n\n");
 		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
@@ -175,65 +170,67 @@ public class DefaultApiTest {
 		Message msg;
 		ChatCompletionRequest chatCompletionRequest;
 		ChatCompletionResponse response;
-		
+
 		// Arguments for our tool as JSON
-		String arguments ="{\n"
-				+ "  \"$schema\" : \"http://json-schema.org/draft-04/schema#\",\n"
-				+ "  \"title\" : \"Parameters\",\n"
-				+ "  \"type\" : \"object\",\n"
-				+ "  \"additionalProperties\" : false,\n"
-				+ "  \"description\" : \"This is a class describing parameters for GetCurrentWeatherTool\",\n"
-				+ "  \"properties\" : {\n"
-				+ "    \"location\" : {\n"
-				+ "      \"type\" : \"string\",\n"
-				+ "      \"description\" : \"The city and state, e.g. San Francisco, CA.\"\n"
-				+ "    },\n"
-				+ "    \"unit\" : {\n"
-				+ "      \"type\" : \"string\",\n"
-				+ "      \"enum\" : [ \"CELSIUS\", \"FARENHEIT\" ],\n"
-				+ "      \"description\" : \"Temperature unit (CELSIUS or FARENHEIT), defaults to CELSIUS\"\n"
-				+ "    }\n"
-				+ "  },\n"
-				+ "  \"required\" : [ \"location\" ]\n"
+		String arguments = "{\n" //
+				+ "  \"$schema\" : \"http://json-schema.org/draft-04/schema#\",\n" //
+				+ "  \"title\" : \"Parameters\",\n" //
+				+ "  \"type\" : \"object\",\n" //
+				+ "  \"additionalProperties\" : false,\n" //
+				+ "  \"description\" : \"This is a class describing parameters for GetCurrentWeatherTool\",\n" //
+				+ "  \"properties\" : {\n" //
+				+ "    \"location\" : {\n" //
+				+ "      \"type\" : \"string\",\n" //
+				+ "      \"description\" : \"The city and state, e.g. San Francisco, CA.\"\n" //
+				+ "    },\n" //
+				+ "    \"unit\" : {\n" //
+				+ "      \"type\" : \"string\",\n" //
+				+ "      \"enum\" : [ \"CELSIUS\", \"FARENHEIT\" ],\n" //
+				+ "      \"description\" : \"Temperature unit (CELSIUS or FARENHEIT), defaults to CELSIUS\"\n" //
+				+ "    }\n" //
+				+ "  },\n" //
+				+ "  \"required\" : [ \"location\" ]\n" //
 				+ "}";
-		
+
 		// Parse arguments into an object
 		Gson gson = new Gson();
 		Object parametersObject = null;
-		parametersObject = gson.fromJson(arguments, Object.class);		
-		
-		Function fun = new Function().name("GetCurrentWeatherTool").description("Provides weather conditions in one city").parameters(parametersObject);
+		parametersObject = gson.fromJson(arguments, Object.class);
+
+		Function fun = new Function().name("GetCurrentWeatherTool")
+				.description("Provides weather conditions in one city").parameters(parametersObject);
 		Tool tool = new FunctionTool().function(fun).type(Tool.TypeEnum.FUNCTION);
 		List<Tool> tools = new ArrayList<>();
 		tools.add(tool);
-		msg = new UserMessage().content(new UserMessageAllOfContent("What is the temperature in London (F)?")).role(RoleEnum.USER);
+		msg = new UserMessage().content(new UserMessageAllOfContent("What is the temperature in London (F)?"))
+				.role(RoleEnum.USER);
 		messages.add(msg);
 		chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
-		
-		AssistantMessage botMsg = (AssistantMessage)response.getChoices().get(0).getMessage();
+
+		AssistantMessage botMsg = (AssistantMessage) response.getChoices().get(0).getMessage();
 		messages.add(botMsg);
 		if (botMsg.getToolCalls().size() > 0) {
 			// There was a tool call
-			FunctionToolCall call = (FunctionToolCall)botMsg.getToolCalls().get(0); // only these are supported
-			
+			FunctionToolCall call = (FunctionToolCall) botMsg.getToolCalls().get(0); // only these are supported
+
 			// Fake response
-			msg = new ToolMessage().toolCallId(call.getId()).content(new ToolMessageAllOfContent("35F")).name("GetCurrentWeatherTool").role(RoleEnum.TOOL);
+			msg = new ToolMessage().toolCallId(call.getId()).content(new ToolMessageAllOfContent("35F"))
+					.name("GetCurrentWeatherTool").role(RoleEnum.TOOL);
 			messages.add(msg);
 			chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model(MODEL);
 			response = api.chatCompletion(chatCompletionRequest);
-			
+
 			System.out.println(response + "\n\n");
 			System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
 		}
 	}
-	
+
 //	Test response schema and logprobs then we should be fine
 //	
 //	DONE: Test by removing additionalProperties to make sure we do not forget anything useful
 //	
 //	Test image upload -> Qwen needs licenses
-	
 
 	/**
 	 * Get embeddings for input(s)

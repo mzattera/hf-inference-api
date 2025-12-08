@@ -6,7 +6,6 @@ All URIs are relative to *https://router.huggingface.co*
 |------------- | ------------- | -------------|
 | [**chatCompletion**](DefaultApi.md#chatCompletion) | **POST** /v1/chat/completions | Chat completion using messages |
 | [**featureExtraction**](DefaultApi.md#featureExtraction) | **POST** /{provider}/v1/embeddings | Get embeddings for input(s) |
-| [**getModels**](DefaultApi.md#getModels) | **GET** /api/models | Retrieves models information using a JSON search payload. |
 | [**textToImage**](DefaultApi.md#textToImage) | **POST** /{provider}/v1/images/generations | Text to Image generation |
 
 
@@ -143,70 +142,6 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Embeddings computed successfully |  -  |
-| **400** | Bad request — invalid input |  -  |
-| **401** | Unauthorized — invalid or missing token |  -  |
-
-<a id="getModels"></a>
-# **getModels**
-> List&lt;ModelInfo&gt; getModels(modelSearchRequest)
-
-Retrieves models information using a JSON search payload.
-
-Sends filtering, sorting, and pagination parameters in the request body. The response is paginated; use the &#39;Link&#39; header to navigate.
-
-### Example
-```java
-// Import classes:
-import io.github.mzattera.hfinferenceapi.ApiClient;
-import io.github.mzattera.hfinferenceapi.ApiException;
-import io.github.mzattera.hfinferenceapi.Configuration;
-import io.github.mzattera.hfinferenceapi.models.*;
-import io.github.mzattera.hfinferenceapi.client.api.DefaultApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://router.huggingface.co");
-
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
-    ModelSearchRequest modelSearchRequest = new ModelSearchRequest(); // ModelSearchRequest | 
-    try {
-      List<ModelInfo> result = apiInstance.getModels(modelSearchRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#getModels");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **modelSearchRequest** | [**ModelSearchRequest**](ModelSearchRequest.md)|  | |
-
-### Return type
-
-[**List&lt;ModelInfo&gt;**](ModelInfo.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | List of models successfully retrieved. |  * link - Header used for pagination, contains the link to the next page (see https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api?apiVersion&#x3D;2022-11-28#link-header). <br>  |
 | **400** | Bad request — invalid input |  -  |
 | **401** | Unauthorized — invalid or missing token |  -  |
 

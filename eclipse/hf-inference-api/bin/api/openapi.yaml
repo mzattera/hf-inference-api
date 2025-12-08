@@ -104,42 +104,6 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /api/models:
-    get:
-      description: "Sends filtering, sorting, and pagination parameters in the request\
-        \ body. The response is paginated; use the 'Link' header to navigate."
-      operationId: getModels
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ModelSearchRequest"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: "#/components/schemas/ModelInfo"
-                type: array
-          description: List of models successfully retrieved.
-          headers:
-            link:
-              description: "Header used for pagination, contains the link to the next\
-                \ page (see https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api?apiVersion=2022-11-28#link-header)."
-              explode: false
-              style: simple
-        "400":
-          description: Bad request — invalid input
-        "401":
-          description: Unauthorized — invalid or missing token
-      servers:
-      - url: https://huggingface.co
-      summary: Retrieves models information using a JSON search payload.
-      x-content-type: application/json
-      x-accepts:
-      - application/json
 components:
   schemas:
     ImageGenerationRequest:
@@ -281,9 +245,15 @@ components:
       example:
         created: 5
         usage:
+          queue_time: 7.386281948385884
           completion_tokens: 5
-          prompt_tokens: 2
-          total_tokens: 7
+          completion_time: 2.3021358869347655
+          prompt_tokens: 9
+          prompt_time: 3.616076749251911
+          completion_tokens_details:
+            reasoning_tokens: 7
+          total_tokens: 2
+          total_time: 4.145608029883936
         model: model
         service_tier: service_tier
         id: id
@@ -712,16 +682,32 @@ components:
     Usage:
       additionalProperties: true
       example:
+        queue_time: 7.386281948385884
         completion_tokens: 5
-        prompt_tokens: 2
-        total_tokens: 7
+        completion_time: 2.3021358869347655
+        prompt_tokens: 9
+        prompt_time: 3.616076749251911
+        completion_tokens_details:
+          reasoning_tokens: 7
+        total_tokens: 2
+        total_time: 4.145608029883936
       properties:
         completion_tokens:
           type: integer
+        completion_time:
+          type: number
+        completion_tokens_details:
+          $ref: "#/components/schemas/Usage_completion_tokens_details"
         prompt_tokens:
           type: integer
+        prompt_time:
+          type: number
         total_tokens:
           type: integer
+        total_time:
+          type: number
+        queue_time:
+          type: number
       type: object
     EmbeddingsRequest:
       example:
@@ -776,9 +762,15 @@ components:
           - 6.027456183070403
           object: object
         usage:
+          queue_time: 7.386281948385884
           completion_tokens: 5
-          prompt_tokens: 2
-          total_tokens: 7
+          completion_time: 2.3021358869347655
+          prompt_tokens: 9
+          prompt_time: 3.616076749251911
+          completion_tokens_details:
+            reasoning_tokens: 7
+          total_tokens: 2
+          total_time: 4.145608029883936
         model: model
       properties:
         model:
@@ -808,110 +800,6 @@ components:
           items:
             type: number
           type: array
-      type: object
-    ModelSearchRequest:
-      description: "Payload used to filter, sort, and paginate model results."
-      example:
-        filter: text-classification
-        search: resnet
-        author: microsoft
-        limit: 6
-        sort: sort
-        config: false
-        direction: 0
-        full: false
-      properties:
-        search:
-          description: "Filter based on substrings for repos and their usernames (e.g.,\
-            \ 'resnet')."
-          example: resnet
-          type: string
-        author:
-          description: "Filter models by an author or organization (e.g., 'huggingface')."
-          example: microsoft
-          type: string
-        filter:
-          description: "Filter based on tags (e.g., 'text-classification')."
-          example: text-classification
-          type: string
-        sort:
-          description: "Property to use when sorting (e.g., 'downloads' or 'author')."
-          type: string
-        direction:
-          default: 1
-          description: "Direction in which to sort. Use -1 for descending, and 1 for\
-            \ ascending."
-          type: integer
-        limit:
-          description: Limit the number of models fetched.
-          type: integer
-        full:
-          default: false
-          description: "Whether to fetch most model data, such as all tags, the files,\
-            \ etc."
-          type: boolean
-        config:
-          default: false
-          description: Whether to also fetch the repo config.
-          type: boolean
-      type: object
-    ModelInfo:
-      additionalProperties: true
-      description: Detailed information about a single model from the Hub.
-      example:
-        createdAt: 2025-11-25T15:09:48Z
-        private: true
-        downloads: 1
-        modelId: modelId
-        trendingScore: 6
-        pipeline_tag: text-to-image
-        library_name: diffusers
-        id: Tongyi-MAI/Z-Image-Turbo
-        likes: 0
-        tags:
-        - tags
-        - tags
-      properties:
-        id:
-          description: Unique identifier of the model repository (format - author/name).
-          example: Tongyi-MAI/Z-Image-Turbo
-          type: string
-        likes:
-          description: Number of likes received by the model.
-          type: integer
-        trendingScore:
-          description: Score indicating the current popularity or trending status.
-          type: integer
-        private:
-          description: Whether the model repository is private (true) or public (false).
-          type: boolean
-        downloads:
-          description: Total number of downloads for the model.
-          type: integer
-        tags:
-          description: "List of tags associated with the model (e.g., library, task,\
-            \ license)."
-          items:
-            type: string
-          type: array
-        pipeline_tag:
-          description: Primary task supported by the model.
-          example: text-to-image
-          type: string
-        library_name:
-          description: Main machine learning library used by the model.
-          example: diffusers
-          type: string
-        createdAt:
-          description: Timestamp when the model was created.
-          example: 2025-11-25T15:09:48Z
-          format: date-time
-          type: string
-        modelId:
-          description: Alternative or redundant field for the unique model identifier.
-          type: string
-      required:
-      - id
       type: object
     ImageGenerationRequest_parameters:
       description: Optional parameters for image generation.
@@ -1089,6 +977,14 @@ components:
           type: number
         token:
           type: string
+      type: object
+    Usage_completion_tokens_details:
+      additionalProperties: true
+      example:
+        reasoning_tokens: 7
+      properties:
+        reasoning_tokens:
+          type: integer
       type: object
   securitySchemes:
     bearerAuth:

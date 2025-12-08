@@ -2,7 +2,7 @@
 
 HuggingFace Inference Provider API
 - API version: 1.0.0
-  - Build date: 2025-12-08T14:35:35.022148400+01:00[Europe/Berlin]
+  - Build date: 2025-12-08T15:13:04.332270900+01:00[Europe/Berlin]
   - Generator version: 7.17.0
 
 Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
@@ -122,7 +122,6 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**chatCompletion**](docs/DefaultApi.md#chatCompletion) | **POST** /v1/chat/completions | Chat completion using messages
 *DefaultApi* | [**featureExtraction**](docs/DefaultApi.md#featureExtraction) | **POST** /{provider}/v1/embeddings | Get embeddings for input(s)
-*DefaultApi* | [**getModels**](docs/DefaultApi.md#getModels) | **GET** /api/models | Retrieves models information using a JSON search payload.
 *DefaultApi* | [**textToImage**](docs/DefaultApi.md#textToImage) | **POST** /{provider}/v1/images/generations | Text to Image generation
 
 
@@ -161,8 +160,6 @@ Class | Method | HTTP request | Description
  - [LogProbs](docs/LogProbs.md)
  - [Message](docs/Message.md)
  - [MessageContentPart](docs/MessageContentPart.md)
- - [ModelInfo](docs/ModelInfo.md)
- - [ModelSearchRequest](docs/ModelSearchRequest.md)
  - [RefusalContentPart](docs/RefusalContentPart.md)
  - [ResponseFormat](docs/ResponseFormat.md)
  - [SchemaResponseFormat](docs/SchemaResponseFormat.md)
@@ -177,6 +174,7 @@ Class | Method | HTTP request | Description
  - [ToolMessage](docs/ToolMessage.md)
  - [ToolMessageAllOfContent](docs/ToolMessageAllOfContent.md)
  - [Usage](docs/Usage.md)
+ - [UsageCompletionTokensDetails](docs/UsageCompletionTokensDetails.md)
  - [UserMessage](docs/UserMessage.md)
  - [UserMessageAllOfContent](docs/UserMessageAllOfContent.md)
 

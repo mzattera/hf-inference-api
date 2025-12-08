@@ -40,8 +40,6 @@ docs/JsonResponseFormat.md
 docs/LogProbs.md
 docs/Message.md
 docs/MessageContentPart.md
-docs/ModelInfo.md
-docs/ModelSearchRequest.md
 docs/RefusalContentPart.md
 docs/ResponseFormat.md
 docs/SchemaResponseFormat.md
@@ -56,6 +54,7 @@ docs/ToolCall.md
 docs/ToolMessage.md
 docs/ToolMessageAllOfContent.md
 docs/Usage.md
+docs/UsageCompletionTokensDetails.md
 docs/UserMessage.md
 docs/UserMessageAllOfContent.md
 git_push.sh
@@ -119,8 +118,6 @@ src/main/java/io/github/mzattera/hfinferenceapi/client/model/JsonResponseFormat.
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/LogProbs.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/Message.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/MessageContentPart.java
-src/main/java/io/github/mzattera/hfinferenceapi/client/model/ModelInfo.java
-src/main/java/io/github/mzattera/hfinferenceapi/client/model/ModelSearchRequest.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/RefusalContentPart.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/ResponseFormat.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/SchemaResponseFormat.java
@@ -135,6 +132,7 @@ src/main/java/io/github/mzattera/hfinferenceapi/client/model/ToolCall.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/ToolMessage.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/ToolMessageAllOfContent.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/Usage.java
+src/main/java/io/github/mzattera/hfinferenceapi/client/model/UsageCompletionTokensDetails.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/UserMessage.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/UserMessageAllOfContent.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/api/DefaultApiTest.java
@@ -171,8 +169,6 @@ src/test/java/io/github/mzattera/hfinferenceapi/client/model/JsonResponseFormatT
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/LogProbsTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/MessageContentPartTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/MessageTest.java
-src/test/java/io/github/mzattera/hfinferenceapi/client/model/ModelInfoTest.java
-src/test/java/io/github/mzattera/hfinferenceapi/client/model/ModelSearchRequestTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/RefusalContentPartTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/ResponseFormatTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/SchemaResponseFormatTest.java
@@ -186,6 +182,7 @@ src/test/java/io/github/mzattera/hfinferenceapi/client/model/ToolCallTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/ToolMessageAllOfContentTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/ToolMessageTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/ToolTest.java
+src/test/java/io/github/mzattera/hfinferenceapi/client/model/UsageCompletionTokensDetailsTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/UsageTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/UserMessageAllOfContentTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/UserMessageTest.java
