@@ -144,7 +144,7 @@ public class DefaultApiTest {
 		ChatCompletionResponse response;
 
 		msg = new UserMessage().content(new UserMessageAllOfContent("Hi")).role(RoleEnum.USER);
-		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL).logprobs(true);
+		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
 		System.out.println(response + "\n\n");
 		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
