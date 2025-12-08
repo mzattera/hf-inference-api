@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionResponseXGroq;
 import io.github.mzattera.hfinferenceapi.client.model.Choice;
 import io.github.mzattera.hfinferenceapi.client.model.Usage;
 import java.io.IOException;
@@ -56,17 +55,11 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * Chat completion response.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "ChatCompletionResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class ChatCompletionResponse {
-  public static final String SERIALIZED_NAME_OBJECT = "object";
-  @XmlElement(name = "object")
-  @SerializedName(SERIALIZED_NAME_OBJECT)
-  @javax.annotation.Nullable
-  private String _object;
-
   public static final String SERIALIZED_NAME_CHOICES = "choices";
   @XmlElement(name = "choices")
   @SerializedName(SERIALIZED_NAME_CHOICES)
@@ -91,29 +84,11 @@ public class ChatCompletionResponse {
   @javax.annotation.Nullable
   private String model;
 
-  public static final String SERIALIZED_NAME_USAGE_BREAKDOWN = "usage_breakdown";
-  @XmlElement(name = "usage_breakdown")
-  @SerializedName(SERIALIZED_NAME_USAGE_BREAKDOWN)
-  @javax.annotation.Nullable
-  private Object usageBreakdown;
-
   public static final String SERIALIZED_NAME_SYSTEM_FINGERPRINT = "system_fingerprint";
   @XmlElement(name = "system_fingerprint")
   @SerializedName(SERIALIZED_NAME_SYSTEM_FINGERPRINT)
   @javax.annotation.Nullable
   private String systemFingerprint;
-
-  public static final String SERIALIZED_NAME_SERVICE_TIER = "service_tier";
-  @XmlElement(name = "service_tier")
-  @SerializedName(SERIALIZED_NAME_SERVICE_TIER)
-  @javax.annotation.Nullable
-  private String serviceTier;
-
-  public static final String SERIALIZED_NAME_X_GROQ = "x_groq";
-  @XmlElement(name = "x_groq")
-  @SerializedName(SERIALIZED_NAME_X_GROQ)
-  @javax.annotation.Nullable
-  private ChatCompletionResponseXGroq xGroq;
 
   public static final String SERIALIZED_NAME_USAGE = "usage";
   @XmlElement(name = "usage")
@@ -121,27 +96,14 @@ public class ChatCompletionResponse {
   @javax.annotation.Nullable
   private Usage usage;
 
+  public static final String SERIALIZED_NAME_SERVICE_TIER = "service_tier";
+  @XmlElement(name = "service_tier")
+  @SerializedName(SERIALIZED_NAME_SERVICE_TIER)
+  @javax.annotation.Nullable
+  private String serviceTier;
+
   public ChatCompletionResponse() {
   }
-
-  public ChatCompletionResponse _object(@javax.annotation.Nullable String _object) {
-    this._object = _object;
-    return this;
-  }
-
-  /**
-   * Get _object
-   * @return _object
-   */
-  @javax.annotation.Nullable
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(@javax.annotation.Nullable String _object) {
-    this._object = _object;
-  }
-
 
   public ChatCompletionResponse choices(@javax.annotation.Nullable List<Choice> choices) {
     this.choices = choices;
@@ -227,25 +189,6 @@ public class ChatCompletionResponse {
   }
 
 
-  public ChatCompletionResponse usageBreakdown(@javax.annotation.Nullable Object usageBreakdown) {
-    this.usageBreakdown = usageBreakdown;
-    return this;
-  }
-
-  /**
-   * Get usageBreakdown
-   * @return usageBreakdown
-   */
-  @javax.annotation.Nullable
-  public Object getUsageBreakdown() {
-    return usageBreakdown;
-  }
-
-  public void setUsageBreakdown(@javax.annotation.Nullable Object usageBreakdown) {
-    this.usageBreakdown = usageBreakdown;
-  }
-
-
   public ChatCompletionResponse systemFingerprint(@javax.annotation.Nullable String systemFingerprint) {
     this.systemFingerprint = systemFingerprint;
     return this;
@@ -262,44 +205,6 @@ public class ChatCompletionResponse {
 
   public void setSystemFingerprint(@javax.annotation.Nullable String systemFingerprint) {
     this.systemFingerprint = systemFingerprint;
-  }
-
-
-  public ChatCompletionResponse serviceTier(@javax.annotation.Nullable String serviceTier) {
-    this.serviceTier = serviceTier;
-    return this;
-  }
-
-  /**
-   * Get serviceTier
-   * @return serviceTier
-   */
-  @javax.annotation.Nullable
-  public String getServiceTier() {
-    return serviceTier;
-  }
-
-  public void setServiceTier(@javax.annotation.Nullable String serviceTier) {
-    this.serviceTier = serviceTier;
-  }
-
-
-  public ChatCompletionResponse xGroq(@javax.annotation.Nullable ChatCompletionResponseXGroq xGroq) {
-    this.xGroq = xGroq;
-    return this;
-  }
-
-  /**
-   * Get xGroq
-   * @return xGroq
-   */
-  @javax.annotation.Nullable
-  public ChatCompletionResponseXGroq getxGroq() {
-    return xGroq;
-  }
-
-  public void setxGroq(@javax.annotation.Nullable ChatCompletionResponseXGroq xGroq) {
-    this.xGroq = xGroq;
   }
 
 
@@ -322,6 +227,69 @@ public class ChatCompletionResponse {
   }
 
 
+  public ChatCompletionResponse serviceTier(@javax.annotation.Nullable String serviceTier) {
+    this.serviceTier = serviceTier;
+    return this;
+  }
+
+  /**
+   * Get serviceTier
+   * @return serviceTier
+   */
+  @javax.annotation.Nullable
+  public String getServiceTier() {
+    return serviceTier;
+  }
+
+  public void setServiceTier(@javax.annotation.Nullable String serviceTier) {
+    this.serviceTier = serviceTier;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the ChatCompletionResponse instance itself
+   */
+  public ChatCompletionResponse putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -332,37 +300,33 @@ public class ChatCompletionResponse {
       return false;
     }
     ChatCompletionResponse chatCompletionResponse = (ChatCompletionResponse) o;
-    return Objects.equals(this._object, chatCompletionResponse._object) &&
-        Objects.equals(this.choices, chatCompletionResponse.choices) &&
+    return Objects.equals(this.choices, chatCompletionResponse.choices) &&
         Objects.equals(this.created, chatCompletionResponse.created) &&
         Objects.equals(this.id, chatCompletionResponse.id) &&
         Objects.equals(this.model, chatCompletionResponse.model) &&
-        Objects.equals(this.usageBreakdown, chatCompletionResponse.usageBreakdown) &&
         Objects.equals(this.systemFingerprint, chatCompletionResponse.systemFingerprint) &&
-        Objects.equals(this.serviceTier, chatCompletionResponse.serviceTier) &&
-        Objects.equals(this.xGroq, chatCompletionResponse.xGroq) &&
-        Objects.equals(this.usage, chatCompletionResponse.usage);
+        Objects.equals(this.usage, chatCompletionResponse.usage) &&
+        Objects.equals(this.serviceTier, chatCompletionResponse.serviceTier)&&
+        Objects.equals(this.additionalProperties, chatCompletionResponse.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_object, choices, created, id, model, usageBreakdown, systemFingerprint, serviceTier, xGroq, usage);
+    return Objects.hash(choices, created, id, model, systemFingerprint, usage, serviceTier, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChatCompletionResponse {\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
-    sb.append("    usageBreakdown: ").append(toIndentedString(usageBreakdown)).append("\n");
     sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
-    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
-    sb.append("    xGroq: ").append(toIndentedString(xGroq)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -384,7 +348,7 @@ public class ChatCompletionResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("object", "choices", "created", "id", "model", "usage_breakdown", "system_fingerprint", "service_tier", "x_groq", "usage"));
+    openapiFields = new HashSet<String>(Arrays.asList("choices", "created", "id", "model", "system_fingerprint", "usage", "service_tier"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -402,31 +366,10 @@ public class ChatCompletionResponse {
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in ChatCompletionResponse is not found in the empty JSON string", ChatCompletionResponse.openapiRequiredFields.toString()));
         }
       }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ChatCompletionResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ChatCompletionResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("object") != null && !jsonObj.get("object").isJsonNull()) && !jsonObj.get("object").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `object` to be a primitive type in the JSON string but got `%s`", jsonObj.get("object").toString()));
-      }
-      if (jsonObj.get("choices") != null && !jsonObj.get("choices").isJsonNull()) {
-        JsonArray jsonArraychoices = jsonObj.getAsJsonArray("choices");
-        if (jsonArraychoices != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("choices").isJsonArray()) {
-            throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `choices` to be an array in the JSON string but got `%s`", jsonObj.get("choices").toString()));
-          }
-
-          // validate the optional field `choices` (array)
-          for (int i = 0; i < jsonArraychoices.size(); i++) {
-            Choice.validateJsonElement(jsonArraychoices.get(i));
-          };
-        }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("choices") != null && !jsonObj.get("choices").isJsonNull() && !jsonObj.get("choices").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `choices` to be an array in the JSON string but got `%s`", jsonObj.get("choices").toString()));
       }
       if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
@@ -437,16 +380,12 @@ public class ChatCompletionResponse {
       if ((jsonObj.get("system_fingerprint") != null && !jsonObj.get("system_fingerprint").isJsonNull()) && !jsonObj.get("system_fingerprint").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `system_fingerprint` to be a primitive type in the JSON string but got `%s`", jsonObj.get("system_fingerprint").toString()));
       }
-      if ((jsonObj.get("service_tier") != null && !jsonObj.get("service_tier").isJsonNull()) && !jsonObj.get("service_tier").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `service_tier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("service_tier").toString()));
-      }
-      // validate the optional field `x_groq`
-      if (jsonObj.get("x_groq") != null && !jsonObj.get("x_groq").isJsonNull()) {
-        ChatCompletionResponseXGroq.validateJsonElement(jsonObj.get("x_groq"));
-      }
       // validate the optional field `usage`
       if (jsonObj.get("usage") != null && !jsonObj.get("usage").isJsonNull()) {
         Usage.validateJsonElement(jsonObj.get("usage"));
+      }
+      if ((jsonObj.get("service_tier") != null && !jsonObj.get("service_tier").isJsonNull()) && !jsonObj.get("service_tier").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `service_tier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("service_tier").toString()));
       }
   }
 
@@ -465,6 +404,28 @@ public class ChatCompletionResponse {
            @Override
            public void write(JsonWriter out, ChatCompletionResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -472,7 +433,28 @@ public class ChatCompletionResponse {
            public ChatCompletionResponse read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             ChatCompletionResponse instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();

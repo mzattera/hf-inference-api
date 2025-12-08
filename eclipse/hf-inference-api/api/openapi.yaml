@@ -104,6 +104,42 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /api/models:
+    get:
+      description: "Sends filtering, sorting, and pagination parameters in the request\
+        \ body. The response is paginated; use the 'Link' header to navigate."
+      operationId: getModels
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModelSearchRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/ModelInfo"
+                type: array
+          description: List of models successfully retrieved.
+          headers:
+            link:
+              description: "Header used for pagination, contains the link to the next\
+                \ page (see https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api?apiVersion=2022-11-28#link-header)."
+              explode: false
+              style: simple
+        "400":
+          description: Bad request — invalid input
+        "401":
+          description: Unauthorized — invalid or missing token
+      servers:
+      - url: https://huggingface.co
+      summary: Retrieves models information using a JSON search payload.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
 components:
   schemas:
     ImageGenerationRequest:
@@ -136,16 +172,13 @@ components:
       - prompt
       type: object
     ImageGenerationResponse:
+      additionalProperties: true
       description: Image(s) being generated
       example:
         data:
         - b64_json: b64_json
         - b64_json: b64_json
-        created: 0
       properties:
-        created:
-          description: Creation timestamp.
-          type: integer
         data:
           description: Array with image data.
           items:
@@ -158,7 +191,11 @@ components:
         seed: 5
         max_tokens: 6
         presence_penalty: 1.4658129805029452
-        logprobs: true
+        tool_prompt: tool_prompt
+        tools:
+        - type: function
+        - type: function
+        logprobs: false
         top_p: 7.061401241503109
         frequency_penalty: 0.8008281904610115
         response_format:
@@ -169,32 +206,27 @@ components:
         stream: true
         temperature: 5.637376656633329
         messages:
-        - role: role
-          reasoning: reasoning
-          tool_call_id: tool_call_id
-          content: Message_content
-        - role: role
-          reasoning: reasoning
-          tool_call_id: tool_call_id
-          content: Message_content
+        - role: developer
+        - role: developer
         tool_choice: auto
         model: model
         stream_options:
           include_usage: true
       properties:
-        model:
-          description: Model to use.
-          type: string
         frequency_penalty:
           description: Number between -2.0 and 2.0. Positive values penalize new tokens
             based on their existing frequency in the text.
           type: number
         logprobs:
+          default: false
           description: Whether to return log probabilities of the output tokens.
           type: boolean
         max_tokens:
           description: The maximum number of tokens that can be generated.
           type: integer
+        model:
+          description: Model to use.
+          type: string
         messages:
           description: A list of messages comprising the conversation so far.
           items:
@@ -205,7 +237,7 @@ components:
             of new tokens.
           type: number
         response_format:
-          $ref: "#/components/schemas/ChatCompletionRequest_response_format"
+          $ref: "#/components/schemas/ResponseFormat"
         seed:
           description: Seed for the random number generator.
           type: integer
@@ -225,6 +257,13 @@ components:
           type: number
         tool_choice:
           $ref: "#/components/schemas/ChatCompletionRequest_tool_choice"
+        tool_prompt:
+          description: A prompt to be appended before the tools
+          type: string
+        tools:
+          items:
+            $ref: "#/components/schemas/Tool"
+          type: array
         top_logprobs:
           description: An integer between 0 and 5 specifying the number of most likely
             tokens to return per position.
@@ -237,24 +276,21 @@ components:
       - model
       type: object
     ChatCompletionResponse:
+      additionalProperties: true
       description: Chat completion response.
       example:
-        x_groq:
-          seed: 5
-          id: id
         created: 1
         usage:
-          queue_time: 7.386281948385884
+          queue_time: 4.145608029883936
           completion_tokens: 5
-          completion_time: 2.3021358869347655
-          prompt_tokens: 9
-          prompt_time: 3.616076749251911
+          completion_time: 5.637376656633329
+          prompt_tokens: 7
+          prompt_time: 9.301444243932576
           completion_tokens_details:
-            reasoning_tokens: 7
+            reasoning_tokens: 2
           prompt_tokens_details: "{}"
-          total_tokens: 2
-          total_time: 4.145608029883936
-        usage_breakdown: "{}"
+          total_tokens: 3
+          total_time: 2.027123023002322
         model: model
         service_tier: service_tier
         id: id
@@ -262,10 +298,7 @@ components:
         - finish_reason: finish_reason
           index: 0
           message:
-            role: role
-            reasoning: reasoning
-            tool_call_id: tool_call_id
-            content: Message_content
+            role: developer
           logprobs:
             content:
             - logprob: 6.027456183070403
@@ -275,10 +308,7 @@ components:
         - finish_reason: finish_reason
           index: 0
           message:
-            role: role
-            reasoning: reasoning
-            tool_call_id: tool_call_id
-            content: Message_content
+            role: developer
           logprobs:
             content:
             - logprob: 6.027456183070403
@@ -286,10 +316,7 @@ components:
             - logprob: 6.027456183070403
               token: token
         system_fingerprint: system_fingerprint
-        object: object
       properties:
-        object:
-          type: string
         choices:
           items:
             $ref: "#/components/schemas/Choice"
@@ -300,61 +327,20 @@ components:
           type: string
         model:
           type: string
-        usage_breakdown:
-          type: object
         system_fingerprint:
           type: string
-        service_tier:
-          type: string
-        x_groq:
-          $ref: "#/components/schemas/ChatCompletionResponse_x_groq"
         usage:
           $ref: "#/components/schemas/Usage"
-      type: object
-    Message:
-      example:
-        role: role
-        reasoning: reasoning
-        tool_call_id: tool_call_id
-        content: Message_content
-      properties:
-        role:
-          description: "Role of the message sender (eg \"user\", \"assistant\")."
+        service_tier:
           type: string
-        content:
-          $ref: "#/components/schemas/Message_content"
-        reasoning:
-          type: string
-        tool_call_id:
-          description: Identifier for the tool call if applicable.
-          type: string
-      required:
-      - role
-      type: object
-    StructuredContent:
-      properties:
-        type:
-          enum:
-          - text
-          - image_url
-          type: string
-        text:
-          description: Text content when type = text.
-          type: string
-        image_url:
-          $ref: "#/components/schemas/StructuredContent_image_url"
-      required:
-      - type
       type: object
     Choice:
+      additionalProperties: true
       example:
         finish_reason: finish_reason
         index: 0
         message:
-          role: role
-          reasoning: reasoning
-          tool_call_id: tool_call_id
-          content: Message_content
+          role: developer
         logprobs:
           content:
           - logprob: 6.027456183070403
@@ -371,6 +357,290 @@ components:
         message:
           $ref: "#/components/schemas/Message"
       type: object
+    Message:
+      discriminator:
+        mapping:
+          developer: "#/components/schemas/DeveloperMessage"
+          system: "#/components/schemas/SystemMessage"
+          user: "#/components/schemas/UserMessage"
+          assistant: "#/components/schemas/AssistantMessage"
+        propertyName: role
+      example:
+        role: developer
+      properties:
+        role:
+          enum:
+          - developer
+          - system
+          - user
+          - assistant
+          - tool
+          type: string
+      required:
+      - role
+      type: object
+    DeveloperMessage:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/Message"
+      - properties:
+          content:
+            $ref: "#/components/schemas/DeveloperMessage_allOf_content"
+          name:
+            type: string
+        required:
+        - content
+        type: object
+    SystemMessage:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/Message"
+      - properties:
+          content:
+            $ref: "#/components/schemas/SystemMessage_allOf_content"
+          name:
+            type: string
+        required:
+        - content
+        type: object
+    UserMessage:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/Message"
+      - properties:
+          content:
+            $ref: "#/components/schemas/UserMessage_allOf_content"
+          name:
+            type: string
+        required:
+        - content
+        type: object
+    AssistantMessage:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/Message"
+      - properties:
+          audio:
+            $ref: "#/components/schemas/AssistantMessage_allOf_audio"
+          content:
+            $ref: "#/components/schemas/AssistantMessage_allOf_content"
+          reasoning:
+            type: string
+          name:
+            type: string
+          refusal:
+            description: The refusal message by the assistant
+            type: string
+          tool_calls:
+            items:
+              $ref: "#/components/schemas/ToolCall"
+            type: array
+        type: object
+    ToolMessage:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/Message"
+      - properties:
+          content:
+            $ref: "#/components/schemas/ToolMessage_allOf_content"
+          tool_call_id:
+            description: FunctionTool call that this message is responding to
+            type: string
+          name:
+            type: string
+        required:
+        - content
+        - name
+        type: object
+    MessageContentPart:
+      discriminator:
+        mapping:
+          text: "#/components/schemas/TextContentPart"
+          image: "#/components/schemas/ImageContentPart"
+          input_audio: "#/components/schemas/AudioContentPart"
+          file: "#/components/schemas/FileContentPart"
+          refusal: "#/components/schemas/RefusalContentPart"
+        propertyName: type
+      properties:
+        type:
+          description: The type of the content part
+          enum:
+          - text
+          - image
+          - input_audio
+          - file
+          - refusal
+          type: string
+      required:
+      - type
+      type: object
+    TextContentPart:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/MessageContentPart"
+      - properties:
+          text:
+            description: Text contentt
+            type: string
+        required:
+        - text
+        type: object
+    ImageContentPart:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/MessageContentPart"
+      - properties:
+          image_url:
+            $ref: "#/components/schemas/ImageContentPart_allOf_image_url"
+        required:
+        - image_url
+        type: object
+    AudioContentPart:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/MessageContentPart"
+      - properties:
+          input_audio:
+            $ref: "#/components/schemas/AudioContentPart_allOf_input_audio"
+        required:
+        - input_audio
+        type: object
+    FileContentPart:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/MessageContentPart"
+      - properties:
+          file:
+            $ref: "#/components/schemas/FileContentPart_allOf_file"
+        required:
+        - file
+        type: object
+    RefusalContentPart:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/MessageContentPart"
+      - properties:
+          refusal:
+            description: The refusal message generated by the model
+            type: string
+        required:
+        - refusal
+        type: object
+    Tool:
+      discriminator:
+        mapping:
+          function: "#/components/schemas/FunctionTool"
+        propertyName: type
+      example:
+        type: function
+      properties:
+        type:
+          description: The type for the Tool
+          enum:
+          - function
+          type: string
+      required:
+      - type
+      type: object
+    FunctionTool:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/Tool"
+      - properties:
+          function:
+            $ref: "#/components/schemas/Function"
+        required:
+        - function
+        type: object
+    Function:
+      additionalProperties: true
+      properties:
+        name:
+          description: The name of the function to cal
+          type: string
+        description:
+          type: string
+        parameters:
+          description: "TThe parameters the functions accepts, as a JSON Schema object"
+          type: object
+        strict:
+          default: false
+          type: boolean
+      required:
+      - name
+      type: object
+    ToolCall:
+      discriminator:
+        mapping:
+          function: "#/components/schemas/FunctionToolCall"
+        propertyName: type
+      properties:
+        type:
+          description: The type for the call
+          enum:
+          - function
+          type: string
+      required:
+      - type
+      type: object
+    FunctionToolCall:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/ToolCall"
+      - properties:
+          function:
+            $ref: "#/components/schemas/FunctionToolCall_allOf_function"
+          id:
+            description: The ID of the tool call
+            type: string
+        required:
+        - function
+        - id
+        - type
+        type: object
+    ResponseFormat:
+      discriminator:
+        mapping:
+          text: "#/components/schemas/TextResponseFormat"
+          json_schema: "#/components/schemas/SchemaResponseFormat"
+          json_object: "#/components/schemas/JsonResponseFormat"
+        propertyName: type
+      example:
+        type: text
+      properties:
+        type:
+          enum:
+          - text
+          - json_schema
+          - json_object
+          type: string
+      required:
+      - type
+      type: object
+    TextResponseFormat:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/ResponseFormat"
+    SchemaResponseFormat:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/ResponseFormat"
+      - properties:
+          name:
+            type: string
+          description:
+            type: string
+          schema:
+            $ref: "#/components/schemas/SchemaResponseFormat_allOf_schema"
+          strict:
+            type: boolean
+        required:
+        - name
+        type: object
+    JsonResponseFormat:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/ResponseFormat"
     LogProbs:
       example:
         content:
@@ -396,16 +666,16 @@ components:
       type: object
     Usage:
       example:
-        queue_time: 7.386281948385884
+        queue_time: 4.145608029883936
         completion_tokens: 5
-        completion_time: 2.3021358869347655
-        prompt_tokens: 9
-        prompt_time: 3.616076749251911
+        completion_time: 5.637376656633329
+        prompt_tokens: 7
+        prompt_time: 9.301444243932576
         completion_tokens_details:
-          reasoning_tokens: 7
+          reasoning_tokens: 2
         prompt_tokens_details: "{}"
-        total_tokens: 2
-        total_time: 4.145608029883936
+        total_tokens: 3
+        total_time: 2.027123023002322
       properties:
         completion_tokens:
           type: integer
@@ -481,16 +751,16 @@ components:
           object: object
         created: 0
         usage:
-          queue_time: 7.386281948385884
+          queue_time: 4.145608029883936
           completion_tokens: 5
-          completion_time: 2.3021358869347655
-          prompt_tokens: 9
-          prompt_time: 3.616076749251911
+          completion_time: 5.637376656633329
+          prompt_tokens: 7
+          prompt_time: 9.301444243932576
           completion_tokens_details:
-            reasoning_tokens: 7
+            reasoning_tokens: 2
           prompt_tokens_details: "{}"
-          total_tokens: 2
-          total_time: 4.145608029883936
+          total_tokens: 3
+          total_time: 2.027123023002322
         model: model
         id: id
         object: object
@@ -527,6 +797,110 @@ components:
           items:
             type: number
           type: array
+      type: object
+    ModelSearchRequest:
+      description: "Payload used to filter, sort, and paginate model results."
+      example:
+        filter: text-classification
+        search: resnet
+        author: microsoft
+        limit: 6
+        sort: sort
+        config: false
+        direction: 0
+        full: false
+      properties:
+        search:
+          description: "Filter based on substrings for repos and their usernames (e.g.,\
+            \ 'resnet')."
+          example: resnet
+          type: string
+        author:
+          description: "Filter models by an author or organization (e.g., 'huggingface')."
+          example: microsoft
+          type: string
+        filter:
+          description: "Filter based on tags (e.g., 'text-classification')."
+          example: text-classification
+          type: string
+        sort:
+          description: "Property to use when sorting (e.g., 'downloads' or 'author')."
+          type: string
+        direction:
+          default: 1
+          description: "Direction in which to sort. Use -1 for descending, and 1 for\
+            \ ascending."
+          type: integer
+        limit:
+          description: Limit the number of models fetched.
+          type: integer
+        full:
+          default: false
+          description: "Whether to fetch most model data, such as all tags, the files,\
+            \ etc."
+          type: boolean
+        config:
+          default: false
+          description: Whether to also fetch the repo config.
+          type: boolean
+      type: object
+    ModelInfo:
+      additionalProperties: true
+      description: Detailed information about a single model from the Hub.
+      example:
+        createdAt: 2025-11-25T15:09:48Z
+        private: true
+        downloads: 1
+        modelId: modelId
+        trendingScore: 6
+        pipeline_tag: text-to-image
+        library_name: diffusers
+        id: Tongyi-MAI/Z-Image-Turbo
+        likes: 0
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          description: Unique identifier of the model repository (format - author/name).
+          example: Tongyi-MAI/Z-Image-Turbo
+          type: string
+        likes:
+          description: Number of likes received by the model.
+          type: integer
+        trendingScore:
+          description: Score indicating the current popularity or trending status.
+          type: integer
+        private:
+          description: Whether the model repository is private (true) or public (false).
+          type: boolean
+        downloads:
+          description: Total number of downloads for the model.
+          type: integer
+        tags:
+          description: "List of tags associated with the model (e.g., library, task,\
+            \ license)."
+          items:
+            type: string
+          type: array
+        pipeline_tag:
+          description: Primary task supported by the model.
+          example: text-to-image
+          type: string
+        library_name:
+          description: Main machine learning library used by the model.
+          example: diffusers
+          type: string
+        createdAt:
+          description: Timestamp when the model was created.
+          example: 2025-11-25T15:09:48Z
+          format: date-time
+          type: string
+        modelId:
+          description: Alternative or redundant field for the unique model identifier.
+          type: string
+      required:
+      - id
       type: object
     ImageGenerationRequest_parameters:
       description: Optional parameters for image generation.
@@ -572,34 +946,6 @@ components:
           description: Image encoded as Base64.
           type: string
       type: object
-    ChatCompletionRequest_response_format_oneOf:
-      example:
-        type: text
-      properties:
-        type:
-          enum:
-          - text
-          type: string
-      type: object
-    ChatCompletionRequest_response_format_oneOf_1:
-      properties:
-        type:
-          enum:
-          - json_schema
-          type: string
-        json_schema:
-          description: "The schema for the response format, described as JSON Schema."
-          type: object
-        strict:
-          description: Whether to enforce strict adherence to the schema.
-          type: boolean
-      type: object
-    ChatCompletionRequest_response_format:
-      description: Response format options.
-      oneOf:
-      - $ref: "#/components/schemas/ChatCompletionRequest_response_format_oneOf"
-      - $ref: "#/components/schemas/ChatCompletionRequest_response_format_oneOf_1"
-      type: object
     ChatCompletionRequest_stream_options:
       example:
         include_usage: true
@@ -613,14 +959,18 @@ components:
       properties:
         name:
           type: string
+      required:
+      - name
       type: object
     ChatCompletionRequest_tool_choice_oneOf:
       properties:
         function:
           $ref: "#/components/schemas/ChatCompletionRequest_tool_choice_oneOf_function"
+      required:
+      - function
       type: object
     ChatCompletionRequest_tool_choice:
-      description: Tool choice option.
+      description: FunctionTool choice option.
       oneOf:
       - enum:
         - auto
@@ -629,31 +979,99 @@ components:
         type: string
       - $ref: "#/components/schemas/ChatCompletionRequest_tool_choice_oneOf"
       type: object
-    ChatCompletionResponse_x_groq:
-      example:
-        seed: 5
-        id: id
-      properties:
-        id:
-          type: string
-        seed:
-          type: integer
-      type: object
-    Message_content:
+    DeveloperMessage_allOf_content:
       oneOf:
       - type: string
-      - $ref: "#/components/schemas/StructuredContent"
-    StructuredContent_image_url:
+      - items:
+          $ref: "#/components/schemas/MessageContentPart"
+        type: array
+    SystemMessage_allOf_content:
+      oneOf:
+      - type: string
+      - items:
+          $ref: "#/components/schemas/MessageContentPart"
+        type: array
+    UserMessage_allOf_content:
+      oneOf:
+      - type: string
+      - items:
+          $ref: "#/components/schemas/MessageContentPart"
+        type: array
+    AssistantMessage_allOf_audio:
+      description: Data about a previous audio response from the model
+      properties:
+        id:
+          description: Unique identifier for a previous audio response from the model
+          type: string
+      required:
+      - id
+      type: object
+    AssistantMessage_allOf_content:
+      oneOf:
+      - type: string
+      - items:
+          $ref: "#/components/schemas/MessageContentPart"
+        type: array
+    ToolMessage_allOf_content:
+      oneOf:
+      - type: string
+      - items:
+          $ref: "#/components/schemas/MessageContentPart"
+        type: array
+    ImageContentPart_allOf_image_url:
       properties:
         url:
-          format: uri
+          description: Either a URL of the image or the base64 encoded image data
+          type: string
+        detail:
+          description: Specifies the detail level of the image.
           type: string
       required:
       - url
       type: object
+    AudioContentPart_allOf_input_audio:
+      properties:
+        data:
+          description: Base64 encoded audio data
+          type: string
+        format:
+          description: The format of the encoded audio data
+          example: wav
+          type: string
+      required:
+      - data
+      - format
+      type: object
+    FileContentPart_allOf_file:
+      properties:
+        file_data:
+          description: The base64 encoded file data
+          type: string
+        file_id:
+          description: The ID of an uploaded file to use as input
+          type: string
+        filename:
+          description: "The name of the file, used when passing the file to the model\
+            \ as a string"
+          type: string
+      type: object
+    FunctionToolCall_allOf_function:
+      properties:
+        name:
+          description: The name of the function to call
+          type: string
+        arguments:
+          description: The arguments used to call the function
+          type: string
+      required:
+      - arguments
+      - name
+      type: object
+    SchemaResponseFormat_allOf_schema:
+      type: object
     Usage_completion_tokens_details:
       example:
-        reasoning_tokens: 7
+        reasoning_tokens: 2
       properties:
         reasoning_tokens:
           type: integer

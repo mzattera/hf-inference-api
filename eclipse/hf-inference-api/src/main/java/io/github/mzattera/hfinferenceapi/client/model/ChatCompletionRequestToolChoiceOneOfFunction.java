@@ -51,7 +51,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * ChatCompletionRequestToolChoiceOneOfFunction
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "ChatCompletionRequestToolChoiceOneOfFunction")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -59,13 +59,13 @@ public class ChatCompletionRequestToolChoiceOneOfFunction {
   public static final String SERIALIZED_NAME_NAME = "name";
   @XmlElement(name = "name")
   @SerializedName(SERIALIZED_NAME_NAME)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String name;
 
   public ChatCompletionRequestToolChoiceOneOfFunction() {
   }
 
-  public ChatCompletionRequestToolChoiceOneOfFunction name(@javax.annotation.Nullable String name) {
+  public ChatCompletionRequestToolChoiceOneOfFunction name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
@@ -74,12 +74,12 @@ public class ChatCompletionRequestToolChoiceOneOfFunction {
    * Get name
    * @return name
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getName() {
     return name;
   }
 
-  public void setName(@javax.annotation.Nullable String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
@@ -131,7 +131,7 @@ public class ChatCompletionRequestToolChoiceOneOfFunction {
     openapiFields = new HashSet<String>(Arrays.asList("name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("name"));
   }
 
   /**
@@ -154,8 +154,15 @@ public class ChatCompletionRequestToolChoiceOneOfFunction {
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ChatCompletionRequestToolChoiceOneOfFunction` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ChatCompletionRequestToolChoiceOneOfFunction.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
   }

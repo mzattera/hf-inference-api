@@ -1,8 +1,7 @@
 
 
-# EmbeddingsRequestInputs
+# AssistantMessageAllOfContent
 
-One of the following: string, array of strings
 
 ## Properties
 

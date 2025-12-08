@@ -15,15 +15,8 @@ package io.github.mzattera.hfinferenceapi.client.model;
 
 import java.util.Objects;
 import java.util.Locale;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.StructuredContent;
-import io.github.mzattera.hfinferenceapi.client.model.StructuredContentImageUrl;
-import java.io.IOException;
-import java.util.Arrays;
+import io.github.mzattera.hfinferenceapi.client.model.AssistantMessageContent;
+import io.github.mzattera.hfinferenceapi.client.model.UserMessageContent;
 import javax.xml.bind.annotation.*;
 
 
@@ -62,7 +55,7 @@ import com.google.gson.JsonParseException;
 
 import io.github.mzattera.hfinferenceapi.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-07T13:29:10.189401900+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "MessageContent")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -77,8 +70,8 @@ public class MessageContent extends AbstractOpenApiSchema {
                 return null; // this class only serializes 'MessageContent' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<String> adapterString = gson.getDelegateAdapter(this, TypeToken.get(String.class));
-            final TypeAdapter<StructuredContent> adapterStructuredContent = gson.getDelegateAdapter(this, TypeToken.get(StructuredContent.class));
+            final TypeAdapter<UserMessageContent> adapterUserMessageContent = gson.getDelegateAdapter(this, TypeToken.get(UserMessageContent.class));
+            final TypeAdapter<AssistantMessageContent> adapterAssistantMessageContent = gson.getDelegateAdapter(this, TypeToken.get(AssistantMessageContent.class));
 
             return (TypeAdapter<T>) new TypeAdapter<MessageContent>() {
                 @Override
@@ -88,19 +81,19 @@ public class MessageContent extends AbstractOpenApiSchema {
                         return;
                     }
 
-                    // check if the actual instance is of the type `String`
-                    if (value.getActualInstance() instanceof String) {
-                        JsonPrimitive primitive = adapterString.toJsonTree((String)value.getActualInstance()).getAsJsonPrimitive();
-                        elementAdapter.write(out, primitive);
-                        return;
-                    }
-                    // check if the actual instance is of the type `StructuredContent`
-                    if (value.getActualInstance() instanceof StructuredContent) {
-                        JsonElement element = adapterStructuredContent.toJsonTree((StructuredContent)value.getActualInstance());
+                    // check if the actual instance is of the type `UserMessageContent`
+                    if (value.getActualInstance() instanceof UserMessageContent) {
+                        JsonElement element = adapterUserMessageContent.toJsonTree((UserMessageContent)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: String, StructuredContent");
+                    // check if the actual instance is of the type `AssistantMessageContent`
+                    if (value.getActualInstance() instanceof AssistantMessageContent) {
+                        JsonElement element = adapterAssistantMessageContent.toJsonTree((AssistantMessageContent)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    throw new IOException("Failed to serialize as the type doesn't match anyOf schemas: AssistantMessageContent, UserMessageContent");
                 }
 
                 @Override
@@ -108,64 +101,57 @@ public class MessageContent extends AbstractOpenApiSchema {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
-                    int match = 0;
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
-                    // deserialize String
+                    // deserialize UserMessageContent
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        if (!jsonElement.getAsJsonPrimitive().isString()) {
-                            throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
-                        }
-                        actualAdapter = adapterString;
-                        match++;
-                        log.log(Level.FINER, "Input data matches schema 'String'");
-                    } catch (Exception e) {
-                        // deserialization failed, continue
-                        errorMessages.add(String.format(Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'String'", e);
-                    }
-                    // deserialize StructuredContent
-                    try {
-                        // validate the JSON object to see if any exception is thrown
-                        StructuredContent.validateJsonElement(jsonElement);
-                        actualAdapter = adapterStructuredContent;
-                        match++;
-                        log.log(Level.FINER, "Input data matches schema 'StructuredContent'");
-                    } catch (Exception e) {
-                        // deserialization failed, continue
-                        errorMessages.add(String.format(Locale.ROOT, "Deserialization for StructuredContent failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'StructuredContent'", e);
-                    }
-
-                    if (match == 1) {
+                        UserMessageContent.validateJsonElement(jsonElement);
+                        actualAdapter = adapterUserMessageContent;
                         MessageContent ret = new MessageContent();
                         ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
                         return ret;
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format(Locale.ROOT, "Deserialization for UserMessageContent failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'UserMessageContent'", e);
+                    }
+                    // deserialize AssistantMessageContent
+                    try {
+                        // validate the JSON object to see if any exception is thrown
+                        AssistantMessageContent.validateJsonElement(jsonElement);
+                        actualAdapter = adapterAssistantMessageContent;
+                        MessageContent ret = new MessageContent();
+                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                        return ret;
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format(Locale.ROOT, "Deserialization for AssistantMessageContent failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'AssistantMessageContent'", e);
                     }
 
-                    throw new IOException(String.format(Locale.ROOT, "Failed deserialization for MessageContent: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
+                    throw new IOException(String.format(Locale.ROOT, "Failed deserialization for MessageContent: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
                 }
             }.nullSafe();
         }
     }
 
-    // store a list of schema names defined in oneOf
+    // store a list of schema names defined in anyOf
     public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
 
     public MessageContent() {
-        super("oneOf", Boolean.FALSE);
+        super("anyOf", Boolean.FALSE);
     }
 
     public MessageContent(Object o) {
-        super("oneOf", Boolean.FALSE);
+        super("anyOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
     static {
-        schemas.put("String", String.class);
-        schemas.put("StructuredContent", StructuredContent.class);
+        schemas.put("UserMessageContent", UserMessageContent.class);
+        schemas.put("AssistantMessageContent", AssistantMessageContent.class);
     }
 
     @Override
@@ -174,32 +160,32 @@ public class MessageContent extends AbstractOpenApiSchema {
     }
 
     /**
-     * Set the instance that matches the oneOf child schema, check
-     * the instance parameter is valid against the oneOf child schemas:
-     * String, StructuredContent
+     * Set the instance that matches the anyOf child schema, check
+     * the instance parameter is valid against the anyOf child schemas:
+     * AssistantMessageContent, UserMessageContent
      *
-     * It could be an instance of the 'oneOf' schemas.
+     * It could be an instance of the 'anyOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof String) {
+        if (instance instanceof UserMessageContent) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof StructuredContent) {
+        if (instance instanceof AssistantMessageContent) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be String, StructuredContent");
+        throw new RuntimeException("Invalid instance type. Must be AssistantMessageContent, UserMessageContent");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * String, StructuredContent
+     * AssistantMessageContent, UserMessageContent
      *
-     * @return The actual instance (String, StructuredContent)
+     * @return The actual instance (AssistantMessageContent, UserMessageContent)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -208,25 +194,25 @@ public class MessageContent extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `String`. If the actual instance is not `String`,
+     * Get the actual instance of `UserMessageContent`. If the actual instance is not `UserMessageContent`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `String`
-     * @throws ClassCastException if the instance is not `String`
+     * @return The actual instance of `UserMessageContent`
+     * @throws ClassCastException if the instance is not `UserMessageContent`
      */
-    public String getString() throws ClassCastException {
-        return (String)super.getActualInstance();
+    public UserMessageContent getUserMessageContent() throws ClassCastException {
+        return (UserMessageContent)super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `StructuredContent`. If the actual instance is not `StructuredContent`,
+     * Get the actual instance of `AssistantMessageContent`. If the actual instance is not `AssistantMessageContent`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `StructuredContent`
-     * @throws ClassCastException if the instance is not `StructuredContent`
+     * @return The actual instance of `AssistantMessageContent`
+     * @throws ClassCastException if the instance is not `AssistantMessageContent`
      */
-    public StructuredContent getStructuredContent() throws ClassCastException {
-        return (StructuredContent)super.getActualInstance();
+    public AssistantMessageContent getAssistantMessageContent() throws ClassCastException {
+        return (AssistantMessageContent)super.getActualInstance();
     }
 
     /**
@@ -236,30 +222,25 @@ public class MessageContent extends AbstractOpenApiSchema {
      * @throws IOException if the JSON Element is invalid with respect to MessageContent
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
+        // validate anyOf schemas one by one
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with String
+        // validate the json string with UserMessageContent
         try {
-            if (!jsonElement.getAsJsonPrimitive().isString()) {
-                throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
-            }
-            validCount++;
+            UserMessageContent.validateJsonElement(jsonElement);
+            return;
         } catch (Exception e) {
-            errorMessages.add(String.format(Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(Locale.ROOT, "Deserialization for UserMessageContent failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with StructuredContent
+        // validate the json string with AssistantMessageContent
         try {
-            StructuredContent.validateJsonElement(jsonElement);
-            validCount++;
+            AssistantMessageContent.validateJsonElement(jsonElement);
+            return;
         } catch (Exception e) {
-            errorMessages.add(String.format(Locale.ROOT, "Deserialization for StructuredContent failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(Locale.ROOT, "Deserialization for AssistantMessageContent failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        if (validCount != 1) {
-            throw new IOException(String.format(Locale.ROOT, "The JSON string is invalid for MessageContent with oneOf schemas: String, StructuredContent. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
+        throw new IOException(String.format(Locale.ROOT, "The JSON string is invalid for MessageContent with anyOf schemas: AssistantMessageContent, UserMessageContent. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
     }
 
     /**

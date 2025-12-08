@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**model** | **String** | Model to use in the format \&quot;provider/model_name:selector\&quot; |  |
+|**model** | **String** | Model to use. |  |
 |**frequencyPenalty** | **BigDecimal** | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text. |  [optional] |
 |**logprobs** | **Boolean** | Whether to return log probabilities of the output tokens. |  [optional] |
 |**maxTokens** | **Integer** | The maximum number of tokens that can be generated. |  [optional] |

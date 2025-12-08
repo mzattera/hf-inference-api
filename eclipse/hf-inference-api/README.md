@@ -2,7 +2,7 @@
 
 HuggingFace Inference Provider API
 - API version: 1.0.0
-  - Build date: 2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]
+  - Build date: 2025-12-08T08:22:32.908358200+01:00[Europe/Rome]
   - Generator version: 7.17.0
 
 Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.github.mzattera</groupId>
   <artifactId>hf-inference-api</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "io.github.mzattera:hf-inference-api:1.0.0"
+     implementation "io.github.mzattera:hf-inference-api:2.0.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hf-inference-api-1.0.0.jar`
+* `target/hf-inference-api-2.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -122,37 +122,63 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**chatCompletion**](docs/DefaultApi.md#chatCompletion) | **POST** /v1/chat/completions | Chat completion using messages
 *DefaultApi* | [**featureExtraction**](docs/DefaultApi.md#featureExtraction) | **POST** /{provider}/v1/embeddings | Get embeddings for input(s)
+*DefaultApi* | [**getModels**](docs/DefaultApi.md#getModels) | **GET** /api/models | Retrieves models information using a JSON search payload.
 *DefaultApi* | [**textToImage**](docs/DefaultApi.md#textToImage) | **POST** /{provider}/v1/images/generations | Text to Image generation
 
 
 ## Documentation for Models
 
+ - [AssistantMessage](docs/AssistantMessage.md)
+ - [AssistantMessageAllOfAudio](docs/AssistantMessageAllOfAudio.md)
+ - [AssistantMessageAllOfContent](docs/AssistantMessageAllOfContent.md)
+ - [AudioContentPart](docs/AudioContentPart.md)
+ - [AudioContentPartAllOfInputAudio](docs/AudioContentPartAllOfInputAudio.md)
  - [ChatCompletionRequest](docs/ChatCompletionRequest.md)
- - [ChatCompletionRequestResponseFormat](docs/ChatCompletionRequestResponseFormat.md)
- - [ChatCompletionRequestResponseFormatOneOf](docs/ChatCompletionRequestResponseFormatOneOf.md)
- - [ChatCompletionRequestResponseFormatOneOf1](docs/ChatCompletionRequestResponseFormatOneOf1.md)
  - [ChatCompletionRequestStreamOptions](docs/ChatCompletionRequestStreamOptions.md)
  - [ChatCompletionRequestToolChoice](docs/ChatCompletionRequestToolChoice.md)
  - [ChatCompletionRequestToolChoiceOneOf](docs/ChatCompletionRequestToolChoiceOneOf.md)
  - [ChatCompletionRequestToolChoiceOneOfFunction](docs/ChatCompletionRequestToolChoiceOneOfFunction.md)
  - [ChatCompletionResponse](docs/ChatCompletionResponse.md)
- - [ChatCompletionResponseXGroq](docs/ChatCompletionResponseXGroq.md)
  - [Choice](docs/Choice.md)
+ - [DeveloperMessage](docs/DeveloperMessage.md)
+ - [DeveloperMessageAllOfContent](docs/DeveloperMessageAllOfContent.md)
  - [EmbeddingData](docs/EmbeddingData.md)
  - [EmbeddingsRequest](docs/EmbeddingsRequest.md)
  - [EmbeddingsResponse](docs/EmbeddingsResponse.md)
+ - [FileContentPart](docs/FileContentPart.md)
+ - [FileContentPartAllOfFile](docs/FileContentPartAllOfFile.md)
+ - [Function](docs/Function.md)
+ - [FunctionTool](docs/FunctionTool.md)
+ - [FunctionToolCall](docs/FunctionToolCall.md)
+ - [FunctionToolCallAllOfFunction](docs/FunctionToolCallAllOfFunction.md)
+ - [ImageContentPart](docs/ImageContentPart.md)
+ - [ImageContentPartAllOfImageUrl](docs/ImageContentPartAllOfImageUrl.md)
  - [ImageGenerationRequest](docs/ImageGenerationRequest.md)
  - [ImageGenerationRequestParameters](docs/ImageGenerationRequestParameters.md)
  - [ImageGenerationResponse](docs/ImageGenerationResponse.md)
  - [ImageGenerationResponseDataInner](docs/ImageGenerationResponseDataInner.md)
+ - [JsonResponseFormat](docs/JsonResponseFormat.md)
  - [LogProbs](docs/LogProbs.md)
  - [Message](docs/Message.md)
- - [MessageContent](docs/MessageContent.md)
- - [StructuredContent](docs/StructuredContent.md)
- - [StructuredContentImageUrl](docs/StructuredContentImageUrl.md)
+ - [MessageContentPart](docs/MessageContentPart.md)
+ - [ModelInfo](docs/ModelInfo.md)
+ - [ModelSearchRequest](docs/ModelSearchRequest.md)
+ - [RefusalContentPart](docs/RefusalContentPart.md)
+ - [ResponseFormat](docs/ResponseFormat.md)
+ - [SchemaResponseFormat](docs/SchemaResponseFormat.md)
+ - [SystemMessage](docs/SystemMessage.md)
+ - [SystemMessageAllOfContent](docs/SystemMessageAllOfContent.md)
+ - [TextContentPart](docs/TextContentPart.md)
+ - [TextResponseFormat](docs/TextResponseFormat.md)
  - [TokenLogProb](docs/TokenLogProb.md)
+ - [Tool](docs/Tool.md)
+ - [ToolCall](docs/ToolCall.md)
+ - [ToolMessage](docs/ToolMessage.md)
+ - [ToolMessageAllOfContent](docs/ToolMessageAllOfContent.md)
  - [Usage](docs/Usage.md)
  - [UsageCompletionTokensDetails](docs/UsageCompletionTokensDetails.md)
+ - [UserMessage](docs/UserMessage.md)
+ - [UserMessageAllOfContent](docs/UserMessageAllOfContent.md)
 
 
 <a id="documentation-for-authorization"></a>

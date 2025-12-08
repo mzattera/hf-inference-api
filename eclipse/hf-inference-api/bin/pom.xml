@@ -5,13 +5,13 @@
     <artifactId>hf-inference-api</artifactId>
     <packaging>jar</packaging>
     <name>hf-inference-api</name>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <url>https://github.com/mzattera/hf-inference-api</url>
     <description>OpenAPI-generated client for Hugging Face Inference API.</description>
     <scm>
-        <connection>scm:git:git@github.com:mzattera/hf-api-client.git</connection>
-        <developerConnection>scm:git:git@github.com:mzattera/hf-api-client.git</developerConnection>
-        <url>https://github.com/openapitools/openapi-generator</url>
+        <connection>scm:git:https://github.com/mzattera/hf-inference-api.git</connection>
+        <developerConnection>scm:git:https://github.com:mzattera/hf-inference-api.git</developerConnection>
+        <url>https://github.com/mzattera/hf-inference-api</url>
     </scm>
 
     <licenses>

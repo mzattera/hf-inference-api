@@ -20,10 +20,11 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequestResponseFormat;
 import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequestStreamOptions;
 import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequestToolChoice;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
+import io.github.mzattera.hfinferenceapi.client.model.ResponseFormat;
+import io.github.mzattera.hfinferenceapi.client.model.Tool;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -58,17 +59,11 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * ChatCompletionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "ChatCompletionRequest")
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class ChatCompletionRequest {
-  public static final String SERIALIZED_NAME_MODEL = "model";
-  @XmlElement(name = "model")
-  @SerializedName(SERIALIZED_NAME_MODEL)
-  @javax.annotation.Nonnull
-  private String model;
-
   public static final String SERIALIZED_NAME_FREQUENCY_PENALTY = "frequency_penalty";
   @XmlElement(name = "frequency_penalty")
   @SerializedName(SERIALIZED_NAME_FREQUENCY_PENALTY)
@@ -79,13 +74,19 @@ public class ChatCompletionRequest {
   @XmlElement(name = "logprobs")
   @SerializedName(SERIALIZED_NAME_LOGPROBS)
   @javax.annotation.Nullable
-  private Boolean logprobs;
+  private Boolean logprobs = false;
 
   public static final String SERIALIZED_NAME_MAX_TOKENS = "max_tokens";
   @XmlElement(name = "max_tokens")
   @SerializedName(SERIALIZED_NAME_MAX_TOKENS)
   @javax.annotation.Nullable
   private Integer maxTokens;
+
+  public static final String SERIALIZED_NAME_MODEL = "model";
+  @XmlElement(name = "model")
+  @SerializedName(SERIALIZED_NAME_MODEL)
+  @javax.annotation.Nonnull
+  private String model;
 
   public static final String SERIALIZED_NAME_MESSAGES = "messages";
   @XmlElement(name = "messages")
@@ -103,7 +104,7 @@ public class ChatCompletionRequest {
   @XmlElement(name = "response_format")
   @SerializedName(SERIALIZED_NAME_RESPONSE_FORMAT)
   @javax.annotation.Nullable
-  private ChatCompletionRequestResponseFormat responseFormat;
+  private ResponseFormat responseFormat;
 
   public static final String SERIALIZED_NAME_SEED = "seed";
   @XmlElement(name = "seed")
@@ -141,6 +142,18 @@ public class ChatCompletionRequest {
   @javax.annotation.Nullable
   private ChatCompletionRequestToolChoice toolChoice;
 
+  public static final String SERIALIZED_NAME_TOOL_PROMPT = "tool_prompt";
+  @XmlElement(name = "tool_prompt")
+  @SerializedName(SERIALIZED_NAME_TOOL_PROMPT)
+  @javax.annotation.Nullable
+  private String toolPrompt;
+
+  public static final String SERIALIZED_NAME_TOOLS = "tools";
+  @XmlElement(name = "tools")
+  @SerializedName(SERIALIZED_NAME_TOOLS)
+  @javax.annotation.Nullable
+  private List<Tool> tools = new ArrayList<>();
+
   public static final String SERIALIZED_NAME_TOP_LOGPROBS = "top_logprobs";
   @XmlElement(name = "top_logprobs")
   @SerializedName(SERIALIZED_NAME_TOP_LOGPROBS)
@@ -155,25 +168,6 @@ public class ChatCompletionRequest {
 
   public ChatCompletionRequest() {
   }
-
-  public ChatCompletionRequest model(@javax.annotation.Nonnull String model) {
-    this.model = model;
-    return this;
-  }
-
-  /**
-   * Model to use.
-   * @return model
-   */
-  @javax.annotation.Nonnull
-  public String getModel() {
-    return model;
-  }
-
-  public void setModel(@javax.annotation.Nonnull String model) {
-    this.model = model;
-  }
-
 
   public ChatCompletionRequest frequencyPenalty(@javax.annotation.Nullable BigDecimal frequencyPenalty) {
     this.frequencyPenalty = frequencyPenalty;
@@ -232,6 +226,25 @@ public class ChatCompletionRequest {
   }
 
 
+  public ChatCompletionRequest model(@javax.annotation.Nonnull String model) {
+    this.model = model;
+    return this;
+  }
+
+  /**
+   * Model to use.
+   * @return model
+   */
+  @javax.annotation.Nonnull
+  public String getModel() {
+    return model;
+  }
+
+  public void setModel(@javax.annotation.Nonnull String model) {
+    this.model = model;
+  }
+
+
   public ChatCompletionRequest messages(@javax.annotation.Nonnull List<Message> messages) {
     this.messages = messages;
     return this;
@@ -278,7 +291,7 @@ public class ChatCompletionRequest {
   }
 
 
-  public ChatCompletionRequest responseFormat(@javax.annotation.Nullable ChatCompletionRequestResponseFormat responseFormat) {
+  public ChatCompletionRequest responseFormat(@javax.annotation.Nullable ResponseFormat responseFormat) {
     this.responseFormat = responseFormat;
     return this;
   }
@@ -288,11 +301,11 @@ public class ChatCompletionRequest {
    * @return responseFormat
    */
   @javax.annotation.Nullable
-  public ChatCompletionRequestResponseFormat getResponseFormat() {
+  public ResponseFormat getResponseFormat() {
     return responseFormat;
   }
 
-  public void setResponseFormat(@javax.annotation.Nullable ChatCompletionRequestResponseFormat responseFormat) {
+  public void setResponseFormat(@javax.annotation.Nullable ResponseFormat responseFormat) {
     this.responseFormat = responseFormat;
   }
 
@@ -419,6 +432,52 @@ public class ChatCompletionRequest {
   }
 
 
+  public ChatCompletionRequest toolPrompt(@javax.annotation.Nullable String toolPrompt) {
+    this.toolPrompt = toolPrompt;
+    return this;
+  }
+
+  /**
+   * A prompt to be appended before the tools
+   * @return toolPrompt
+   */
+  @javax.annotation.Nullable
+  public String getToolPrompt() {
+    return toolPrompt;
+  }
+
+  public void setToolPrompt(@javax.annotation.Nullable String toolPrompt) {
+    this.toolPrompt = toolPrompt;
+  }
+
+
+  public ChatCompletionRequest tools(@javax.annotation.Nullable List<Tool> tools) {
+    this.tools = tools;
+    return this;
+  }
+
+  public ChatCompletionRequest addToolsItem(Tool toolsItem) {
+    if (this.tools == null) {
+      this.tools = new ArrayList<>();
+    }
+    this.tools.add(toolsItem);
+    return this;
+  }
+
+  /**
+   * Get tools
+   * @return tools
+   */
+  @javax.annotation.Nullable
+  public List<Tool> getTools() {
+    return tools;
+  }
+
+  public void setTools(@javax.annotation.Nullable List<Tool> tools) {
+    this.tools = tools;
+  }
+
+
   public ChatCompletionRequest topLogprobs(@javax.annotation.Nullable Integer topLogprobs) {
     this.topLogprobs = topLogprobs;
     return this;
@@ -467,10 +526,10 @@ public class ChatCompletionRequest {
       return false;
     }
     ChatCompletionRequest chatCompletionRequest = (ChatCompletionRequest) o;
-    return Objects.equals(this.model, chatCompletionRequest.model) &&
-        Objects.equals(this.frequencyPenalty, chatCompletionRequest.frequencyPenalty) &&
+    return Objects.equals(this.frequencyPenalty, chatCompletionRequest.frequencyPenalty) &&
         Objects.equals(this.logprobs, chatCompletionRequest.logprobs) &&
         Objects.equals(this.maxTokens, chatCompletionRequest.maxTokens) &&
+        Objects.equals(this.model, chatCompletionRequest.model) &&
         Objects.equals(this.messages, chatCompletionRequest.messages) &&
         Objects.equals(this.presencePenalty, chatCompletionRequest.presencePenalty) &&
         Objects.equals(this.responseFormat, chatCompletionRequest.responseFormat) &&
@@ -480,23 +539,25 @@ public class ChatCompletionRequest {
         Objects.equals(this.streamOptions, chatCompletionRequest.streamOptions) &&
         Objects.equals(this.temperature, chatCompletionRequest.temperature) &&
         Objects.equals(this.toolChoice, chatCompletionRequest.toolChoice) &&
+        Objects.equals(this.toolPrompt, chatCompletionRequest.toolPrompt) &&
+        Objects.equals(this.tools, chatCompletionRequest.tools) &&
         Objects.equals(this.topLogprobs, chatCompletionRequest.topLogprobs) &&
         Objects.equals(this.topP, chatCompletionRequest.topP);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, frequencyPenalty, logprobs, maxTokens, messages, presencePenalty, responseFormat, seed, stop, stream, streamOptions, temperature, toolChoice, topLogprobs, topP);
+    return Objects.hash(frequencyPenalty, logprobs, maxTokens, model, messages, presencePenalty, responseFormat, seed, stop, stream, streamOptions, temperature, toolChoice, toolPrompt, tools, topLogprobs, topP);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChatCompletionRequest {\n");
-    sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    frequencyPenalty: ").append(toIndentedString(frequencyPenalty)).append("\n");
     sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("    maxTokens: ").append(toIndentedString(maxTokens)).append("\n");
+    sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
     sb.append("    presencePenalty: ").append(toIndentedString(presencePenalty)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
@@ -506,6 +567,8 @@ public class ChatCompletionRequest {
     sb.append("    streamOptions: ").append(toIndentedString(streamOptions)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    toolPrompt: ").append(toIndentedString(toolPrompt)).append("\n");
+    sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
     sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("}");
@@ -529,7 +592,7 @@ public class ChatCompletionRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("model", "frequency_penalty", "logprobs", "max_tokens", "messages", "presence_penalty", "response_format", "seed", "stop", "stream", "stream_options", "temperature", "tool_choice", "top_logprobs", "top_p"));
+    openapiFields = new HashSet<String>(Arrays.asList("frequency_penalty", "logprobs", "max_tokens", "model", "messages", "presence_penalty", "response_format", "seed", "stop", "stream", "stream_options", "temperature", "tool_choice", "tool_prompt", "tools", "top_logprobs", "top_p"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("model", "messages"));
@@ -578,7 +641,7 @@ public class ChatCompletionRequest {
       };
       // validate the optional field `response_format`
       if (jsonObj.get("response_format") != null && !jsonObj.get("response_format").isJsonNull()) {
-        ChatCompletionRequestResponseFormat.validateJsonElement(jsonObj.get("response_format"));
+        ResponseFormat.validateJsonElement(jsonObj.get("response_format"));
       }
       // ensure the optional json data is an array if present
       if (jsonObj.get("stop") != null && !jsonObj.get("stop").isJsonNull() && !jsonObj.get("stop").isJsonArray()) {
@@ -591,6 +654,23 @@ public class ChatCompletionRequest {
       // validate the optional field `tool_choice`
       if (jsonObj.get("tool_choice") != null && !jsonObj.get("tool_choice").isJsonNull()) {
         ChatCompletionRequestToolChoice.validateJsonElement(jsonObj.get("tool_choice"));
+      }
+      if ((jsonObj.get("tool_prompt") != null && !jsonObj.get("tool_prompt").isJsonNull()) && !jsonObj.get("tool_prompt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `tool_prompt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tool_prompt").toString()));
+      }
+      if (jsonObj.get("tools") != null && !jsonObj.get("tools").isJsonNull()) {
+        JsonArray jsonArraytools = jsonObj.getAsJsonArray("tools");
+        if (jsonArraytools != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("tools").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `tools` to be an array in the JSON string but got `%s`", jsonObj.get("tools").toString()));
+          }
+
+          // validate the optional field `tools` (array)
+          for (int i = 0; i < jsonArraytools.size(); i++) {
+            Tool.validateJsonElement(jsonArraytools.get(i));
+          };
+        }
       }
   }
 

@@ -1,17 +1,18 @@
 # DefaultApi
 
-All URIs are relative to *https://router.huggingface.co/v1*
+All URIs are relative to *https://router.huggingface.co*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createChatCompletion**](DefaultApi.md#createChatCompletion) | **POST** /chat/completions | Chat completion using messages |
-| [**createEmbeddings**](DefaultApi.md#createEmbeddings) | **POST** /{provider}/v1/embeddings | Get embeddings for input(s) |
-| [**createImage**](DefaultApi.md#createImage) | **POST** /images/completions | Text to Image generation |
+| [**chatCompletion**](DefaultApi.md#chatCompletion) | **POST** /v1/chat/completions | Chat completion using messages |
+| [**featureExtraction**](DefaultApi.md#featureExtraction) | **POST** /{provider}/v1/embeddings | Get embeddings for input(s) |
+| [**getModels**](DefaultApi.md#getModels) | **POST** /api/models | Retrieves models information using a JSON search payload. |
+| [**textToImage**](DefaultApi.md#textToImage) | **POST** /{provider}/v1/images/generations | Text to Image generation |
 
 
-<a id="createChatCompletion"></a>
-# **createChatCompletion**
-> ChatCompletionResponse createChatCompletion(chatCompletionRequest)
+<a id="chatCompletion"></a>
+# **chatCompletion**
+> ChatCompletionResponse chatCompletion(chatCompletionRequest)
 
 Chat completion using messages
 
@@ -28,7 +29,7 @@ import io.github.mzattera.hfinferenceapi.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://router.huggingface.co/v1");
+    defaultClient.setBasePath("https://router.huggingface.co");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -37,10 +38,10 @@ public class Example {
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest(); // ChatCompletionRequest | 
     try {
-      ChatCompletionResponse result = apiInstance.createChatCompletion(chatCompletionRequest);
+      ChatCompletionResponse result = apiInstance.chatCompletion(chatCompletionRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#createChatCompletion");
+      System.err.println("Exception when calling DefaultApi#chatCompletion");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -76,9 +77,9 @@ public class Example {
 | **400** | Bad request — invalid input |  -  |
 | **401** | Unauthorized — invalid or missing token |  -  |
 
-<a id="createEmbeddings"></a>
-# **createEmbeddings**
-> List&lt;List&lt;BigDecimal&gt;&gt; createEmbeddings(provider, embeddingsRequest)
+<a id="featureExtraction"></a>
+# **featureExtraction**
+> EmbeddingsResponse featureExtraction(provider, embeddingsRequest)
 
 Get embeddings for input(s)
 
@@ -95,7 +96,7 @@ import io.github.mzattera.hfinferenceapi.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://router.huggingface.co/v1");
+    defaultClient.setBasePath("https://router.huggingface.co");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -105,10 +106,10 @@ public class Example {
     String provider = "provider_example"; // String | The specific inference provider.
     EmbeddingsRequest embeddingsRequest = new EmbeddingsRequest(); // EmbeddingsRequest | 
     try {
-      List<List<BigDecimal>> result = apiInstance.createEmbeddings(provider, embeddingsRequest);
+      EmbeddingsResponse result = apiInstance.featureExtraction(provider, embeddingsRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#createEmbeddings");
+      System.err.println("Exception when calling DefaultApi#featureExtraction");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -127,7 +128,7 @@ public class Example {
 
 ### Return type
 
-[**List&lt;List&lt;BigDecimal&gt;&gt;**](List.md)
+[**EmbeddingsResponse**](EmbeddingsResponse.md)
 
 ### Authorization
 
@@ -145,9 +146,73 @@ public class Example {
 | **400** | Bad request — invalid input |  -  |
 | **401** | Unauthorized — invalid or missing token |  -  |
 
-<a id="createImage"></a>
-# **createImage**
-> File createImage(imageGenerationRequest)
+<a id="getModels"></a>
+# **getModels**
+> List&lt;ModelInfo&gt; getModels(modelSearchRequest)
+
+Retrieves models information using a JSON search payload.
+
+Sends filtering, sorting, and pagination parameters in the request body. The response is paginated; use the &#39;Link&#39; header to navigate.
+
+### Example
+```java
+// Import classes:
+import io.github.mzattera.hfinferenceapi.ApiClient;
+import io.github.mzattera.hfinferenceapi.ApiException;
+import io.github.mzattera.hfinferenceapi.Configuration;
+import io.github.mzattera.hfinferenceapi.models.*;
+import io.github.mzattera.hfinferenceapi.client.api.DefaultApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://router.huggingface.co");
+
+    DefaultApi apiInstance = new DefaultApi(defaultClient);
+    ModelSearchRequest modelSearchRequest = new ModelSearchRequest(); // ModelSearchRequest | 
+    try {
+      List<ModelInfo> result = apiInstance.getModels(modelSearchRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DefaultApi#getModels");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **modelSearchRequest** | [**ModelSearchRequest**](ModelSearchRequest.md)|  | |
+
+### Return type
+
+[**List&lt;ModelInfo&gt;**](ModelInfo.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | List of models successfully retrieved. |  * link - Header used for pagination, contains the link to the next page (see https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api?apiVersion&#x3D;2022-11-28#link-header). <br>  |
+| **400** | Bad request — invalid input |  -  |
+| **401** | Unauthorized — invalid or missing token |  -  |
+
+<a id="textToImage"></a>
+# **textToImage**
+> ImageGenerationResponse textToImage(provider, imageGenerationRequest)
 
 Text to Image generation
 
@@ -164,19 +229,20 @@ import io.github.mzattera.hfinferenceapi.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://router.huggingface.co/v1");
+    defaultClient.setBasePath("https://router.huggingface.co");
     
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
+    String provider = "provider_example"; // String | The specific inference provider.
     ImageGenerationRequest imageGenerationRequest = new ImageGenerationRequest(); // ImageGenerationRequest | 
     try {
-      File result = apiInstance.createImage(imageGenerationRequest);
+      ImageGenerationResponse result = apiInstance.textToImage(provider, imageGenerationRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#createImage");
+      System.err.println("Exception when calling DefaultApi#textToImage");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -190,11 +256,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **provider** | **String**| The specific inference provider. | |
 | **imageGenerationRequest** | [**ImageGenerationRequest**](ImageGenerationRequest.md)|  | |
 
 ### Return type
 
-[**File**](File.md)
+[**ImageGenerationResponse**](ImageGenerationResponse.md)
 
 ### Authorization
 
@@ -203,12 +270,12 @@ public class Example {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/octet-stream
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Generated image returned as raw bytes |  -  |
+| **200** | Generated image(s) returned as Base64 encoding in the response. |  -  |
 | **400** | Bad request — invalid input |  -  |
 | **401** | Unauthorized — invalid or missing token |  -  |
 

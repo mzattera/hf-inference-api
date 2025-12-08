@@ -52,7 +52,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * ChatCompletionRequestToolChoiceOneOf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "ChatCompletionRequestToolChoiceOneOf")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -60,13 +60,13 @@ public class ChatCompletionRequestToolChoiceOneOf {
   public static final String SERIALIZED_NAME_FUNCTION = "function";
   @XmlElement(name = "function")
   @SerializedName(SERIALIZED_NAME_FUNCTION)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private ChatCompletionRequestToolChoiceOneOfFunction function;
 
   public ChatCompletionRequestToolChoiceOneOf() {
   }
 
-  public ChatCompletionRequestToolChoiceOneOf function(@javax.annotation.Nullable ChatCompletionRequestToolChoiceOneOfFunction function) {
+  public ChatCompletionRequestToolChoiceOneOf function(@javax.annotation.Nonnull ChatCompletionRequestToolChoiceOneOfFunction function) {
     this.function = function;
     return this;
   }
@@ -75,12 +75,12 @@ public class ChatCompletionRequestToolChoiceOneOf {
    * Get function
    * @return function
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public ChatCompletionRequestToolChoiceOneOfFunction getFunction() {
     return function;
   }
 
-  public void setFunction(@javax.annotation.Nullable ChatCompletionRequestToolChoiceOneOfFunction function) {
+  public void setFunction(@javax.annotation.Nonnull ChatCompletionRequestToolChoiceOneOfFunction function) {
     this.function = function;
   }
 
@@ -132,7 +132,7 @@ public class ChatCompletionRequestToolChoiceOneOf {
     openapiFields = new HashSet<String>(Arrays.asList("function"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("function"));
   }
 
   /**
@@ -155,11 +155,16 @@ public class ChatCompletionRequestToolChoiceOneOf {
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ChatCompletionRequestToolChoiceOneOf` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `function`
-      if (jsonObj.get("function") != null && !jsonObj.get("function").isJsonNull()) {
-        ChatCompletionRequestToolChoiceOneOfFunction.validateJsonElement(jsonObj.get("function"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ChatCompletionRequestToolChoiceOneOf.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the required field `function`
+      ChatCompletionRequestToolChoiceOneOfFunction.validateJsonElement(jsonObj.get("function"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

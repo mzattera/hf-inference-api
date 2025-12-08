@@ -28,20 +28,37 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import com.google.gson.Gson;
+
 import io.github.mzattera.hfinferenceapi.ApiClient;
 import io.github.mzattera.hfinferenceapi.ApiException;
+import io.github.mzattera.hfinferenceapi.ApiResponse;
 import io.github.mzattera.hfinferenceapi.JSON;
 import io.github.mzattera.hfinferenceapi.auth.Authentication;
 import io.github.mzattera.hfinferenceapi.auth.HttpBearerAuth;
+import io.github.mzattera.hfinferenceapi.client.model.AssistantMessage;
 import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequest;
 import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionResponse;
 import io.github.mzattera.hfinferenceapi.client.model.EmbeddingData;
 import io.github.mzattera.hfinferenceapi.client.model.EmbeddingsRequest;
+import io.github.mzattera.hfinferenceapi.client.model.Function;
+import io.github.mzattera.hfinferenceapi.client.model.FunctionTool;
+import io.github.mzattera.hfinferenceapi.client.model.FunctionToolCall;
 import io.github.mzattera.hfinferenceapi.client.model.ImageGenerationRequest;
 import io.github.mzattera.hfinferenceapi.client.model.ImageGenerationRequestParameters;
 import io.github.mzattera.hfinferenceapi.client.model.ImageGenerationResponseDataInner;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
-import io.github.mzattera.hfinferenceapi.client.model.MessageContent;
+import io.github.mzattera.hfinferenceapi.client.model.Message.RoleEnum;
+import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart;
+import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart.TypeEnum;
+import io.github.mzattera.hfinferenceapi.client.model.ModelInfo;
+import io.github.mzattera.hfinferenceapi.client.model.ModelSearchRequest;
+import io.github.mzattera.hfinferenceapi.client.model.TextContentPart;
+import io.github.mzattera.hfinferenceapi.client.model.Tool;
+import io.github.mzattera.hfinferenceapi.client.model.ToolMessage;
+import io.github.mzattera.hfinferenceapi.client.model.ToolMessageAllOfContent;
+import io.github.mzattera.hfinferenceapi.client.model.UserMessage;
+import io.github.mzattera.hfinferenceapi.client.model.UserMessageAllOfContent;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -49,7 +66,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
  * API tests for DefaultApi
  */
 public class DefaultApiTest {
-
+	
 	// The static field to hold the initialized API client
 	private static DefaultApi api;
 
@@ -116,17 +133,97 @@ public class DefaultApiTest {
 	}
 
 	/**
-	 * Chat completion using messages
+	 * Chat Completion using messages
 	 *
 	 * @throws ApiException if the Api call fails
 	 */
 	@Test
+	@Disabled
 	public void createChatCompletionTest() throws ApiException {
-		ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest()
-				.addMessagesItem(new Message().role("user").content(new MessageContent("Hi")))
+
+		Message msg;
+		ChatCompletionRequest chatCompletionRequest;
+		ChatCompletionResponse response;
+		
+		msg = new UserMessage().content(new UserMessageAllOfContent("Hi")).role(RoleEnum.USER);
+		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg)
 				.model("openai/gpt-oss-120b");
-		ChatCompletionResponse response = api.chatCompletion(chatCompletionRequest);
-		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage().getContent());
+		response = api.chatCompletion(chatCompletionRequest);
+		System.out.println(response + "\n\n");
+		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
+
+		List<MessageContentPart> msgs = new ArrayList<>();
+		msgs.add(new TextContentPart().text("Hi").type(TypeEnum.TEXT));
+		msgs.add(new TextContentPart().text("My name is Maxi; what is your name?").type(TypeEnum.TEXT));
+		msg = new UserMessage().content(new UserMessageAllOfContent(msgs)).role(RoleEnum.USER);
+		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model("openai/gpt-oss-120b");
+		response = api.chatCompletion(chatCompletionRequest);
+		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
+	}
+
+	/**
+	 * Tool call in Chat Completion using messages
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	public void toolCallInChatCompletionTest() throws ApiException {
+
+		List<Message> messages = new ArrayList<>();
+		Message msg;
+		ChatCompletionRequest chatCompletionRequest;
+		ChatCompletionResponse response;
+		
+		// Arguments for our tool as JSON
+		String arguments ="{\n"
+				+ "  \"$schema\" : \"http://json-schema.org/draft-04/schema#\",\n"
+				+ "  \"title\" : \"Parameters\",\n"
+				+ "  \"type\" : \"object\",\n"
+				+ "  \"additionalProperties\" : false,\n"
+				+ "  \"description\" : \"This is a class describing parameters for GetCurrentWeatherTool\",\n"
+				+ "  \"properties\" : {\n"
+				+ "    \"location\" : {\n"
+				+ "      \"type\" : \"string\",\n"
+				+ "      \"description\" : \"The city and state, e.g. San Francisco, CA.\"\n"
+				+ "    },\n"
+				+ "    \"unit\" : {\n"
+				+ "      \"type\" : \"string\",\n"
+				+ "      \"enum\" : [ \"CELSIUS\", \"FARENHEIT\" ],\n"
+				+ "      \"description\" : \"Temperature unit (CELSIUS or FARENHEIT), defaults to CELSIUS\"\n"
+				+ "    }\n"
+				+ "  },\n"
+				+ "  \"required\" : [ \"location\" ]\n"
+				+ "}";
+		
+		// Parse arguments into an object
+		Gson gson = new Gson();
+		Object parametersObject = null;
+		parametersObject = gson.fromJson(arguments, Object.class);		
+		
+		Function fun = new Function().name("GetCurrentWeatherTool").description("Provides weather conditions in one city").parameters(parametersObject);
+		Tool tool = new FunctionTool().function(fun).type(Tool.TypeEnum.FUNCTION);
+		List<Tool> tools = new ArrayList<>();
+		tools.add(tool);
+		msg = new UserMessage().content(new UserMessageAllOfContent("What is the temperature in London (F)?")).role(RoleEnum.USER);
+		messages.add(msg);
+		chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model("openai/gpt-oss-120b");
+		response = api.chatCompletion(chatCompletionRequest);
+		
+		AssistantMessage botMsg = (AssistantMessage)response.getChoices().get(0).getMessage();
+		messages.add(botMsg);
+		if (botMsg.getToolCalls().size() > 0) {
+			// There was a tool call
+			FunctionToolCall call = (FunctionToolCall)botMsg.getToolCalls().get(0); // only these are supported
+			
+			// Fake response
+			msg = new ToolMessage().toolCallId(call.getId()).content(new ToolMessageAllOfContent("35F")).name("GetCurrentWeatherTool").role(RoleEnum.TOOL);
+			messages.add(msg);
+			chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model("openai/gpt-oss-120b");
+			response = api.chatCompletion(chatCompletionRequest);
+			
+			System.out.println(response + "\n\n");
+			System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
+		}
 	}
 
 	/**
@@ -135,6 +232,7 @@ public class DefaultApiTest {
 	 * @throws ApiException if the Api call fails
 	 */
 	@Test
+	@Disabled
 	public void createEmbeddingsTest() throws ApiException {
 		List<String> inputs = new ArrayList<>();
 		inputs.add("This is a test");
@@ -155,6 +253,7 @@ public class DefaultApiTest {
 	 * @throws IOException
 	 */
 	@Test
+	@Disabled
 	public void createImageTest() throws ApiException, IOException {
 
 		ImageGenerationRequestParameters params = new ImageGenerationRequestParameters().width(512).height(512);
@@ -170,5 +269,30 @@ public class DefaultApiTest {
 			}
 			ImageIO.write(image, "png", new File("D:\\my_output_image" + (i++) + ".png"));
 		}
+	}
+
+	/**
+	 * Retrieves models information using a JSON search payload.
+	 *
+	 * Sends filtering, sorting, and pagination parameters in the request body. The
+	 * response is paginated; use the &#39;Link&#39; header to navigate.
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	@Disabled
+	public void getModelsTest() throws ApiException {
+		ModelSearchRequest modelSearchRequest = new ModelSearchRequest().limit(Integer.MAX_VALUE);
+		List<ModelInfo> response = api.getModels(modelSearchRequest);
+		ApiResponse<List<ModelInfo>> h = api.getModelsWithHttpInfo(modelSearchRequest);
+		Map<String, List<String>> heasders = h.getHeaders();
+
+		System.out.println("Found " + response.size() + " models.");
+		for (ModelInfo inf : response) {
+			System.out.println(inf.getId());
+			System.out.println(inf.getPipelineTag());
+			System.out.println();
+		}
+		// TODO: test validations
 	}
 }

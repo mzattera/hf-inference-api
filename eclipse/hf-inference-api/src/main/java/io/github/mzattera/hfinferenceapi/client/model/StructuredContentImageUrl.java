@@ -52,7 +52,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * StructuredContentImageUrl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-07T11:09:15.293199900+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "StructuredContentImageUrl")
 @XmlAccessorType(XmlAccessType.FIELD)
 

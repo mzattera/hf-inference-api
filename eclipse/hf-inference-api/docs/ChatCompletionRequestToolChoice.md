@@ -2,13 +2,13 @@
 
 # ChatCompletionRequestToolChoice
 
-Tool choice option.
+FunctionTool choice option.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**function** | [**ChatCompletionRequestToolChoiceOneOfFunction**](ChatCompletionRequestToolChoiceOneOfFunction.md) |  |  [optional] |
+|**function** | [**ChatCompletionRequestToolChoiceOneOfFunction**](ChatCompletionRequestToolChoiceOneOfFunction.md) |  |  |
 
 
 

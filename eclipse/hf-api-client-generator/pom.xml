@@ -336,13 +336,13 @@
 					    <modelDocs>true</modelDocs>
 	   				    <apiTests>true</apiTests>
 					    <modelTests>false</modelTests>
-
+                    
 					    <asyncNative>false</asyncNative>
 				        <dateLibrary>java8</dateLibrary> 			    
 				       	<artifactDescription>OpenAPI-generated client for Hugging Face Inference API.</artifactDescription>
 				        <artifactId>hf-inference-api</artifactId>
 				        <artifactUrl>https://github.com/mzattera/hf-inference-api</artifactUrl>
-				        <artifactVersion>1.0.0</artifactVersion>
+				        <artifactVersion>2.0.0</artifactVersion>
 					    <developerEmail>b2fjava@gmail.com</developerEmail>
 						<developerName>Massimiliano "Maxi" Zattera</developerName>			
 						<developerOrganization>io.github.mzattera</developerOrganization>

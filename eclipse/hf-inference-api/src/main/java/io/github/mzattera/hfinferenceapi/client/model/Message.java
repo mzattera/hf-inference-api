@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.MessageContent;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.xml.bind.annotation.*;
@@ -52,111 +51,102 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * Message
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "Message")
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class Message {
+  /**
+   * Gets or Sets role
+   */
+  @JsonAdapter(RoleEnum.Adapter.class)
+  @XmlType(name="RoleEnum")
+  @XmlEnum(String.class)
+  public enum RoleEnum {
+    @XmlEnumValue("developer")
+    DEVELOPER("developer"),
+    
+    @XmlEnumValue("system")
+    SYSTEM("system"),
+    
+    @XmlEnumValue("user")
+    USER("user"),
+    
+    @XmlEnumValue("assistant")
+    ASSISTANT("assistant"),
+    
+    @XmlEnumValue("tool")
+    TOOL("tool");
+
+    private String value;
+
+    RoleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static RoleEnum fromValue(String value) {
+      for (RoleEnum b : RoleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<RoleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final RoleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public RoleEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return RoleEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      RoleEnum.fromValue(value);
+    }
+  }
+
   public static final String SERIALIZED_NAME_ROLE = "role";
   @XmlElement(name = "role")
   @SerializedName(SERIALIZED_NAME_ROLE)
   @javax.annotation.Nonnull
-  private String role;
-
-  public static final String SERIALIZED_NAME_CONTENT = "content";
-  @XmlElement(name = "content")
-  @SerializedName(SERIALIZED_NAME_CONTENT)
-  @javax.annotation.Nullable
-  private MessageContent content;
-
-  public static final String SERIALIZED_NAME_REASONING = "reasoning";
-  @XmlElement(name = "reasoning")
-  @SerializedName(SERIALIZED_NAME_REASONING)
-  @javax.annotation.Nullable
-  private String reasoning;
-
-  public static final String SERIALIZED_NAME_TOOL_CALL_ID = "tool_call_id";
-  @XmlElement(name = "tool_call_id")
-  @SerializedName(SERIALIZED_NAME_TOOL_CALL_ID)
-  @javax.annotation.Nullable
-  private String toolCallId;
+  protected RoleEnum role;
 
   public Message() {
+
   }
 
-  public Message role(@javax.annotation.Nonnull String role) {
+  public Message role(@javax.annotation.Nonnull RoleEnum role) {
     this.role = role;
     return this;
   }
 
   /**
-   * Role of the message sender (eg \&quot;user\&quot;, \&quot;assistant\&quot;).
+   * Get role
    * @return role
    */
   @javax.annotation.Nonnull
-  public String getRole() {
+  public RoleEnum getRole() {
     return role;
   }
 
-  public void setRole(@javax.annotation.Nonnull String role) {
+  public void setRole(@javax.annotation.Nonnull RoleEnum role) {
     this.role = role;
-  }
-
-
-  public Message content(@javax.annotation.Nullable MessageContent content) {
-    this.content = content;
-    return this;
-  }
-
-  /**
-   * Get content
-   * @return content
-   */
-  @javax.annotation.Nullable
-  public MessageContent getContent() {
-    return content;
-  }
-
-  public void setContent(@javax.annotation.Nullable MessageContent content) {
-    this.content = content;
-  }
-
-
-  public Message reasoning(@javax.annotation.Nullable String reasoning) {
-    this.reasoning = reasoning;
-    return this;
-  }
-
-  /**
-   * Get reasoning
-   * @return reasoning
-   */
-  @javax.annotation.Nullable
-  public String getReasoning() {
-    return reasoning;
-  }
-
-  public void setReasoning(@javax.annotation.Nullable String reasoning) {
-    this.reasoning = reasoning;
-  }
-
-
-  public Message toolCallId(@javax.annotation.Nullable String toolCallId) {
-    this.toolCallId = toolCallId;
-    return this;
-  }
-
-  /**
-   * Identifier for the tool call if applicable.
-   * @return toolCallId
-   */
-  @javax.annotation.Nullable
-  public String getToolCallId() {
-    return toolCallId;
-  }
-
-  public void setToolCallId(@javax.annotation.Nullable String toolCallId) {
-    this.toolCallId = toolCallId;
   }
 
 
@@ -170,15 +160,12 @@ public class Message {
       return false;
     }
     Message message = (Message) o;
-    return Objects.equals(this.role, message.role) &&
-        Objects.equals(this.content, message.content) &&
-        Objects.equals(this.reasoning, message.reasoning) &&
-        Objects.equals(this.toolCallId, message.toolCallId);
+    return Objects.equals(this.role, message.role);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, reasoning, toolCallId);
+    return Objects.hash(role);
   }
 
   @Override
@@ -186,9 +173,6 @@ public class Message {
     StringBuilder sb = new StringBuilder();
     sb.append("class Message {\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    reasoning: ").append(toIndentedString(reasoning)).append("\n");
-    sb.append("    toolCallId: ").append(toIndentedString(toolCallId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -210,7 +194,7 @@ public class Message {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("role", "content", "reasoning", "tool_call_id"));
+    openapiFields = new HashSet<String>(Arrays.asList("role"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("role"));
@@ -229,64 +213,28 @@ public class Message {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Message.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `Message` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : Message.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("role").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `role` to be a primitive type in the JSON string but got `%s`", jsonObj.get("role").toString()));
-      }
-      // validate the optional field `content`
-      if (jsonObj.get("content") != null && !jsonObj.get("content").isJsonNull()) {
-        MessageContent.validateJsonElement(jsonObj.get("content"));
-      }
-      if ((jsonObj.get("reasoning") != null && !jsonObj.get("reasoning").isJsonNull()) && !jsonObj.get("reasoning").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `reasoning` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reasoning").toString()));
-      }
-      if ((jsonObj.get("tool_call_id") != null && !jsonObj.get("tool_call_id").isJsonNull()) && !jsonObj.get("tool_call_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `tool_call_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tool_call_id").toString()));
+      String discriminatorValue = jsonElement.getAsJsonObject().get("role").getAsString();
+      switch (discriminatorValue) {
+        case "assistant":
+          AssistantMessage.validateJsonElement(jsonElement);
+          break;
+        case "developer":
+          DeveloperMessage.validateJsonElement(jsonElement);
+          break;
+        case "system":
+          SystemMessage.validateJsonElement(jsonElement);
+          break;
+        case "user":
+          UserMessage.validateJsonElement(jsonElement);
+          break;
+        case "ToolMessage":
+          ToolMessage.validateJsonElement(jsonElement);
+          break;
+        default:
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The value of the `role` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!Message.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'Message' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<Message> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(Message.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<Message>() {
-           @Override
-           public void write(JsonWriter out, Message value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public Message read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
 
   /**
    * Create an instance of Message given an JSON string

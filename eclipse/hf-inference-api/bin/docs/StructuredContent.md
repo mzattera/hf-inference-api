@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
-|**text** | **String** | Text content when type &#x3D; text |  [optional] |
+|**text** | **String** | Text content when type &#x3D; text. |  [optional] |
 |**imageUrl** | [**StructuredContentImageUrl**](StructuredContentImageUrl.md) |  |  [optional] |
 
 

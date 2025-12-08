@@ -62,7 +62,7 @@ import com.google.gson.JsonParseException;
 
 import io.github.mzattera.hfinferenceapi.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-07T16:58:05.267507900+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "ChatCompletionRequestResponseFormat")
 @XmlAccessorType(XmlAccessType.FIELD)
 

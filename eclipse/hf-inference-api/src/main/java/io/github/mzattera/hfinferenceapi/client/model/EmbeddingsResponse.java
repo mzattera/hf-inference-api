@@ -55,7 +55,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * Generated embeddings.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-06T10:35:09.348263700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "EmbeddingsResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
 

@@ -7,8 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**model** | **String** | Model to use in the format \&quot;provider/model_name:selector\&quot; |  |
-|**inputs** | **String** | The input text prompt for image generation |  |
+|**model** | **String** | Model to use. |  |
+|**prompt** | **String** | The input text prompt for image generation. |  |
+|**n** | **Integer** | The number of images to generate. |  [optional] |
 |**parameters** | [**ImageGenerationRequestParameters**](ImageGenerationRequestParameters.md) |  |  [optional] |
 
 
