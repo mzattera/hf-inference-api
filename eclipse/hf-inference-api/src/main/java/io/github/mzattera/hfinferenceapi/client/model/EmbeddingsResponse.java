@@ -55,40 +55,16 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * Generated embeddings.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T14:53:03.397635600+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "EmbeddingsResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class EmbeddingsResponse {
-  public static final String SERIALIZED_NAME_OBJECT = "object";
-  @XmlElement(name = "object")
-  @SerializedName(SERIALIZED_NAME_OBJECT)
-  @javax.annotation.Nullable
-  private String _object;
-
-  public static final String SERIALIZED_NAME_ID = "id";
-  @XmlElement(name = "id")
-  @SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
-  private String id;
-
-  public static final String SERIALIZED_NAME_CREATED = "created";
-  @XmlElement(name = "created")
-  @SerializedName(SERIALIZED_NAME_CREATED)
-  @javax.annotation.Nullable
-  private Integer created;
-
   public static final String SERIALIZED_NAME_MODEL = "model";
   @XmlElement(name = "model")
   @SerializedName(SERIALIZED_NAME_MODEL)
   @javax.annotation.Nullable
   private String model;
-
-  public static final String SERIALIZED_NAME_USAGE = "usage";
-  @XmlElement(name = "usage")
-  @SerializedName(SERIALIZED_NAME_USAGE)
-  @javax.annotation.Nullable
-  private Usage usage;
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @XmlElement(name = "data")
@@ -96,65 +72,14 @@ public class EmbeddingsResponse {
   @javax.annotation.Nullable
   private List<EmbeddingData> data = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_USAGE = "usage";
+  @XmlElement(name = "usage")
+  @SerializedName(SERIALIZED_NAME_USAGE)
+  @javax.annotation.Nullable
+  private Usage usage;
+
   public EmbeddingsResponse() {
   }
-
-  public EmbeddingsResponse _object(@javax.annotation.Nullable String _object) {
-    this._object = _object;
-    return this;
-  }
-
-  /**
-   * Get _object
-   * @return _object
-   */
-  @javax.annotation.Nullable
-  public String getObject() {
-    return _object;
-  }
-
-  public void setObject(@javax.annotation.Nullable String _object) {
-    this._object = _object;
-  }
-
-
-  public EmbeddingsResponse id(@javax.annotation.Nullable String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @javax.annotation.Nullable
-  public String getId() {
-    return id;
-  }
-
-  public void setId(@javax.annotation.Nullable String id) {
-    this.id = id;
-  }
-
-
-  public EmbeddingsResponse created(@javax.annotation.Nullable Integer created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Get created
-   * @return created
-   */
-  @javax.annotation.Nullable
-  public Integer getCreated() {
-    return created;
-  }
-
-  public void setCreated(@javax.annotation.Nullable Integer created) {
-    this.created = created;
-  }
-
 
   public EmbeddingsResponse model(@javax.annotation.Nullable String model) {
     this.model = model;
@@ -172,25 +97,6 @@ public class EmbeddingsResponse {
 
   public void setModel(@javax.annotation.Nullable String model) {
     this.model = model;
-  }
-
-
-  public EmbeddingsResponse usage(@javax.annotation.Nullable Usage usage) {
-    this.usage = usage;
-    return this;
-  }
-
-  /**
-   * Get usage
-   * @return usage
-   */
-  @javax.annotation.Nullable
-  public Usage getUsage() {
-    return usage;
-  }
-
-  public void setUsage(@javax.annotation.Nullable Usage usage) {
-    this.usage = usage;
   }
 
 
@@ -221,6 +127,69 @@ public class EmbeddingsResponse {
   }
 
 
+  public EmbeddingsResponse usage(@javax.annotation.Nullable Usage usage) {
+    this.usage = usage;
+    return this;
+  }
+
+  /**
+   * Get usage
+   * @return usage
+   */
+  @javax.annotation.Nullable
+  public Usage getUsage() {
+    return usage;
+  }
+
+  public void setUsage(@javax.annotation.Nullable Usage usage) {
+    this.usage = usage;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the EmbeddingsResponse instance itself
+   */
+  public EmbeddingsResponse putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -231,29 +200,25 @@ public class EmbeddingsResponse {
       return false;
     }
     EmbeddingsResponse embeddingsResponse = (EmbeddingsResponse) o;
-    return Objects.equals(this._object, embeddingsResponse._object) &&
-        Objects.equals(this.id, embeddingsResponse.id) &&
-        Objects.equals(this.created, embeddingsResponse.created) &&
-        Objects.equals(this.model, embeddingsResponse.model) &&
-        Objects.equals(this.usage, embeddingsResponse.usage) &&
-        Objects.equals(this.data, embeddingsResponse.data);
+    return Objects.equals(this.model, embeddingsResponse.model) &&
+        Objects.equals(this.data, embeddingsResponse.data) &&
+        Objects.equals(this.usage, embeddingsResponse.usage)&&
+        Objects.equals(this.additionalProperties, embeddingsResponse.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_object, id, created, model, usage, data);
+    return Objects.hash(model, data, usage, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EmbeddingsResponse {\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
-    sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -275,7 +240,7 @@ public class EmbeddingsResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("object", "id", "created", "model", "usage", "data"));
+    openapiFields = new HashSet<String>(Arrays.asList("model", "data", "usage"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -293,41 +258,13 @@ public class EmbeddingsResponse {
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in EmbeddingsResponse is not found in the empty JSON string", EmbeddingsResponse.openapiRequiredFields.toString()));
         }
       }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!EmbeddingsResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `EmbeddingsResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("object") != null && !jsonObj.get("object").isJsonNull()) && !jsonObj.get("object").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `object` to be a primitive type in the JSON string but got `%s`", jsonObj.get("object").toString()));
-      }
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
       if ((jsonObj.get("model") != null && !jsonObj.get("model").isJsonNull()) && !jsonObj.get("model").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `model` to be a primitive type in the JSON string but got `%s`", jsonObj.get("model").toString()));
       }
-      // validate the optional field `usage`
-      if (jsonObj.get("usage") != null && !jsonObj.get("usage").isJsonNull()) {
-        Usage.validateJsonElement(jsonObj.get("usage"));
-      }
-      if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
-        JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-        if (jsonArraydata != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("data").isJsonArray()) {
-            throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
-          }
-
-          // validate the optional field `data` (array)
-          for (int i = 0; i < jsonArraydata.size(); i++) {
-            EmbeddingData.validateJsonElement(jsonArraydata.get(i));
-          };
-        }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull() && !jsonObj.get("data").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
       }
   }
 
@@ -346,6 +283,28 @@ public class EmbeddingsResponse {
            @Override
            public void write(JsonWriter out, EmbeddingsResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -353,7 +312,28 @@ public class EmbeddingsResponse {
            public EmbeddingsResponse read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             EmbeddingsResponse instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();

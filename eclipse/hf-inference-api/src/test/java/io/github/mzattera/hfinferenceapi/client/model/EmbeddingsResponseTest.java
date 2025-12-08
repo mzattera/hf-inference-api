@@ -42,30 +42,6 @@ public class EmbeddingsResponseTest {
     }
 
     /**
-     * Test the property '_object'
-     */
-    @Test
-    public void _objectTest() {
-        // TODO: test _object
-    }
-
-    /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'created'
-     */
-    @Test
-    public void createdTest() {
-        // TODO: test created
-    }
-
-    /**
      * Test the property 'model'
      */
     @Test
@@ -74,19 +50,19 @@ public class EmbeddingsResponseTest {
     }
 
     /**
-     * Test the property 'usage'
-     */
-    @Test
-    public void usageTest() {
-        // TODO: test usage
-    }
-
-    /**
      * Test the property 'data'
      */
     @Test
     public void dataTest() {
         // TODO: test data
+    }
+
+    /**
+     * Test the property 'usage'
+     */
+    @Test
+    public void usageTest() {
+        // TODO: test usage
     }
 
 }

@@ -63,4 +63,12 @@ public class ToolMessageTest {
         // TODO: test toolCallId
     }
 
+    /**
+     * Test the property 'name'
+     */
+    @Test
+    public void nameTest() {
+        // TODO: test name
+    }
+
 }

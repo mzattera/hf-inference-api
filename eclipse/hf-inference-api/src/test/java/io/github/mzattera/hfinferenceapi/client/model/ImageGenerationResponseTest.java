@@ -41,14 +41,6 @@ public class ImageGenerationResponseTest {
     }
 
     /**
-     * Test the property 'created'
-     */
-    @Test
-    public void createdTest() {
-        // TODO: test created
-    }
-
-    /**
      * Test the property 'data'
      */
     @Test

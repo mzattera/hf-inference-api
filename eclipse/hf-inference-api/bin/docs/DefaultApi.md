@@ -6,7 +6,7 @@ All URIs are relative to *https://router.huggingface.co*
 |------------- | ------------- | -------------|
 | [**chatCompletion**](DefaultApi.md#chatCompletion) | **POST** /v1/chat/completions | Chat completion using messages |
 | [**featureExtraction**](DefaultApi.md#featureExtraction) | **POST** /{provider}/v1/embeddings | Get embeddings for input(s) |
-| [**getModels**](DefaultApi.md#getModels) | **POST** /api/models | Retrieves models information using a JSON search payload. |
+| [**getModels**](DefaultApi.md#getModels) | **GET** /api/models | Retrieves models information using a JSON search payload. |
 | [**textToImage**](DefaultApi.md#textToImage) | **POST** /{provider}/v1/images/generations | Text to Image generation |
 
 

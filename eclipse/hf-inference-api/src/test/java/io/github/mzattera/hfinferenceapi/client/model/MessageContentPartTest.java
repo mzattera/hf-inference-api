@@ -38,14 +38,6 @@ public class MessageContentPartTest {
     }
 
     /**
-     * Test the property 'test'
-     */
-    @Test
-    public void testTest() {
-        // TODO: test test
-    }
-
-    /**
      * Test the property 'type'
      */
     @Test

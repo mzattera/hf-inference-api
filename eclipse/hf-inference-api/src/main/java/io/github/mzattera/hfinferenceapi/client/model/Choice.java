@@ -53,7 +53,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * Choice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T14:53:03.397635600+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "Choice")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -278,10 +278,6 @@ public class Choice {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("finish_reason") != null && !jsonObj.get("finish_reason").isJsonNull()) && !jsonObj.get("finish_reason").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `finish_reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("finish_reason").toString()));
-      }
-      // validate the optional field `logprobs`
-      if (jsonObj.get("logprobs") != null && !jsonObj.get("logprobs").isJsonNull()) {
-        LogProbs.validateJsonElement(jsonObj.get("logprobs"));
       }
       // validate the optional field `message`
       if (jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) {

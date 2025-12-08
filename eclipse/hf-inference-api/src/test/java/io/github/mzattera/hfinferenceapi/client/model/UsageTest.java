@@ -18,9 +18,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.UsageCompletionTokensDetails;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -48,22 +46,6 @@ public class UsageTest {
     }
 
     /**
-     * Test the property 'completionTime'
-     */
-    @Test
-    public void completionTimeTest() {
-        // TODO: test completionTime
-    }
-
-    /**
-     * Test the property 'completionTokensDetails'
-     */
-    @Test
-    public void completionTokensDetailsTest() {
-        // TODO: test completionTokensDetails
-    }
-
-    /**
      * Test the property 'promptTokens'
      */
     @Test
@@ -72,43 +54,11 @@ public class UsageTest {
     }
 
     /**
-     * Test the property 'promptTime'
-     */
-    @Test
-    public void promptTimeTest() {
-        // TODO: test promptTime
-    }
-
-    /**
-     * Test the property 'promptTokensDetails'
-     */
-    @Test
-    public void promptTokensDetailsTest() {
-        // TODO: test promptTokensDetails
-    }
-
-    /**
      * Test the property 'totalTokens'
      */
     @Test
     public void totalTokensTest() {
         // TODO: test totalTokens
-    }
-
-    /**
-     * Test the property 'totalTime'
-     */
-    @Test
-    public void totalTimeTest() {
-        // TODO: test totalTime
-    }
-
-    /**
-     * Test the property 'queueTime'
-     */
-    @Test
-    public void queueTimeTest() {
-        // TODO: test queueTime
     }
 
 }

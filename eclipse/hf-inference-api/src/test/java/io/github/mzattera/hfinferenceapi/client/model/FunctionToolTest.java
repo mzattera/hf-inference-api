@@ -19,6 +19,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.mzattera.hfinferenceapi.client.model.Function;
+import io.github.mzattera.hfinferenceapi.client.model.Tool;
 import java.io.IOException;
 import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
@@ -39,19 +40,19 @@ public class FunctionToolTest {
     }
 
     /**
-     * Test the property 'function'
-     */
-    @Test
-    public void functionTest() {
-        // TODO: test function
-    }
-
-    /**
      * Test the property 'type'
      */
     @Test
     public void typeTest() {
         // TODO: test type
+    }
+
+    /**
+     * Test the property 'function'
+     */
+    @Test
+    public void functionTest() {
+        // TODO: test function
     }
 
 }

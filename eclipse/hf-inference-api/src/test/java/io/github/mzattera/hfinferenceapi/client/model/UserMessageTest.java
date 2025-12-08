@@ -22,7 +22,6 @@ import io.github.mzattera.hfinferenceapi.client.model.Message;
 import io.github.mzattera.hfinferenceapi.client.model.UserMessageAllOfContent;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Map;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

@@ -18,7 +18,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.MessageContent;
 import java.io.IOException;
 import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
@@ -44,30 +43,6 @@ public class MessageTest {
     @Test
     public void roleTest() {
         // TODO: test role
-    }
-
-    /**
-     * Test the property 'content'
-     */
-    @Test
-    public void contentTest() {
-        // TODO: test content
-    }
-
-    /**
-     * Test the property 'reasoning'
-     */
-    @Test
-    public void reasoningTest() {
-        // TODO: test reasoning
-    }
-
-    /**
-     * Test the property 'toolCallId'
-     */
-    @Test
-    public void toolCallIdTest() {
-        // TODO: test toolCallId
     }
 
 }

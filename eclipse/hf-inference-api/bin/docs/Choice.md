@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**finishReason** | **String** |  |  [optional] |
 |**index** | **Integer** |  |  [optional] |
-|**logprobs** | [**LogProbs**](LogProbs.md) |  |  [optional] |
+|**logprobs** | **LogProbs** |  |  [optional] |
 |**message** | [**Message**](Message.md) |  |  [optional] |
 
 

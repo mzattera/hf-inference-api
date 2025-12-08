@@ -7,10 +7,19 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**role** | **String** | Role of the message sender (eg \&quot;user\&quot;, \&quot;assistant\&quot;). |  |
-|**content** | [**MessageContent**](MessageContent.md) |  |  [optional] |
-|**reasoning** | **String** |  |  [optional] |
-|**toolCallId** | **String** | Identifier for the tool call if applicable. |  [optional] |
+|**role** | [**RoleEnum**](#RoleEnum) |  |  |
+
+
+
+## Enum: RoleEnum
+
+| Name | Value |
+|---- | -----|
+| DEVELOPER | &quot;developer&quot; |
+| SYSTEM | &quot;system&quot; |
+| USER | &quot;user&quot; |
+| ASSISTANT | &quot;assistant&quot; |
+| TOOL | &quot;tool&quot; |
 
 
 

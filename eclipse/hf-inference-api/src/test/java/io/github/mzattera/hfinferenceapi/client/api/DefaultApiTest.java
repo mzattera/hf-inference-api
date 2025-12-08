@@ -67,6 +67,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
  */
 public class DefaultApiTest {
 	
+//	private static String MODEL = "Qwen/Qwen2.5-VL-3B-Instruct";
+	private static String MODEL = "openai/gpt-oss-120b";
+			
 	// The static field to hold the initialized API client
 	private static DefaultApi api;
 
@@ -138,7 +141,6 @@ public class DefaultApiTest {
 	 * @throws ApiException if the Api call fails
 	 */
 	@Test
-	@Disabled
 	public void createChatCompletionTest() throws ApiException {
 
 		Message msg;
@@ -147,7 +149,7 @@ public class DefaultApiTest {
 		
 		msg = new UserMessage().content(new UserMessageAllOfContent("Hi")).role(RoleEnum.USER);
 		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg)
-				.model("openai/gpt-oss-120b");
+				.model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
 		System.out.println(response + "\n\n");
 		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
@@ -156,7 +158,7 @@ public class DefaultApiTest {
 		msgs.add(new TextContentPart().text("Hi").type(TypeEnum.TEXT));
 		msgs.add(new TextContentPart().text("My name is Maxi; what is your name?").type(TypeEnum.TEXT));
 		msg = new UserMessage().content(new UserMessageAllOfContent(msgs)).role(RoleEnum.USER);
-		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model("openai/gpt-oss-120b");
+		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
 		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
 	}
@@ -206,7 +208,7 @@ public class DefaultApiTest {
 		tools.add(tool);
 		msg = new UserMessage().content(new UserMessageAllOfContent("What is the temperature in London (F)?")).role(RoleEnum.USER);
 		messages.add(msg);
-		chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model("openai/gpt-oss-120b");
+		chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
 		
 		AssistantMessage botMsg = (AssistantMessage)response.getChoices().get(0).getMessage();
@@ -218,13 +220,20 @@ public class DefaultApiTest {
 			// Fake response
 			msg = new ToolMessage().toolCallId(call.getId()).content(new ToolMessageAllOfContent("35F")).name("GetCurrentWeatherTool").role(RoleEnum.TOOL);
 			messages.add(msg);
-			chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model("openai/gpt-oss-120b");
+			chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model(MODEL);
 			response = api.chatCompletion(chatCompletionRequest);
 			
 			System.out.println(response + "\n\n");
 			System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
 		}
 	}
+	
+//	Test response schema and logprobs then we should be fine
+//	
+//	DONE: Test by removing additionalProperties to make sure we do not forget anything useful
+//	
+//	Test image upload -> Qwen needs licenses
+	
 
 	/**
 	 * Get embeddings for input(s)
@@ -232,7 +241,6 @@ public class DefaultApiTest {
 	 * @throws ApiException if the Api call fails
 	 */
 	@Test
-	@Disabled
 	public void createEmbeddingsTest() throws ApiException {
 		List<String> inputs = new ArrayList<>();
 		inputs.add("This is a test");
@@ -253,7 +261,6 @@ public class DefaultApiTest {
 	 * @throws IOException
 	 */
 	@Test
-	@Disabled
 	public void createImageTest() throws ApiException, IOException {
 
 		ImageGenerationRequestParameters params = new ImageGenerationRequestParameters().width(512).height(512);
@@ -269,30 +276,5 @@ public class DefaultApiTest {
 			}
 			ImageIO.write(image, "png", new File("D:\\my_output_image" + (i++) + ".png"));
 		}
-	}
-
-	/**
-	 * Retrieves models information using a JSON search payload.
-	 *
-	 * Sends filtering, sorting, and pagination parameters in the request body. The
-	 * response is paginated; use the &#39;Link&#39; header to navigate.
-	 *
-	 * @throws ApiException if the Api call fails
-	 */
-	@Test
-	@Disabled
-	public void getModelsTest() throws ApiException {
-		ModelSearchRequest modelSearchRequest = new ModelSearchRequest().limit(Integer.MAX_VALUE);
-		List<ModelInfo> response = api.getModels(modelSearchRequest);
-		ApiResponse<List<ModelInfo>> h = api.getModelsWithHttpInfo(modelSearchRequest);
-		Map<String, List<String>> heasders = h.getHeaders();
-
-		System.out.println("Found " + response.size() + " models.");
-		for (ModelInfo inf : response) {
-			System.out.println(inf.getId());
-			System.out.println(inf.getPipelineTag());
-			System.out.println();
-		}
-		// TODO: test validations
 	}
 }

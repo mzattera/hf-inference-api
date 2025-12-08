@@ -38,19 +38,35 @@ public class FunctionTest {
     }
 
     /**
-     * Test the property 'arguments'
-     */
-    @Test
-    public void argumentsTest() {
-        // TODO: test arguments
-    }
-
-    /**
      * Test the property 'name'
      */
     @Test
     public void nameTest() {
         // TODO: test name
+    }
+
+    /**
+     * Test the property 'description'
+     */
+    @Test
+    public void descriptionTest() {
+        // TODO: test description
+    }
+
+    /**
+     * Test the property 'parameters'
+     */
+    @Test
+    public void parametersTest() {
+        // TODO: test parameters
+    }
+
+    /**
+     * Test the property 'strict'
+     */
+    @Test
+    public void strictTest() {
+        // TODO: test strict
     }
 
 }

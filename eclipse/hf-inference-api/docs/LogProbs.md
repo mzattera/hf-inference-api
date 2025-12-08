@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**content** | [**List&lt;TokenLogProb&gt;**](TokenLogProb.md) |  |  [optional] |
+|**content** | **List&lt;TokenLogProb&gt;** |  |  [optional] |
 
 
 

@@ -13,7 +13,7 @@ Chat completion response.
 |**id** | **String** |  |  [optional] |
 |**model** | **String** |  |  [optional] |
 |**systemFingerprint** | **String** |  |  [optional] |
-|**usage** | [**Usage**](Usage.md) |  |  [optional] |
+|**usage** | **Usage** |  |  [optional] |
 |**serviceTier** | **String** |  |  [optional] |
 
 

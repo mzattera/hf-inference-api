@@ -55,7 +55,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * Chat completion response.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T14:53:03.397635600+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "ChatCompletionResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -379,10 +379,6 @@ public class ChatCompletionResponse {
       }
       if ((jsonObj.get("system_fingerprint") != null && !jsonObj.get("system_fingerprint").isJsonNull()) && !jsonObj.get("system_fingerprint").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `system_fingerprint` to be a primitive type in the JSON string but got `%s`", jsonObj.get("system_fingerprint").toString()));
-      }
-      // validate the optional field `usage`
-      if (jsonObj.get("usage") != null && !jsonObj.get("usage").isJsonNull()) {
-        Usage.validateJsonElement(jsonObj.get("usage"));
       }
       if ((jsonObj.get("service_tier") != null && !jsonObj.get("service_tier").isJsonNull()) && !jsonObj.get("service_tier").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `service_tier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("service_tier").toString()));

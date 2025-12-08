@@ -51,7 +51,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * Payload used to filter, sort, and paginate model results.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T14:41:27.970371600+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "ModelSearchRequest")
 @XmlAccessorType(XmlAccessType.FIELD)
 

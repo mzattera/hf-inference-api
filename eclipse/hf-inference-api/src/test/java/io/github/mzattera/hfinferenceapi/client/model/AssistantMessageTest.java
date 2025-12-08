@@ -18,11 +18,14 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.mzattera.hfinferenceapi.client.model.AssistantMessageAllOfAudio;
 import io.github.mzattera.hfinferenceapi.client.model.AssistantMessageAllOfContent;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
+import io.github.mzattera.hfinferenceapi.client.model.ToolCall;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -49,6 +52,14 @@ public class AssistantMessageTest {
     }
 
     /**
+     * Test the property 'audio'
+     */
+    @Test
+    public void audioTest() {
+        // TODO: test audio
+    }
+
+    /**
      * Test the property 'content'
      */
     @Test
@@ -57,11 +68,35 @@ public class AssistantMessageTest {
     }
 
     /**
+     * Test the property 'reasoning'
+     */
+    @Test
+    public void reasoningTest() {
+        // TODO: test reasoning
+    }
+
+    /**
      * Test the property 'name'
      */
     @Test
     public void nameTest() {
         // TODO: test name
+    }
+
+    /**
+     * Test the property 'refusal'
+     */
+    @Test
+    public void refusalTest() {
+        // TODO: test refusal
+    }
+
+    /**
+     * Test the property 'toolCalls'
+     */
+    @Test
+    public void toolCallsTest() {
+        // TODO: test toolCalls
     }
 
 }

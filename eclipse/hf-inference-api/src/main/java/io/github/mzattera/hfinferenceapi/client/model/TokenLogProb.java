@@ -20,9 +20,12 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.mzattera.hfinferenceapi.client.model.TokenLogProbTopLogprobsInner;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 
 import com.google.gson.Gson;
@@ -52,7 +55,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * TokenLogProb
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T14:53:03.397635600+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "TokenLogProb")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -68,6 +71,12 @@ public class TokenLogProb {
   @SerializedName(SERIALIZED_NAME_TOKEN)
   @javax.annotation.Nullable
   private String token;
+
+  public static final String SERIALIZED_NAME_TOP_LOGPROBS = "top_logprobs";
+  @XmlElement(name = "top_logprobs")
+  @SerializedName(SERIALIZED_NAME_TOP_LOGPROBS)
+  @javax.annotation.Nullable
+  private List<TokenLogProbTopLogprobsInner> topLogprobs = new ArrayList<>();
 
   public TokenLogProb() {
   }
@@ -110,6 +119,77 @@ public class TokenLogProb {
   }
 
 
+  public TokenLogProb topLogprobs(@javax.annotation.Nullable List<TokenLogProbTopLogprobsInner> topLogprobs) {
+    this.topLogprobs = topLogprobs;
+    return this;
+  }
+
+  public TokenLogProb addTopLogprobsItem(TokenLogProbTopLogprobsInner topLogprobsItem) {
+    if (this.topLogprobs == null) {
+      this.topLogprobs = new ArrayList<>();
+    }
+    this.topLogprobs.add(topLogprobsItem);
+    return this;
+  }
+
+  /**
+   * Get topLogprobs
+   * @return topLogprobs
+   */
+  @javax.annotation.Nullable
+  public List<TokenLogProbTopLogprobsInner> getTopLogprobs() {
+    return topLogprobs;
+  }
+
+  public void setTopLogprobs(@javax.annotation.Nullable List<TokenLogProbTopLogprobsInner> topLogprobs) {
+    this.topLogprobs = topLogprobs;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the TokenLogProb instance itself
+   */
+  public TokenLogProb putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -121,12 +201,14 @@ public class TokenLogProb {
     }
     TokenLogProb tokenLogProb = (TokenLogProb) o;
     return Objects.equals(this.logprob, tokenLogProb.logprob) &&
-        Objects.equals(this.token, tokenLogProb.token);
+        Objects.equals(this.token, tokenLogProb.token) &&
+        Objects.equals(this.topLogprobs, tokenLogProb.topLogprobs)&&
+        Objects.equals(this.additionalProperties, tokenLogProb.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(logprob, token);
+    return Objects.hash(logprob, token, topLogprobs, additionalProperties);
   }
 
   @Override
@@ -135,6 +217,8 @@ public class TokenLogProb {
     sb.append("class TokenLogProb {\n");
     sb.append("    logprob: ").append(toIndentedString(logprob)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -156,7 +240,7 @@ public class TokenLogProb {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("logprob", "token"));
+    openapiFields = new HashSet<String>(Arrays.asList("logprob", "token", "top_logprobs"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -174,17 +258,23 @@ public class TokenLogProb {
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in TokenLogProb is not found in the empty JSON string", TokenLogProb.openapiRequiredFields.toString()));
         }
       }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!TokenLogProb.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `TokenLogProb` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("token") != null && !jsonObj.get("token").isJsonNull()) && !jsonObj.get("token").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("token").toString()));
+      }
+      if (jsonObj.get("top_logprobs") != null && !jsonObj.get("top_logprobs").isJsonNull()) {
+        JsonArray jsonArraytopLogprobs = jsonObj.getAsJsonArray("top_logprobs");
+        if (jsonArraytopLogprobs != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("top_logprobs").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `top_logprobs` to be an array in the JSON string but got `%s`", jsonObj.get("top_logprobs").toString()));
+          }
+
+          // validate the optional field `top_logprobs` (array)
+          for (int i = 0; i < jsonArraytopLogprobs.size(); i++) {
+            TokenLogProbTopLogprobsInner.validateJsonElement(jsonArraytopLogprobs.get(i));
+          };
+        }
       }
   }
 
@@ -203,6 +293,28 @@ public class TokenLogProb {
            @Override
            public void write(JsonWriter out, TokenLogProb value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -210,7 +322,28 @@ public class TokenLogProb {
            public TokenLogProb read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             TokenLogProb instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();

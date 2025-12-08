@@ -53,7 +53,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * ToolMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T08:22:32.908358200+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T14:53:03.397635600+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "ToolMessage")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -67,7 +67,7 @@ public class ToolMessage extends Message {
   public static final String SERIALIZED_NAME_TOOL_CALL_ID = "tool_call_id";
   @XmlElement(name = "tool_call_id")
   @SerializedName(SERIALIZED_NAME_TOOL_CALL_ID)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String toolCallId;
 
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -99,7 +99,7 @@ public class ToolMessage extends Message {
   }
 
 
-  public ToolMessage toolCallId(@javax.annotation.Nullable String toolCallId) {
+  public ToolMessage toolCallId(@javax.annotation.Nonnull String toolCallId) {
     this.toolCallId = toolCallId;
     return this;
   }
@@ -108,12 +108,12 @@ public class ToolMessage extends Message {
    * FunctionTool call that this message is responding to
    * @return toolCallId
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getToolCallId() {
     return toolCallId;
   }
 
-  public void setToolCallId(@javax.annotation.Nullable String toolCallId) {
+  public void setToolCallId(@javax.annotation.Nonnull String toolCallId) {
     this.toolCallId = toolCallId;
   }
 
@@ -236,7 +236,7 @@ public class ToolMessage extends Message {
     openapiFields = new HashSet<String>(Arrays.asList("role", "content", "tool_call_id", "name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("content", "name", "role"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("content", "tool_call_id", "name", "role"));
   }
 
   /**

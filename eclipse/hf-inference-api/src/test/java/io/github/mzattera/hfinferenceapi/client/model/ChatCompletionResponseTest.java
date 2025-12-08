@@ -18,7 +18,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionResponseXGroq;
 import io.github.mzattera.hfinferenceapi.client.model.Choice;
 import io.github.mzattera.hfinferenceapi.client.model.Usage;
 import java.io.IOException;
@@ -40,14 +39,6 @@ public class ChatCompletionResponseTest {
     @Test
     public void testChatCompletionResponse() {
         // TODO: test ChatCompletionResponse
-    }
-
-    /**
-     * Test the property '_object'
-     */
-    @Test
-    public void _objectTest() {
-        // TODO: test _object
     }
 
     /**
@@ -83,14 +74,6 @@ public class ChatCompletionResponseTest {
     }
 
     /**
-     * Test the property 'usageBreakdown'
-     */
-    @Test
-    public void usageBreakdownTest() {
-        // TODO: test usageBreakdown
-    }
-
-    /**
      * Test the property 'systemFingerprint'
      */
     @Test
@@ -99,27 +82,19 @@ public class ChatCompletionResponseTest {
     }
 
     /**
-     * Test the property 'serviceTier'
-     */
-    @Test
-    public void serviceTierTest() {
-        // TODO: test serviceTier
-    }
-
-    /**
-     * Test the property 'xGroq'
-     */
-    @Test
-    public void xGroqTest() {
-        // TODO: test xGroq
-    }
-
-    /**
      * Test the property 'usage'
      */
     @Test
     public void usageTest() {
         // TODO: test usage
+    }
+
+    /**
+     * Test the property 'serviceTier'
+     */
+    @Test
+    public void serviceTierTest() {
+        // TODO: test serviceTier
     }
 
 }

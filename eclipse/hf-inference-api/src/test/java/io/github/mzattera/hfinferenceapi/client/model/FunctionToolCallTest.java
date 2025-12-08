@@ -18,7 +18,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.FunctionToolCallFunction;
+import io.github.mzattera.hfinferenceapi.client.model.FunctionToolCallAllOfFunction;
+import io.github.mzattera.hfinferenceapi.client.model.ToolCall;
 import java.io.IOException;
 import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
@@ -39,6 +40,14 @@ public class FunctionToolCallTest {
     }
 
     /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
+    }
+
+    /**
      * Test the property 'function'
      */
     @Test
@@ -52,14 +61,6 @@ public class FunctionToolCallTest {
     @Test
     public void idTest() {
         // TODO: test id
-    }
-
-    /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
     }
 
 }

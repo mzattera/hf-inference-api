@@ -18,10 +18,11 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequestResponseFormat;
 import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequestStreamOptions;
 import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequestToolChoice;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
+import io.github.mzattera.hfinferenceapi.client.model.ResponseFormat;
+import io.github.mzattera.hfinferenceapi.client.model.Tool;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -42,14 +43,6 @@ public class ChatCompletionRequestTest {
     @Test
     public void testChatCompletionRequest() {
         // TODO: test ChatCompletionRequest
-    }
-
-    /**
-     * Test the property 'model'
-     */
-    @Test
-    public void modelTest() {
-        // TODO: test model
     }
 
     /**
@@ -74,6 +67,14 @@ public class ChatCompletionRequestTest {
     @Test
     public void maxTokensTest() {
         // TODO: test maxTokens
+    }
+
+    /**
+     * Test the property 'model'
+     */
+    @Test
+    public void modelTest() {
+        // TODO: test model
     }
 
     /**
@@ -146,6 +147,22 @@ public class ChatCompletionRequestTest {
     @Test
     public void toolChoiceTest() {
         // TODO: test toolChoice
+    }
+
+    /**
+     * Test the property 'toolPrompt'
+     */
+    @Test
+    public void toolPromptTest() {
+        // TODO: test toolPrompt
+    }
+
+    /**
+     * Test the property 'tools'
+     */
+    @Test
+    public void toolsTest() {
+        // TODO: test tools
     }
 
     /**
