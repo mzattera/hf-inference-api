@@ -51,7 +51,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * Tool
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T15:13:54.997778400+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-09T15:44:23.414932700+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "Tool")
 @XmlAccessorType(XmlAccessType.FIELD)
 
