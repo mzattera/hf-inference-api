@@ -7,7 +7,7 @@
     <name>hf-inference-api</name>
     <version>2.0.0</version>
     <url>https://github.com/mzattera/hf-inference-api</url>
-    <description>OpenAPI-generated client for Hugging Face Inference API.</description>
+    <description>OpenAPI-generated Java client for Hugging Face Inference API.</description>
 	
 	<scm>
 	    <connection>scm:git:https://github.com/mzattera/hf-inference-api.git</connection>
