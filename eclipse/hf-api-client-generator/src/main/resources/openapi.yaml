@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: HuggingFace Inference Provider API
   version: 1.0.0
-  description: 'Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.'
+  description: Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
 
 servers:
   - url: https://router.huggingface.co
@@ -36,9 +36,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ImageGenerationResponse'
         '400':
-          description: Bad request — invalid input
+          description: Bad request — invalid input.
         '401':
-          description: Unauthorized — invalid or missing token
+          description: Unauthorized — invalid or missing token.
 
   /v1/chat/completions:
     post:
@@ -54,15 +54,15 @@ paths:
               $ref: '#/components/schemas/ChatCompletionRequest'
       responses:
         '200':
-          description: Chat completion response
+          description: Chat completion response.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChatCompletionResponse'
         '400':
-          description: Bad request — invalid input
+          description: Bad request — invalid input.
         '401':
-          description: Unauthorized — invalid or missing token
+          description: Unauthorized — invalid or missing token.
 
   /{provider}/v1/embeddings:
     parameters:
@@ -85,15 +85,15 @@ paths:
               $ref: '#/components/schemas/EmbeddingsRequest'
       responses:
         '200':
-          description: Embeddings computed successfully
+          description: Embeddings computed successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddingsResponse'
         '400':
-          description: Bad request — invalid input
+          description: Bad request — invalid input.
         '401':
-          description: Unauthorized — invalid or missing token
+          description: Unauthorized — invalid or missing token.
 
 components:
   securitySchemes:
@@ -133,10 +133,10 @@ components:
               description: The number of denoising steps. More steps → higher quality image at expense of slower inference.
             width:
               type: integer
-              description: The width in pixels of the output image
+              description: The width in pixels of the output image.
             height:
               type: integer
-              description: The height in pixels of the output image
+              description: The height in pixels of the output image.
             scheduler:
               type: string
               description: Override the scheduler with a compatible one.
@@ -146,7 +146,7 @@ components:
 
     ImageGenerationResponse: # This is what is actually returned, despite online documentation says otherwise
       type: object
-      description: Image(s) being generated
+      description: Image(s) being generated.
       additionalProperties: true
       properties:
         data:
@@ -230,7 +230,7 @@ components:
                       type: string
         tool_prompt:
           type: string
-          description: A prompt to be appended before the tools
+          description: A prompt to be appended before the tools.
         tools:
           type: array
           items:
@@ -357,13 +357,13 @@ components:
           properties:
             audio:
               type: object
-              description: Data about a previous audio response from the model
+              description: Data about a previous audio response from the model.
               required:
                 - id
               properties:
                 id:
                   type: string
-                  description: Unique identifier for a previous audio response from the model
+                  description: Unique identifier for a previous audio response from the model.
             content:
               oneOf:
                 - type: string

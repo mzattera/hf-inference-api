@@ -33,11 +33,11 @@ The `eclipse` folder contains an Eclipse workbench for the project; it consists 
 
 This contains a `pom.xml` to configure and run the OpenAPI generator. 
 
-  * Right click and use `Run As > Maven generate-sources` to (re)generate API code accordingly to the provided `openapi.yaml`.
+  * Run Maven goal: `org.openapitools:openapi-generator-maven-plugin:generate` (best is to create a Run Configuration for this).
   
-  * Right click onto newly (re)generated `hf-inference-api` project and `Refresh` then `Maven > Update Project...` to have generated API client built.
+  * Right click onto newly (re)generated `hf-inference-api` project and `Refresh` then `Maven > Update Project...` to have generated API client cleaned and rebuilt.
   
-  * Replace `pom.xml` in (re)generated `hf-inference-api` with the one available in the repo; this because the `pom.xml` has been changed to support publishing to Maven repository. Be mindful to update the version for the generated artifact.
+  * Replace `pom.xml` in (re)generated `hf-inference-api` with the one available in the repo; this because the `pom.xml` has been manually changed to support publishing to Maven repository. Be mindful to update the version for the generated artifact.
 
 Upon major changes to the API, it is advised to delete content of `hf-inference-api` before generation, as the generator normally overwrites only some of the existing files and it never deletes files.
 
