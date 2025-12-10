@@ -41,7 +41,7 @@
                         <asyncNative>false</asyncNative>
                         <dateLibrary>java8</dateLibrary>
 
-                        <artifactDescription>OpenAPI-generated client for Hugging Face Inference API.</artifactDescription>
+                        <artifactDescription>OpenAPI-generated Java client for Hugging Face Inference API.</artifactDescription>
                         <artifactId>hf-inference-api</artifactId>
                         <artifactUrl>https://github.com/mzattera/hf-inference-api</artifactUrl>
                         <artifactVersion>2.0.0</artifactVersion>
