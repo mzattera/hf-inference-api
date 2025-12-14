@@ -308,11 +308,7 @@ components:
             - content        
           properties:
             content:
-              oneOf:
-                - type: string
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/MessageContentPart'
+              $ref: '#/components/schemas/MessageContent'
             name:
               type: string
 
@@ -325,11 +321,7 @@ components:
             - content        
           properties:
             content:
-              oneOf:
-                - type: string
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/MessageContentPart'
+              $ref: '#/components/schemas/MessageContent'
             name:
               type: string
                         
@@ -342,11 +334,7 @@ components:
             - content  
           properties:
             content:
-              oneOf:
-                - type: string
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/MessageContentPart'
+              $ref: '#/components/schemas/MessageContent'
             name:
               type: string
 
@@ -366,11 +354,7 @@ components:
                   type: string
                   description: Unique identifier for a previous audio response from the model.
             content:
-              oneOf:
-                - type: string
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/MessageContentPart'
+              $ref: '#/components/schemas/MessageContent'
             reasoning: # Empirically found out HF returns this
               type: string
             name:
@@ -394,17 +378,21 @@ components:
             - name # This is required even if not in OpenAPI reference documentation
           properties:
             content:
-              oneOf:
-                - type: string
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/MessageContentPart'
+              $ref: '#/components/schemas/MessageContent'
             tool_call_id:
               type: string
               description: FunctionTool call that this message is responding to
             name:
               type: string
                                                 
+    MessageContent: 
+      description: The content of any the developer message, which can be a single string or an array of parts.
+      oneOf:
+        - type: string
+        - type: array
+          items:
+            $ref: '#/components/schemas/MessageContentPart'
+                                                            
     MessageContentPart:
       type: object
       discriminator:

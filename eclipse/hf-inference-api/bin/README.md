@@ -2,7 +2,7 @@
 
 HuggingFace Inference Provider API
 - API version: 1.0.0
-  - Build date: 2025-12-14T22:22:52.426066200+01:00[Europe/Berlin]
+  - Build date: 2025-12-14T23:10:40.473939700+01:00[Europe/Berlin]
   - Generator version: 7.17.0
 
 Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.github.mzattera</groupId>
   <artifactId>hf-inference-api</artifactId>
-  <version>3.0.1</version>
+  <version>4.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "io.github.mzattera:hf-inference-api:3.0.1"
+     implementation "io.github.mzattera:hf-inference-api:4.0.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hf-inference-api-3.0.1.jar`
+* `target/hf-inference-api-4.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -129,7 +129,6 @@ Class | Method | HTTP request | Description
 
  - [AssistantMessage](docs/AssistantMessage.md)
  - [AssistantMessageAllOfAudio](docs/AssistantMessageAllOfAudio.md)
- - [AssistantMessageAllOfContent](docs/AssistantMessageAllOfContent.md)
  - [AudioContentPart](docs/AudioContentPart.md)
  - [AudioContentPartAllOfInputAudio](docs/AudioContentPartAllOfInputAudio.md)
  - [ChatCompletionRequest](docs/ChatCompletionRequest.md)
@@ -140,7 +139,6 @@ Class | Method | HTTP request | Description
  - [ChatCompletionResponse](docs/ChatCompletionResponse.md)
  - [Choice](docs/Choice.md)
  - [DeveloperMessage](docs/DeveloperMessage.md)
- - [DeveloperMessageAllOfContent](docs/DeveloperMessageAllOfContent.md)
  - [EmbeddingData](docs/EmbeddingData.md)
  - [EmbeddingsRequest](docs/EmbeddingsRequest.md)
  - [EmbeddingsResponse](docs/EmbeddingsResponse.md)
@@ -161,11 +159,11 @@ Class | Method | HTTP request | Description
  - [JsonSchemaResponseFormat](docs/JsonSchemaResponseFormat.md)
  - [LogProbs](docs/LogProbs.md)
  - [Message](docs/Message.md)
+ - [MessageContent](docs/MessageContent.md)
  - [MessageContentPart](docs/MessageContentPart.md)
  - [RefusalContentPart](docs/RefusalContentPart.md)
  - [ResponseFormat](docs/ResponseFormat.md)
  - [SystemMessage](docs/SystemMessage.md)
- - [SystemMessageAllOfContent](docs/SystemMessageAllOfContent.md)
  - [TextContentPart](docs/TextContentPart.md)
  - [TextResponseFormat](docs/TextResponseFormat.md)
  - [TokenLogProb](docs/TokenLogProb.md)
@@ -173,11 +171,9 @@ Class | Method | HTTP request | Description
  - [Tool](docs/Tool.md)
  - [ToolCall](docs/ToolCall.md)
  - [ToolMessage](docs/ToolMessage.md)
- - [ToolMessageAllOfContent](docs/ToolMessageAllOfContent.md)
  - [Usage](docs/Usage.md)
  - [UsageCompletionTokensDetails](docs/UsageCompletionTokensDetails.md)
  - [UserMessage](docs/UserMessage.md)
- - [UserMessageAllOfContent](docs/UserMessageAllOfContent.md)
 
 
 <a id="documentation-for-authorization"></a>

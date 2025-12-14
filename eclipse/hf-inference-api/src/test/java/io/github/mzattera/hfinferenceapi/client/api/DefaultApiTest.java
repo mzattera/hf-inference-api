@@ -50,14 +50,13 @@ import io.github.mzattera.hfinferenceapi.client.model.ImageGenerationResponseDat
 import io.github.mzattera.hfinferenceapi.client.model.JsonSchemaObject;
 import io.github.mzattera.hfinferenceapi.client.model.JsonSchemaResponseFormat;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
+import io.github.mzattera.hfinferenceapi.client.model.MessageContent;
 import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart;
 import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart.TypeEnum;
 import io.github.mzattera.hfinferenceapi.client.model.TextContentPart;
 import io.github.mzattera.hfinferenceapi.client.model.Tool;
 import io.github.mzattera.hfinferenceapi.client.model.ToolMessage;
-import io.github.mzattera.hfinferenceapi.client.model.ToolMessageAllOfContent;
 import io.github.mzattera.hfinferenceapi.client.model.UserMessage;
-import io.github.mzattera.hfinferenceapi.client.model.UserMessageAllOfContent;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -146,7 +145,7 @@ public class DefaultApiTest {
 		ChatCompletionRequest chatCompletionRequest;
 		ChatCompletionResponse response;
 
-		msg = new UserMessage().content(new UserMessageAllOfContent("Hi"));
+		msg = new UserMessage().content(new MessageContent("Hi"));
 		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
 		System.out.println(response + "\n\n");
@@ -155,7 +154,7 @@ public class DefaultApiTest {
 		List<MessageContentPart> msgs = new ArrayList<>();
 		msgs.add(new TextContentPart().text("Hi").type(TypeEnum.TEXT));
 		msgs.add(new TextContentPart().text("My name is Maxi; what is your name?").type(TypeEnum.TEXT));
-		msg = new UserMessage().content(new UserMessageAllOfContent(msgs));
+		msg = new UserMessage().content(new MessageContent(msgs));
 		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
 		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
@@ -174,7 +173,7 @@ public class DefaultApiTest {
 		ChatCompletionRequest chatCompletionRequest;
 		ChatCompletionResponse response;
 
-		msg = new UserMessage().content(new UserMessageAllOfContent("Hi"));
+		msg = new UserMessage().content(new MessageContent("Hi"));
 		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL).logprobs(true)
 				.topP(BigDecimal.valueOf(0.8));
 		response = api.chatCompletion(chatCompletionRequest);
@@ -226,7 +225,7 @@ public class DefaultApiTest {
 		Tool tool = new FunctionTool().function(fun).type(Tool.TypeEnum.FUNCTION);
 		List<Tool> tools = new ArrayList<>();
 		tools.add(tool);
-		msg = new UserMessage().content(new UserMessageAllOfContent("What is the temperature in London (F)?"));
+		msg = new UserMessage().content(new MessageContent("What is the temperature in London (F)?"));
 		messages.add(msg);
 		chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
@@ -238,7 +237,7 @@ public class DefaultApiTest {
 			FunctionToolCall call = (FunctionToolCall) botMsg.getToolCalls().get(0); // only these are supported
 
 			// Fake response
-			msg = new ToolMessage().toolCallId(call.getId()).content(new ToolMessageAllOfContent("35F"))
+			msg = new ToolMessage().toolCallId(call.getId()).content(new MessageContent("35F"))
 					.name("GetCurrentWeatherTool");
 			messages.add(msg);
 			chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model(MODEL);
@@ -292,7 +291,7 @@ public class DefaultApiTest {
 				.schema(schemaObj);
 
 		Message msg = new UserMessage().content( //
-				new UserMessageAllOfContent(
+				new MessageContent(
 						"Create 10 random person descriptions with first and last name and random age. Use the below schema for output:\n\n"
 								+ schema));
 

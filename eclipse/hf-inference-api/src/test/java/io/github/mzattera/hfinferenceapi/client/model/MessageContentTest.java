@@ -19,17 +19,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for ToolMessageAllOfContent
+ * Model tests for MessageContent
  */
-public class ToolMessageAllOfContentTest {
-    private final ToolMessageAllOfContent model = new ToolMessageAllOfContent();
+public class MessageContentTest {
+    private final MessageContent model = new MessageContent();
 
     /**
-     * Model tests for ToolMessageAllOfContent
+     * Model tests for MessageContent
      */
     @Test
-    public void testToolMessageAllOfContent() {
-        // TODO: test ToolMessageAllOfContent
+    public void testMessageContent() {
+        // TODO: test MessageContent
     }
 
 }

@@ -21,8 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.mzattera.hfinferenceapi.client.model.AssistantMessageAllOfAudio;
-import io.github.mzattera.hfinferenceapi.client.model.AssistantMessageAllOfContent;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
+import io.github.mzattera.hfinferenceapi.client.model.MessageContent;
 import io.github.mzattera.hfinferenceapi.client.model.ToolCall;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * AssistantMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T22:22:52.426066200+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T23:10:40.473939700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "AssistantMessage")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -72,7 +72,7 @@ public class AssistantMessage extends Message {
   @XmlElement(name = "content")
   @SerializedName(SERIALIZED_NAME_CONTENT)
   @javax.annotation.Nullable
-  private AssistantMessageAllOfContent content;
+  private MessageContent content;
 
   public static final String SERIALIZED_NAME_REASONING = "reasoning";
   @XmlElement(name = "reasoning")
@@ -123,7 +123,7 @@ public class AssistantMessage extends Message {
   }
 
 
-  public AssistantMessage content(@javax.annotation.Nullable AssistantMessageAllOfContent content) {
+  public AssistantMessage content(@javax.annotation.Nullable MessageContent content) {
     this.content = content;
     return this;
   }
@@ -133,11 +133,11 @@ public class AssistantMessage extends Message {
    * @return content
    */
   @javax.annotation.Nullable
-  public AssistantMessageAllOfContent getContent() {
+  public MessageContent getContent() {
     return content;
   }
 
-  public void setContent(@javax.annotation.Nullable AssistantMessageAllOfContent content) {
+  public void setContent(@javax.annotation.Nullable MessageContent content) {
     this.content = content;
   }
 

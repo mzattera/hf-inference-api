@@ -55,19 +55,19 @@ import com.google.gson.JsonParseException;
 
 import io.github.mzattera.hfinferenceapi.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T22:22:52.426066200+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
-@XmlRootElement(name = "DeveloperMessageAllOfContent")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T23:10:40.473939700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@XmlRootElement(name = "MessageContent")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-public class DeveloperMessageAllOfContent extends AbstractOpenApiSchema {
-    private static final Logger log = Logger.getLogger(DeveloperMessageAllOfContent.class.getName());
+public class MessageContent extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(MessageContent.class.getName());
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!DeveloperMessageAllOfContent.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'DeveloperMessageAllOfContent' and its subtypes
+            if (!MessageContent.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'MessageContent' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<String> adapterString = gson.getDelegateAdapter(this, TypeToken.get(String.class));
@@ -75,9 +75,9 @@ public class DeveloperMessageAllOfContent extends AbstractOpenApiSchema {
             final Type typeInstanceListMessageContentPart = new TypeToken<List<MessageContentPart>>(){}.getType();
             final TypeAdapter<List<MessageContentPart>> adapterListMessageContentPart = (TypeAdapter<List<MessageContentPart>>) gson.getDelegateAdapter(this, TypeToken.get(typeInstanceListMessageContentPart));
 
-            return (TypeAdapter<T>) new TypeAdapter<DeveloperMessageAllOfContent>() {
+            return (TypeAdapter<T>) new TypeAdapter<MessageContent>() {
                 @Override
-                public void write(JsonWriter out, DeveloperMessageAllOfContent value) throws IOException {
+                public void write(JsonWriter out, MessageContent value) throws IOException {
                     if (value == null || value.getActualInstance() == null) {
                         elementAdapter.write(out, null);
                         return;
@@ -102,7 +102,7 @@ public class DeveloperMessageAllOfContent extends AbstractOpenApiSchema {
                 }
 
                 @Override
-                public DeveloperMessageAllOfContent read(JsonReader in) throws IOException {
+                public MessageContent read(JsonReader in) throws IOException {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
@@ -146,12 +146,12 @@ public class DeveloperMessageAllOfContent extends AbstractOpenApiSchema {
                     }
 
                     if (match == 1) {
-                        DeveloperMessageAllOfContent ret = new DeveloperMessageAllOfContent();
+                        MessageContent ret = new MessageContent();
                         ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
                         return ret;
                     }
 
-                    throw new IOException(String.format(Locale.ROOT, "Failed deserialization for DeveloperMessageAllOfContent: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
+                    throw new IOException(String.format(Locale.ROOT, "Failed deserialization for MessageContent: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
                 }
             }.nullSafe();
         }
@@ -160,11 +160,11 @@ public class DeveloperMessageAllOfContent extends AbstractOpenApiSchema {
     // store a list of schema names defined in oneOf
     public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
 
-    public DeveloperMessageAllOfContent() {
+    public MessageContent() {
         super("oneOf", Boolean.FALSE);
     }
 
-    public DeveloperMessageAllOfContent(Object o) {
+    public MessageContent(Object o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
@@ -176,7 +176,7 @@ public class DeveloperMessageAllOfContent extends AbstractOpenApiSchema {
 
     @Override
     public Map<String, Class<?>> getSchemas() {
-        return DeveloperMessageAllOfContent.schemas;
+        return MessageContent.schemas;
     }
 
     /**
@@ -242,7 +242,7 @@ public class DeveloperMessageAllOfContent extends AbstractOpenApiSchema {
      * Validates the JSON Element and throws an exception if issues found
      *
      * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to DeveloperMessageAllOfContent
+     * @throws IOException if the JSON Element is invalid with respect to MessageContent
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         // validate oneOf schemas one by one
@@ -274,23 +274,23 @@ public class DeveloperMessageAllOfContent extends AbstractOpenApiSchema {
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format(Locale.ROOT, "The JSON string is invalid for DeveloperMessageAllOfContent with oneOf schemas: List<MessageContentPart>, String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format(Locale.ROOT, "The JSON string is invalid for MessageContent with oneOf schemas: List<MessageContentPart>, String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 
     /**
-     * Create an instance of DeveloperMessageAllOfContent given an JSON string
+     * Create an instance of MessageContent given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of DeveloperMessageAllOfContent
-     * @throws IOException if the JSON string is invalid with respect to DeveloperMessageAllOfContent
+     * @return An instance of MessageContent
+     * @throws IOException if the JSON string is invalid with respect to MessageContent
      */
-    public static DeveloperMessageAllOfContent fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, DeveloperMessageAllOfContent.class);
+    public static MessageContent fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, MessageContent.class);
     }
 
     /**
-     * Convert an instance of DeveloperMessageAllOfContent to an JSON string
+     * Convert an instance of MessageContent to an JSON string
      *
      * @return JSON string
      */

@@ -379,7 +379,7 @@ components:
       - $ref: "#/components/schemas/Message"
       - properties:
           content:
-            $ref: "#/components/schemas/DeveloperMessage_allOf_content"
+            $ref: "#/components/schemas/MessageContent"
           name:
             type: string
         required:
@@ -391,7 +391,7 @@ components:
       - $ref: "#/components/schemas/Message"
       - properties:
           content:
-            $ref: "#/components/schemas/SystemMessage_allOf_content"
+            $ref: "#/components/schemas/MessageContent"
           name:
             type: string
         required:
@@ -403,7 +403,7 @@ components:
       - $ref: "#/components/schemas/Message"
       - properties:
           content:
-            $ref: "#/components/schemas/UserMessage_allOf_content"
+            $ref: "#/components/schemas/MessageContent"
           name:
             type: string
         required:
@@ -417,7 +417,7 @@ components:
           audio:
             $ref: "#/components/schemas/AssistantMessage_allOf_audio"
           content:
-            $ref: "#/components/schemas/AssistantMessage_allOf_content"
+            $ref: "#/components/schemas/MessageContent"
           reasoning:
             type: string
           name:
@@ -436,7 +436,7 @@ components:
       - $ref: "#/components/schemas/Message"
       - properties:
           content:
-            $ref: "#/components/schemas/ToolMessage_allOf_content"
+            $ref: "#/components/schemas/MessageContent"
           tool_call_id:
             description: FunctionTool call that this message is responding to
             type: string
@@ -447,6 +447,14 @@ components:
         - name
         - tool_call_id
         type: object
+    MessageContent:
+      description: "The content of any the developer message, which can be a single\
+        \ string or an array of parts."
+      oneOf:
+      - type: string
+      - items:
+          $ref: "#/components/schemas/MessageContentPart"
+        type: array
     MessageContentPart:
       discriminator:
         mapping:
@@ -892,24 +900,6 @@ components:
         type: string
       - $ref: "#/components/schemas/ChatCompletionRequest_tool_choice_oneOf"
       type: object
-    DeveloperMessage_allOf_content:
-      oneOf:
-      - type: string
-      - items:
-          $ref: "#/components/schemas/MessageContentPart"
-        type: array
-    SystemMessage_allOf_content:
-      oneOf:
-      - type: string
-      - items:
-          $ref: "#/components/schemas/MessageContentPart"
-        type: array
-    UserMessage_allOf_content:
-      oneOf:
-      - type: string
-      - items:
-          $ref: "#/components/schemas/MessageContentPart"
-        type: array
     AssistantMessage_allOf_audio:
       description: Data about a previous audio response from the model.
       properties:
@@ -919,18 +909,6 @@ components:
       required:
       - id
       type: object
-    AssistantMessage_allOf_content:
-      oneOf:
-      - type: string
-      - items:
-          $ref: "#/components/schemas/MessageContentPart"
-        type: array
-    ToolMessage_allOf_content:
-      oneOf:
-      - type: string
-      - items:
-          $ref: "#/components/schemas/MessageContentPart"
-        type: array
     ImageContentPart_allOf_image_url:
       properties:
         url:

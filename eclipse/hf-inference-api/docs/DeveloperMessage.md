@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**content** | [**DeveloperMessageAllOfContent**](DeveloperMessageAllOfContent.md) |  |  |
+|**content** | [**MessageContent**](MessageContent.md) |  |  |
 |**name** | **String** |  |  [optional] |
 
 

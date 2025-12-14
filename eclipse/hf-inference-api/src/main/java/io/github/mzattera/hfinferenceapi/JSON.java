@@ -293,7 +293,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.AssistantMessage.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.AssistantMessageAllOfAudio.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.AssistantMessageAllOfContent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.AudioContentPart.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.AudioContentPartAllOfInputAudio.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequest.CustomTypeAdapterFactory());
@@ -304,7 +303,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ChatCompletionResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.Choice.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.DeveloperMessage.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.DeveloperMessageAllOfContent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.EmbeddingData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.EmbeddingsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.EmbeddingsResponse.CustomTypeAdapterFactory());
@@ -324,19 +322,17 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.JsonSchemaObject.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.JsonSchemaResponseFormat.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.LogProbs.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.MessageContent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.RefusalContentPart.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.SystemMessage.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.SystemMessageAllOfContent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.TextContentPart.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.TextResponseFormat.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.TokenLogProb.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.TokenLogProbTopLogprobsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ToolMessage.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ToolMessageAllOfContent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.Usage.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.UsageCompletionTokensDetails.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.UserMessage.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.UserMessageAllOfContent.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 

@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**audio** | [**AssistantMessageAllOfAudio**](AssistantMessageAllOfAudio.md) |  |  [optional] |
-|**content** | [**AssistantMessageAllOfContent**](AssistantMessageAllOfContent.md) |  |  [optional] |
+|**content** | [**MessageContent**](MessageContent.md) |  |  [optional] |
 |**reasoning** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**refusal** | **String** | The refusal message by the assistant |  [optional] |

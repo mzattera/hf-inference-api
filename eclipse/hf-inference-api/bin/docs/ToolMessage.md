@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**content** | [**ToolMessageAllOfContent**](ToolMessageAllOfContent.md) |  |  |
+|**content** | [**MessageContent**](MessageContent.md) |  |  |
 |**toolCallId** | **String** | FunctionTool call that this message is responding to |  |
 |**name** | **String** |  |  |
 

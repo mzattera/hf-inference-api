@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**content** | [**UserMessageAllOfContent**](UserMessageAllOfContent.md) |  |  |
+|**content** | [**MessageContent**](MessageContent.md) |  |  |
 |**name** | **String** |  |  [optional] |
 
 

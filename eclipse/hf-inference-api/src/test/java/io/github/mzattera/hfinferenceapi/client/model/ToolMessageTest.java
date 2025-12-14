@@ -19,7 +19,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
-import io.github.mzattera.hfinferenceapi.client.model.ToolMessageAllOfContent;
+import io.github.mzattera.hfinferenceapi.client.model.MessageContent;
 import java.io.IOException;
 import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
