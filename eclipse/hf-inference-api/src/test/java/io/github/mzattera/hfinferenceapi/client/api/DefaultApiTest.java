@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-
 package io.github.mzattera.hfinferenceapi.client.api;
 
 import java.awt.image.BufferedImage;
@@ -51,7 +50,6 @@ import io.github.mzattera.hfinferenceapi.client.model.ImageGenerationResponseDat
 import io.github.mzattera.hfinferenceapi.client.model.JsonSchemaObject;
 import io.github.mzattera.hfinferenceapi.client.model.JsonSchemaResponseFormat;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
-import io.github.mzattera.hfinferenceapi.client.model.Message.RoleEnum;
 import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart;
 import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart.TypeEnum;
 import io.github.mzattera.hfinferenceapi.client.model.TextContentPart;
@@ -148,7 +146,7 @@ public class DefaultApiTest {
 		ChatCompletionRequest chatCompletionRequest;
 		ChatCompletionResponse response;
 
-		msg = new UserMessage().content(new UserMessageAllOfContent("Hi")).role(RoleEnum.USER);
+		msg = new UserMessage().content(new UserMessageAllOfContent("Hi"));
 		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
 		System.out.println(response + "\n\n");
@@ -157,7 +155,7 @@ public class DefaultApiTest {
 		List<MessageContentPart> msgs = new ArrayList<>();
 		msgs.add(new TextContentPart().text("Hi").type(TypeEnum.TEXT));
 		msgs.add(new TextContentPart().text("My name is Maxi; what is your name?").type(TypeEnum.TEXT));
-		msg = new UserMessage().content(new UserMessageAllOfContent(msgs)).role(RoleEnum.USER);
+		msg = new UserMessage().content(new UserMessageAllOfContent(msgs));
 		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
 		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
@@ -176,8 +174,9 @@ public class DefaultApiTest {
 		ChatCompletionRequest chatCompletionRequest;
 		ChatCompletionResponse response;
 
-		msg = new UserMessage().content(new UserMessageAllOfContent("Hi")).role(RoleEnum.USER);
-		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL).logprobs(true).topP(BigDecimal.valueOf(0.8));
+		msg = new UserMessage().content(new UserMessageAllOfContent("Hi"));
+		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL).logprobs(true)
+				.topP(BigDecimal.valueOf(0.8));
 		response = api.chatCompletion(chatCompletionRequest);
 		System.out.println(response + "\n\n");
 		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
@@ -227,8 +226,7 @@ public class DefaultApiTest {
 		Tool tool = new FunctionTool().function(fun).type(Tool.TypeEnum.FUNCTION);
 		List<Tool> tools = new ArrayList<>();
 		tools.add(tool);
-		msg = new UserMessage().content(new UserMessageAllOfContent("What is the temperature in London (F)?"))
-				.role(RoleEnum.USER);
+		msg = new UserMessage().content(new UserMessageAllOfContent("What is the temperature in London (F)?"));
 		messages.add(msg);
 		chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model(MODEL);
 		response = api.chatCompletion(chatCompletionRequest);
@@ -241,7 +239,7 @@ public class DefaultApiTest {
 
 			// Fake response
 			msg = new ToolMessage().toolCallId(call.getId()).content(new ToolMessageAllOfContent("35F"))
-					.name("GetCurrentWeatherTool").role(RoleEnum.TOOL);
+					.name("GetCurrentWeatherTool");
 			messages.add(msg);
 			chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model(MODEL);
 			response = api.chatCompletion(chatCompletionRequest);
@@ -296,8 +294,7 @@ public class DefaultApiTest {
 		Message msg = new UserMessage().content( //
 				new UserMessageAllOfContent(
 						"Create 10 random person descriptions with first and last name and random age. Use the below schema for output:\n\n"
-								+ schema))
-				.role(RoleEnum.USER);
+								+ schema));
 
 		ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL);
 		chatCompletionRequest.setResponseFormat(new JsonSchemaResponseFormat().jsonSchema(obj));

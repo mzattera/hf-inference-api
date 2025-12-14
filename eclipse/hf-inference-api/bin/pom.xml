@@ -5,7 +5,7 @@
     <artifactId>hf-inference-api</artifactId>
     <packaging>jar</packaging>
     <name>hf-inference-api</name>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <url>https://github.com/mzattera/hf-inference-api</url>
     <description>OpenAPI-generated Java client for Hugging Face Inference API.</description>
     <scm>

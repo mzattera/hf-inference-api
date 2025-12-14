@@ -357,6 +357,7 @@ components:
           system: "#/components/schemas/SystemMessage"
           user: "#/components/schemas/UserMessage"
           assistant: "#/components/schemas/AssistantMessage"
+          tool: "#/components/schemas/ToolMessage"
         propertyName: role
       example:
         role: developer

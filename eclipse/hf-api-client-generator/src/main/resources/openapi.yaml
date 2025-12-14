@@ -285,7 +285,8 @@ components:
           developer: '#/components/schemas/DeveloperMessage'
           system: '#/components/schemas/SystemMessage'
           user: '#/components/schemas/UserMessage'
-          assistant: '#/components/schemas/AssistantMessage'                
+          assistant: '#/components/schemas/AssistantMessage'    
+          tool: '#/components/schemas/ToolMessage'            
       required:
         - role
       properties:

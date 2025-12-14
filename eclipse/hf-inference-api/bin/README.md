@@ -2,7 +2,7 @@
 
 HuggingFace Inference Provider API
 - API version: 1.0.0
-  - Build date: 2025-12-14T13:04:21.768158100+01:00[Europe/Berlin]
+  - Build date: 2025-12-14T22:22:52.426066200+01:00[Europe/Berlin]
   - Generator version: 7.17.0
 
 Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.github.mzattera</groupId>
   <artifactId>hf-inference-api</artifactId>
-  <version>3.0.0</version>
+  <version>3.0.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "io.github.mzattera:hf-inference-api:3.0.0"
+     implementation "io.github.mzattera:hf-inference-api:3.0.1"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hf-inference-api-3.0.0.jar`
+* `target/hf-inference-api-3.0.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

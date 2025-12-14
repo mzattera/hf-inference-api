@@ -51,7 +51,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * Message
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T13:04:21.768158100+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T22:22:52.426066200+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "Message")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -224,11 +224,11 @@ public class Message {
         case "system":
           SystemMessage.validateJsonElement(jsonElement);
           break;
+        case "tool":
+          ToolMessage.validateJsonElement(jsonElement);
+          break;
         case "user":
           UserMessage.validateJsonElement(jsonElement);
-          break;
-        case "ToolMessage":
-          ToolMessage.validateJsonElement(jsonElement);
           break;
         default:
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The value of the `role` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));

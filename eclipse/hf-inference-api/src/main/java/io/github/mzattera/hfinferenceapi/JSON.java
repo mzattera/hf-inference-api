@@ -149,8 +149,8 @@ public class JSON {
                         classByDiscriminatorValue.put("assistant", io.github.mzattera.hfinferenceapi.client.model.AssistantMessage.class);
                         classByDiscriminatorValue.put("developer", io.github.mzattera.hfinferenceapi.client.model.DeveloperMessage.class);
                         classByDiscriminatorValue.put("system", io.github.mzattera.hfinferenceapi.client.model.SystemMessage.class);
+                        classByDiscriminatorValue.put("tool", io.github.mzattera.hfinferenceapi.client.model.ToolMessage.class);
                         classByDiscriminatorValue.put("user", io.github.mzattera.hfinferenceapi.client.model.UserMessage.class);
-                        classByDiscriminatorValue.put("ToolMessage", io.github.mzattera.hfinferenceapi.client.model.ToolMessage.class);
                         classByDiscriminatorValue.put("Message", io.github.mzattera.hfinferenceapi.client.model.Message.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "role"));
