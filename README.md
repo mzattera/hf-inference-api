@@ -15,7 +15,7 @@ The library is available as a Maven dependency:
 <dependency>
   <groupId>io.github.mzattera</groupId>
   <artifactId>hf-inference-api</artifactId>
-  <version>2.0.0</version>
+  <version>3.0.0</version>
 </dependency>	
 ```
 
