@@ -72,9 +72,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Chat completion response |  -  |
-| **400** | Bad request — invalid input |  -  |
-| **401** | Unauthorized — invalid or missing token |  -  |
+| **200** | Chat completion response. |  -  |
+| **400** | Bad request — invalid input. |  -  |
+| **401** | Unauthorized — invalid or missing token. |  -  |
 
 <a id="featureExtraction"></a>
 # **featureExtraction**
@@ -141,9 +141,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Embeddings computed successfully |  -  |
-| **400** | Bad request — invalid input |  -  |
-| **401** | Unauthorized — invalid or missing token |  -  |
+| **200** | Embeddings computed successfully. |  -  |
+| **400** | Bad request — invalid input. |  -  |
+| **401** | Unauthorized — invalid or missing token. |  -  |
 
 <a id="textToImage"></a>
 # **textToImage**
@@ -211,6 +211,6 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Generated image(s) returned as Base64 encoding in the response. |  -  |
-| **400** | Bad request — invalid input |  -  |
-| **401** | Unauthorized — invalid or missing token |  -  |
+| **400** | Bad request — invalid input. |  -  |
+| **401** | Unauthorized — invalid or missing token. |  -  |
 

@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -25,8 +26,10 @@ import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 
 import io.github.mzattera.hfinferenceapi.ApiClient;
@@ -45,6 +48,8 @@ import io.github.mzattera.hfinferenceapi.client.model.FunctionToolCall;
 import io.github.mzattera.hfinferenceapi.client.model.ImageGenerationRequest;
 import io.github.mzattera.hfinferenceapi.client.model.ImageGenerationRequestParameters;
 import io.github.mzattera.hfinferenceapi.client.model.ImageGenerationResponseDataInner;
+import io.github.mzattera.hfinferenceapi.client.model.JsonSchemaObject;
+import io.github.mzattera.hfinferenceapi.client.model.JsonSchemaResponseFormat;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
 import io.github.mzattera.hfinferenceapi.client.model.Message.RoleEnum;
 import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart;
@@ -159,6 +164,26 @@ public class DefaultApiTest {
 	}
 
 	/**
+	 * Chat Completion - logprobs using messages
+	 *
+	 * @throws ApiException if the Api call fails
+	 */
+	@Test
+	@Disabled
+	public void logProbsTest() throws ApiException {
+
+		Message msg;
+		ChatCompletionRequest chatCompletionRequest;
+		ChatCompletionResponse response;
+
+		msg = new UserMessage().content(new UserMessageAllOfContent("Hi")).role(RoleEnum.USER);
+		chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL).logprobs(true).topP(BigDecimal.valueOf(0.8));
+		response = api.chatCompletion(chatCompletionRequest);
+		System.out.println(response + "\n\n");
+		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
+	}
+
+	/**
 	 * Tool call in Chat Completion using messages
 	 *
 	 * @throws ApiException if the Api call fails
@@ -226,9 +251,62 @@ public class DefaultApiTest {
 		}
 	}
 
-//	Test response schema and logprobs then we should be fine
-//	
-//	DONE: Test by removing additionalProperties to make sure we do not forget anything useful
+	// Test response schema and logprobs then we should be fine
+
+	/**
+	 * Tests JSON schema response format.
+	 *
+	 * @throws ApiException            if the Api call fails
+	 * @throws JsonProcessingException
+	 */
+	@Test
+	public void jsonSchemaResponseTest() throws ApiException, JsonProcessingException {
+
+		// Schema describing format of output Json
+		String schema = "{\n" //
+				+ "  \"$schema\" : \"http://json-schema.org/draft-04/schema#\",\n" //
+				+ "  \"title\" : \"Person\",\n" //
+				+ "  \"type\" : \"object\",\n" //
+				+ "  \"properties\" : {\n" //
+				+ "    \"fistName\" : {\n" //
+				+ "      \"type\" : \"string\",\n" //
+				+ "      \"description\" : \"The person first name.\"\n" //
+				+ "    },\n" //
+				+ "    \"lastName\" : {\n" //
+				+ "      \"type\" : \"string\",\n" //
+				+ "      \"description\" : \"The person last name.\"\n" //
+				+ "    },\n" //
+				+ "    \"age\" : {\n" //
+				+ "      \"type\" : \"integer\",\n" //
+				+ "      \"description\" : \"Person age\"\n" //
+				+ "    }\n" //
+				+ "  },\n" //
+				+ "  \"required\" : [ \"fistName\", \"lastName\" ],\n" //
+				+ "  \"additionalProperties\" : false\n" //
+				+ "}";
+
+		// Parse arguments into an object
+		Gson gson = new Gson();
+		Object schemaObj = null;
+		schemaObj = gson.fromJson(schema, Object.class);
+
+		JsonSchemaObject obj = new JsonSchemaObject().name("Person").description("Schema fro Person data")
+				.schema(schemaObj);
+
+		Message msg = new UserMessage().content( //
+				new UserMessageAllOfContent(
+						"Create 10 random person descriptions with first and last name and random age. Use the below schema for output:\n\n"
+								+ schema))
+				.role(RoleEnum.USER);
+
+		ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest().addMessagesItem(msg).model(MODEL);
+		chatCompletionRequest.setResponseFormat(new JsonSchemaResponseFormat().jsonSchema(obj));
+
+		ChatCompletionResponse response = api.chatCompletion(chatCompletionRequest);
+		System.out.println(response + "\n\n");
+		System.out.println("Bot >\t" + response.getChoices().get(0).getMessage());
+	}
+
 //	
 //	Test image upload -> Qwen needs licenses
 

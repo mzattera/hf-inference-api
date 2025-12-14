@@ -2,7 +2,7 @@
 
 # ImageGenerationResponse
 
-Image(s) being generated
+Image(s) being generated.
 
 ## Properties
 

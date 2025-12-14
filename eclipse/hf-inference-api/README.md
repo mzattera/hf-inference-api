@@ -2,7 +2,7 @@
 
 HuggingFace Inference Provider API
 - API version: 1.0.0
-  - Build date: 2025-12-09T15:44:23.414932700+01:00[Europe/Rome]
+  - Build date: 2025-12-14T13:04:21.768158100+01:00[Europe/Berlin]
   - Generator version: 7.17.0
 
 Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.github.mzattera</groupId>
   <artifactId>hf-inference-api</artifactId>
-  <version>2.0.0</version>
+  <version>3.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "io.github.mzattera:hf-inference-api:2.0.0"
+     implementation "io.github.mzattera:hf-inference-api:3.0.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hf-inference-api-2.0.0.jar`
+* `target/hf-inference-api-3.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -156,13 +156,14 @@ Class | Method | HTTP request | Description
  - [ImageGenerationRequestParameters](docs/ImageGenerationRequestParameters.md)
  - [ImageGenerationResponse](docs/ImageGenerationResponse.md)
  - [ImageGenerationResponseDataInner](docs/ImageGenerationResponseDataInner.md)
- - [JsonResponseFormat](docs/JsonResponseFormat.md)
+ - [JsonObjectResponseFormat](docs/JsonObjectResponseFormat.md)
+ - [JsonSchemaObject](docs/JsonSchemaObject.md)
+ - [JsonSchemaResponseFormat](docs/JsonSchemaResponseFormat.md)
  - [LogProbs](docs/LogProbs.md)
  - [Message](docs/Message.md)
  - [MessageContentPart](docs/MessageContentPart.md)
  - [RefusalContentPart](docs/RefusalContentPart.md)
  - [ResponseFormat](docs/ResponseFormat.md)
- - [SchemaResponseFormat](docs/SchemaResponseFormat.md)
  - [SystemMessage](docs/SystemMessage.md)
  - [SystemMessageAllOfContent](docs/SystemMessageAllOfContent.md)
  - [TextContentPart](docs/TextContentPart.md)

@@ -18,6 +18,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.mzattera.hfinferenceapi.client.model.JsonSchemaObject;
 import io.github.mzattera.hfinferenceapi.client.model.ResponseFormat;
 import java.io.IOException;
 import java.util.Arrays;
@@ -25,17 +26,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for SchemaResponseFormat
+ * Model tests for JsonSchemaResponseFormat
  */
-public class SchemaResponseFormatTest {
-    private final SchemaResponseFormat model = new SchemaResponseFormat();
+public class JsonSchemaResponseFormatTest {
+    private final JsonSchemaResponseFormat model = new JsonSchemaResponseFormat();
 
     /**
-     * Model tests for SchemaResponseFormat
+     * Model tests for JsonSchemaResponseFormat
      */
     @Test
-    public void testSchemaResponseFormat() {
-        // TODO: test SchemaResponseFormat
+    public void testJsonSchemaResponseFormat() {
+        // TODO: test JsonSchemaResponseFormat
     }
 
     /**
@@ -47,35 +48,11 @@ public class SchemaResponseFormatTest {
     }
 
     /**
-     * Test the property 'name'
+     * Test the property 'jsonSchema'
      */
     @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'description'
-     */
-    @Test
-    public void descriptionTest() {
-        // TODO: test description
-    }
-
-    /**
-     * Test the property 'schema'
-     */
-    @Test
-    public void schemaTest() {
-        // TODO: test schema
-    }
-
-    /**
-     * Test the property 'strict'
-     */
-    @Test
-    public void strictTest() {
-        // TODO: test strict
+    public void jsonSchemaTest() {
+        // TODO: test jsonSchema
     }
 
 }

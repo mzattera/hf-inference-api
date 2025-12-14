@@ -20,7 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequestToolChoiceOneOfFunction;
+import io.github.mzattera.hfinferenceapi.client.model.JsonSchemaObject;
+import io.github.mzattera.hfinferenceapi.client.model.ResponseFormat;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.xml.bind.annotation.*;
@@ -50,38 +51,41 @@ import java.util.Locale;
 import io.github.mzattera.hfinferenceapi.JSON;
 
 /**
- * ChatCompletionRequestToolChoiceOneOf
+ * JsonSchemaResponseFormat
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T13:04:21.768158100+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
-@XmlRootElement(name = "ChatCompletionRequestToolChoiceOneOf")
+@XmlRootElement(name = "JsonSchemaResponseFormat")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-public class ChatCompletionRequestToolChoiceOneOf {
-  public static final String SERIALIZED_NAME_FUNCTION = "function";
-  @XmlElement(name = "function")
-  @SerializedName(SERIALIZED_NAME_FUNCTION)
+public class JsonSchemaResponseFormat extends ResponseFormat {
+  public static final String SERIALIZED_NAME_JSON_SCHEMA = "json_schema";
+  @XmlElement(name = "json_schema")
+  @SerializedName(SERIALIZED_NAME_JSON_SCHEMA)
   @javax.annotation.Nonnull
-  private ChatCompletionRequestToolChoiceOneOfFunction function;
+  private JsonSchemaObject jsonSchema;
 
-  public ChatCompletionRequestToolChoiceOneOf() {
+  public JsonSchemaResponseFormat() {
+
+    this.type = TypeEnum.JSON_SCHEMA;
+
   }
 
-  public ChatCompletionRequestToolChoiceOneOf function(@javax.annotation.Nonnull ChatCompletionRequestToolChoiceOneOfFunction function) {
-    this.function = function;
+  public JsonSchemaResponseFormat jsonSchema(@javax.annotation.Nonnull JsonSchemaObject jsonSchema) {
+    this.jsonSchema = jsonSchema;
     return this;
   }
 
   /**
-   * Get function
-   * @return function
+   * Get jsonSchema
+   * @return jsonSchema
    */
   @javax.annotation.Nonnull
-  public ChatCompletionRequestToolChoiceOneOfFunction getFunction() {
-    return function;
+  public JsonSchemaObject getJsonSchema() {
+    return jsonSchema;
   }
 
-  public void setFunction(@javax.annotation.Nonnull ChatCompletionRequestToolChoiceOneOfFunction function) {
-    this.function = function;
+  public void setJsonSchema(@javax.annotation.Nonnull JsonSchemaObject jsonSchema) {
+    this.jsonSchema = jsonSchema;
   }
 
 
@@ -94,20 +98,22 @@ public class ChatCompletionRequestToolChoiceOneOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ChatCompletionRequestToolChoiceOneOf chatCompletionRequestToolChoiceOneOf = (ChatCompletionRequestToolChoiceOneOf) o;
-    return Objects.equals(this.function, chatCompletionRequestToolChoiceOneOf.function);
+    JsonSchemaResponseFormat jsonSchemaResponseFormat = (JsonSchemaResponseFormat) o;
+    return Objects.equals(this.jsonSchema, jsonSchemaResponseFormat.jsonSchema) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(function);
+    return Objects.hash(jsonSchema, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ChatCompletionRequestToolChoiceOneOf {\n");
-    sb.append("    function: ").append(toIndentedString(function)).append("\n");
+    sb.append("class JsonSchemaResponseFormat {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    jsonSchema: ").append(toIndentedString(jsonSchema)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -129,64 +135,61 @@ public class ChatCompletionRequestToolChoiceOneOf {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("function"));
+    openapiFields = new HashSet<String>(Arrays.asList("type", "json_schema"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("function"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("json_schema", "type"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ChatCompletionRequestToolChoiceOneOf
+   * @throws IOException if the JSON Element is invalid with respect to JsonSchemaResponseFormat
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!ChatCompletionRequestToolChoiceOneOf.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in ChatCompletionRequestToolChoiceOneOf is not found in the empty JSON string", ChatCompletionRequestToolChoiceOneOf.openapiRequiredFields.toString()));
+        if (!JsonSchemaResponseFormat.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in JsonSchemaResponseFormat is not found in the empty JSON string", JsonSchemaResponseFormat.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ChatCompletionRequestToolChoiceOneOf.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ChatCompletionRequestToolChoiceOneOf` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!JsonSchemaResponseFormat.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `JsonSchemaResponseFormat` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ChatCompletionRequestToolChoiceOneOf.openapiRequiredFields) {
+      for (String requiredField : JsonSchemaResponseFormat.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `function`
-      ChatCompletionRequestToolChoiceOneOfFunction.validateJsonElement(jsonObj.get("function"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ChatCompletionRequestToolChoiceOneOf.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ChatCompletionRequestToolChoiceOneOf' and its subtypes
+       if (!JsonSchemaResponseFormat.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'JsonSchemaResponseFormat' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ChatCompletionRequestToolChoiceOneOf> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ChatCompletionRequestToolChoiceOneOf.class));
+       final TypeAdapter<JsonSchemaResponseFormat> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(JsonSchemaResponseFormat.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ChatCompletionRequestToolChoiceOneOf>() {
+       return (TypeAdapter<T>) new TypeAdapter<JsonSchemaResponseFormat>() {
            @Override
-           public void write(JsonWriter out, ChatCompletionRequestToolChoiceOneOf value) throws IOException {
+           public void write(JsonWriter out, JsonSchemaResponseFormat value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public ChatCompletionRequestToolChoiceOneOf read(JsonReader in) throws IOException {
+           public JsonSchemaResponseFormat read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -197,18 +200,18 @@ public class ChatCompletionRequestToolChoiceOneOf {
   }
 
   /**
-   * Create an instance of ChatCompletionRequestToolChoiceOneOf given an JSON string
+   * Create an instance of JsonSchemaResponseFormat given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of ChatCompletionRequestToolChoiceOneOf
-   * @throws IOException if the JSON string is invalid with respect to ChatCompletionRequestToolChoiceOneOf
+   * @return An instance of JsonSchemaResponseFormat
+   * @throws IOException if the JSON string is invalid with respect to JsonSchemaResponseFormat
    */
-  public static ChatCompletionRequestToolChoiceOneOf fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ChatCompletionRequestToolChoiceOneOf.class);
+  public static JsonSchemaResponseFormat fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, JsonSchemaResponseFormat.class);
   }
 
   /**
-   * Convert an instance of ChatCompletionRequestToolChoiceOneOf to an JSON string
+   * Convert an instance of JsonSchemaResponseFormat to an JSON string
    *
    * @return JSON string
    */

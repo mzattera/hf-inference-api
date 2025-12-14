@@ -20,7 +20,7 @@
 |**streamOptions** | [**ChatCompletionRequestStreamOptions**](ChatCompletionRequestStreamOptions.md) |  |  [optional] |
 |**temperature** | **BigDecimal** | What sampling temperature to use, between 0 and 2. |  [optional] |
 |**toolChoice** | [**ChatCompletionRequestToolChoice**](ChatCompletionRequestToolChoice.md) |  |  [optional] |
-|**toolPrompt** | **String** | A prompt to be appended before the tools |  [optional] |
+|**toolPrompt** | **String** | A prompt to be appended before the tools. |  [optional] |
 |**tools** | [**List&lt;Tool&gt;**](Tool.md) |  |  [optional] |
 |**topLogprobs** | **Integer** | An integer between 0 and 5 specifying the number of most likely tokens to return per position. |  [optional] |
 |**topP** | **BigDecimal** | Nucleus sampling parameter. |  [optional] |

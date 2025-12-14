@@ -124,11 +124,20 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "type"));
                     }
           })
-                .registerTypeSelector(io.github.mzattera.hfinferenceapi.client.model.JsonResponseFormat.class, new TypeSelector<io.github.mzattera.hfinferenceapi.client.model.JsonResponseFormat>() {
+                .registerTypeSelector(io.github.mzattera.hfinferenceapi.client.model.JsonObjectResponseFormat.class, new TypeSelector<io.github.mzattera.hfinferenceapi.client.model.JsonObjectResponseFormat>() {
                     @Override
-                    public Class<? extends io.github.mzattera.hfinferenceapi.client.model.JsonResponseFormat> getClassForElement(JsonElement readElement) {
+                    public Class<? extends io.github.mzattera.hfinferenceapi.client.model.JsonObjectResponseFormat> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("JsonResponseFormat", io.github.mzattera.hfinferenceapi.client.model.JsonResponseFormat.class);
+                        classByDiscriminatorValue.put("JsonObjectResponseFormat", io.github.mzattera.hfinferenceapi.client.model.JsonObjectResponseFormat.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "type"));
+                    }
+          })
+                .registerTypeSelector(io.github.mzattera.hfinferenceapi.client.model.JsonSchemaResponseFormat.class, new TypeSelector<io.github.mzattera.hfinferenceapi.client.model.JsonSchemaResponseFormat>() {
+                    @Override
+                    public Class<? extends io.github.mzattera.hfinferenceapi.client.model.JsonSchemaResponseFormat> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("JsonSchemaResponseFormat", io.github.mzattera.hfinferenceapi.client.model.JsonSchemaResponseFormat.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "type"));
                     }
@@ -174,19 +183,10 @@ public class JSON {
                     @Override
                     public Class<? extends io.github.mzattera.hfinferenceapi.client.model.ResponseFormat> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("json_object", io.github.mzattera.hfinferenceapi.client.model.JsonResponseFormat.class);
-                        classByDiscriminatorValue.put("json_schema", io.github.mzattera.hfinferenceapi.client.model.SchemaResponseFormat.class);
+                        classByDiscriminatorValue.put("json_object", io.github.mzattera.hfinferenceapi.client.model.JsonObjectResponseFormat.class);
+                        classByDiscriminatorValue.put("json_schema", io.github.mzattera.hfinferenceapi.client.model.JsonSchemaResponseFormat.class);
                         classByDiscriminatorValue.put("text", io.github.mzattera.hfinferenceapi.client.model.TextResponseFormat.class);
                         classByDiscriminatorValue.put("ResponseFormat", io.github.mzattera.hfinferenceapi.client.model.ResponseFormat.class);
-                        return getClassByDiscriminator(classByDiscriminatorValue,
-                                getDiscriminatorValue(readElement, "type"));
-                    }
-          })
-                .registerTypeSelector(io.github.mzattera.hfinferenceapi.client.model.SchemaResponseFormat.class, new TypeSelector<io.github.mzattera.hfinferenceapi.client.model.SchemaResponseFormat>() {
-                    @Override
-                    public Class<? extends io.github.mzattera.hfinferenceapi.client.model.SchemaResponseFormat> getClassForElement(JsonElement readElement) {
-                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("SchemaResponseFormat", io.github.mzattera.hfinferenceapi.client.model.SchemaResponseFormat.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "type"));
                     }
@@ -320,10 +320,11 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ImageGenerationRequestParameters.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ImageGenerationResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ImageGenerationResponseDataInner.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.JsonResponseFormat.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.JsonObjectResponseFormat.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.JsonSchemaObject.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.JsonSchemaResponseFormat.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.LogProbs.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.RefusalContentPart.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.SchemaResponseFormat.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.SystemMessage.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.SystemMessageAllOfContent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.TextContentPart.CustomTypeAdapterFactory());

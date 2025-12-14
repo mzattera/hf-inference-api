@@ -34,9 +34,9 @@ paths:
                 $ref: "#/components/schemas/ImageGenerationResponse"
           description: Generated image(s) returned as Base64 encoding in the response.
         "400":
-          description: Bad request — invalid input
+          description: Bad request — invalid input.
         "401":
-          description: Unauthorized — invalid or missing token
+          description: Unauthorized — invalid or missing token.
       security:
       - bearerAuth: []
       summary: Text to Image generation
@@ -58,11 +58,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ChatCompletionResponse"
-          description: Chat completion response
+          description: Chat completion response.
         "400":
-          description: Bad request — invalid input
+          description: Bad request — invalid input.
         "401":
-          description: Unauthorized — invalid or missing token
+          description: Unauthorized — invalid or missing token.
       security:
       - bearerAuth: []
       summary: Chat completion using messages
@@ -93,11 +93,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EmbeddingsResponse"
-          description: Embeddings computed successfully
+          description: Embeddings computed successfully.
         "400":
-          description: Bad request — invalid input
+          description: Bad request — invalid input.
         "401":
-          description: Unauthorized — invalid or missing token
+          description: Unauthorized — invalid or missing token.
       security:
       - bearerAuth: []
       summary: Get embeddings for input(s)
@@ -137,7 +137,7 @@ components:
       type: object
     ImageGenerationResponse:
       additionalProperties: true
-      description: Image(s) being generated
+      description: Image(s) being generated.
       example:
         data:
         - b64_json: b64_json
@@ -222,7 +222,7 @@ components:
         tool_choice:
           $ref: "#/components/schemas/ChatCompletionRequest_tool_choice"
         tool_prompt:
-          description: A prompt to be appended before the tools
+          description: A prompt to be appended before the tools.
           type: string
         tools:
           items:
@@ -596,8 +596,8 @@ components:
       discriminator:
         mapping:
           text: "#/components/schemas/TextResponseFormat"
-          json_schema: "#/components/schemas/SchemaResponseFormat"
-          json_object: "#/components/schemas/JsonResponseFormat"
+          json_schema: "#/components/schemas/JsonSchemaResponseFormat"
+          json_object: "#/components/schemas/JsonObjectResponseFormat"
         propertyName: type
       example:
         type: text
@@ -612,26 +612,39 @@ components:
       - type
       type: object
     TextResponseFormat:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ResponseFormat"
-    SchemaResponseFormat:
-      additionalProperties: true
+    JsonSchemaResponseFormat:
       allOf:
       - $ref: "#/components/schemas/ResponseFormat"
       - properties:
-          name:
-            type: string
-          description:
-            type: string
-          schema:
-            $ref: "#/components/schemas/SchemaResponseFormat_allOf_schema"
-          strict:
-            type: boolean
+          json_schema:
+            $ref: "#/components/schemas/JsonSchemaObject"
         required:
-        - name
+        - json_schema
         type: object
-    JsonResponseFormat:
+    JsonSchemaObject:
+      properties:
+        name:
+          description: The name of the response format.
+          type: string
+        description:
+          description: "A description of what the response format is for, used by\
+            \ the model to determine how to respond in the format."
+          type: string
+        schema:
+          description: "The schema for the response format, described as a JSON Schema\
+            \ object."
+          type: object
+        strict:
+          description: "Whether to enable strict schema adherence when generating\
+            \ the output. If set to true, the model will always follow the exact schema\
+            \ defined in the schema field."
+          type: boolean
+      required:
+      - name
+      type: object
+    JsonObjectResponseFormat:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ResponseFormat"
@@ -825,10 +838,10 @@ components:
             image at expense of slower inference.
           type: integer
         width:
-          description: The width in pixels of the output image
+          description: The width in pixels of the output image.
           type: integer
         height:
-          description: The height in pixels of the output image
+          description: The height in pixels of the output image.
           type: integer
         scheduler:
           description: Override the scheduler with a compatible one.
@@ -897,10 +910,10 @@ components:
           $ref: "#/components/schemas/MessageContentPart"
         type: array
     AssistantMessage_allOf_audio:
-      description: Data about a previous audio response from the model
+      description: Data about a previous audio response from the model.
       properties:
         id:
-          description: Unique identifier for a previous audio response from the model
+          description: Unique identifier for a previous audio response from the model.
           type: string
       required:
       - id
@@ -965,8 +978,6 @@ components:
       required:
       - arguments
       - name
-      type: object
-    SchemaResponseFormat_allOf_schema:
       type: object
     TokenLogProb_top_logprobs_inner:
       example:

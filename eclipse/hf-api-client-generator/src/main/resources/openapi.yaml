@@ -605,8 +605,8 @@ components:
         propertyName: type
         mapping:
           text: '#/components/schemas/TextResponseFormat'
-          json_schema: '#/components/schemas/SchemaResponseFormat'
-          json_object: '#/components/schemas/JsonResponseFormat'
+          json_schema: '#/components/schemas/JsonSchemaResponseFormat'
+          json_object: '#/components/schemas/JsonObjectResponseFormat'
       required:
         - type
       properties:
@@ -618,28 +618,38 @@ components:
             - json_object
          
     TextResponseFormat:
-      additionalProperties: true
       allOf:
         - $ref: '#/components/schemas/ResponseFormat'
          
-    SchemaResponseFormat:
-      additionalProperties: true
+    JsonSchemaResponseFormat:
       allOf:
         - $ref: '#/components/schemas/ResponseFormat'
-        - type: object      
+        - type: object
           required:
-            - name
+            - json_schema
           properties:
-            name:
-              type: string
-            description:
-              type: string
-            schema:
-              type: object
-            strict:
-              type: boolean
-         
-    JsonResponseFormat:
+            json_schema:
+              $ref: '#/components/schemas/JsonSchemaObject'
+                  
+    JsonSchemaObject:
+      type: object      
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: The name of the response format.
+        description:
+          type: string
+          description: A description of what the response format is for, used by the model to determine how to respond in the format.
+        schema:
+         type: object
+         description: The schema for the response format, described as a JSON Schema object.
+        strict:
+          type: boolean
+          description: Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the schema field. 
+                  
+    JsonObjectResponseFormat:
       additionalProperties: true
       allOf:
         - $ref: '#/components/schemas/ResponseFormat'

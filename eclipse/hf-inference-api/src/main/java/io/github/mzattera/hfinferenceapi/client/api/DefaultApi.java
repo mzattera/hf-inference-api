@@ -87,9 +87,9 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Chat completion response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Chat completion response. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call chatCompletionCall(@javax.annotation.Nonnull ChatCompletionRequest chatCompletionRequest, final ApiCallback _callback) throws ApiException {
@@ -158,9 +158,9 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Chat completion response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Chat completion response. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public ChatCompletionResponse chatCompletion(@javax.annotation.Nonnull ChatCompletionRequest chatCompletionRequest) throws ApiException {
@@ -178,9 +178,9 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Chat completion response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Chat completion response. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<ChatCompletionResponse> chatCompletionWithHttpInfo(@javax.annotation.Nonnull ChatCompletionRequest chatCompletionRequest) throws ApiException {
@@ -200,9 +200,9 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Chat completion response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Chat completion response. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call chatCompletionAsync(@javax.annotation.Nonnull ChatCompletionRequest chatCompletionRequest, final ApiCallback<ChatCompletionResponse> _callback) throws ApiException {
@@ -223,9 +223,9 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Embeddings computed successfully </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Embeddings computed successfully. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call featureExtractionCall(@javax.annotation.Nonnull String provider, @javax.annotation.Nonnull EmbeddingsRequest embeddingsRequest, final ApiCallback _callback) throws ApiException {
@@ -301,9 +301,9 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Embeddings computed successfully </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Embeddings computed successfully. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public EmbeddingsResponse featureExtraction(@javax.annotation.Nonnull String provider, @javax.annotation.Nonnull EmbeddingsRequest embeddingsRequest) throws ApiException {
@@ -322,9 +322,9 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Embeddings computed successfully </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Embeddings computed successfully. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<EmbeddingsResponse> featureExtractionWithHttpInfo(@javax.annotation.Nonnull String provider, @javax.annotation.Nonnull EmbeddingsRequest embeddingsRequest) throws ApiException {
@@ -345,9 +345,9 @@ public class DefaultApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Embeddings computed successfully </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Embeddings computed successfully. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call featureExtractionAsync(@javax.annotation.Nonnull String provider, @javax.annotation.Nonnull EmbeddingsRequest embeddingsRequest, final ApiCallback<EmbeddingsResponse> _callback) throws ApiException {
@@ -369,8 +369,8 @@ public class DefaultApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Generated image(s) returned as Base64 encoding in the response. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call textToImageCall(@javax.annotation.Nonnull String provider, @javax.annotation.Nonnull ImageGenerationRequest imageGenerationRequest, final ApiCallback _callback) throws ApiException {
@@ -447,8 +447,8 @@ public class DefaultApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Generated image(s) returned as Base64 encoding in the response. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public ImageGenerationResponse textToImage(@javax.annotation.Nonnull String provider, @javax.annotation.Nonnull ImageGenerationRequest imageGenerationRequest) throws ApiException {
@@ -468,8 +468,8 @@ public class DefaultApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Generated image(s) returned as Base64 encoding in the response. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<ImageGenerationResponse> textToImageWithHttpInfo(@javax.annotation.Nonnull String provider, @javax.annotation.Nonnull ImageGenerationRequest imageGenerationRequest) throws ApiException {
@@ -491,8 +491,8 @@ public class DefaultApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Generated image(s) returned as Base64 encoding in the response. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request — invalid input </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized — invalid or missing token </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request — invalid input. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized — invalid or missing token. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call textToImageAsync(@javax.annotation.Nonnull String provider, @javax.annotation.Nonnull ImageGenerationRequest imageGenerationRequest, final ApiCallback<ImageGenerationResponse> _callback) throws ApiException {

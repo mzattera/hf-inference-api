@@ -53,7 +53,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * SystemMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-09T15:44:23.414932700+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T13:04:21.768158100+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "SystemMessage")
 @XmlAccessorType(XmlAccessType.FIELD)
 

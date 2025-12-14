@@ -25,17 +25,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for JsonResponseFormat
+ * Model tests for JsonObjectResponseFormat
  */
-public class JsonResponseFormatTest {
-    private final JsonResponseFormat model = new JsonResponseFormat();
+public class JsonObjectResponseFormatTest {
+    private final JsonObjectResponseFormat model = new JsonObjectResponseFormat();
 
     /**
-     * Model tests for JsonResponseFormat
+     * Model tests for JsonObjectResponseFormat
      */
     @Test
-    public void testJsonResponseFormat() {
-        // TODO: test JsonResponseFormat
+    public void testJsonObjectResponseFormat() {
+        // TODO: test JsonObjectResponseFormat
     }
 
     /**

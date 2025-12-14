@@ -50,14 +50,14 @@ import java.util.Locale;
 import io.github.mzattera.hfinferenceapi.JSON;
 
 /**
- * JsonResponseFormat
+ * JsonObjectResponseFormat
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-09T15:44:23.414932700+01:00[Europe/Rome]", comments = "Generator version: 7.17.0")
-@XmlRootElement(name = "JsonResponseFormat")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T13:04:21.768158100+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@XmlRootElement(name = "JsonObjectResponseFormat")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-public class JsonResponseFormat extends ResponseFormat {
-  public JsonResponseFormat() {
+public class JsonObjectResponseFormat extends ResponseFormat {
+  public JsonObjectResponseFormat() {
 
     this.type = TypeEnum.JSON_OBJECT;
 
@@ -75,9 +75,9 @@ public class JsonResponseFormat extends ResponseFormat {
    *
    * @param key name of the property
    * @param value value of the property
-   * @return the JsonResponseFormat instance itself
+   * @return the JsonObjectResponseFormat instance itself
    */
-  public JsonResponseFormat putAdditionalProperty(String key, Object value) {
+  public JsonObjectResponseFormat putAdditionalProperty(String key, Object value) {
     if (this.additionalProperties == null) {
         this.additionalProperties = new HashMap<String, Object>();
     }
@@ -127,7 +127,7 @@ public class JsonResponseFormat extends ResponseFormat {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JsonResponseFormat {\n");
+    sb.append("class JsonObjectResponseFormat {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
@@ -161,17 +161,17 @@ public class JsonResponseFormat extends ResponseFormat {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to JsonResponseFormat
+   * @throws IOException if the JSON Element is invalid with respect to JsonObjectResponseFormat
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!JsonResponseFormat.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in JsonResponseFormat is not found in the empty JSON string", JsonResponseFormat.openapiRequiredFields.toString()));
+        if (!JsonObjectResponseFormat.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in JsonObjectResponseFormat is not found in the empty JSON string", JsonObjectResponseFormat.openapiRequiredFields.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : JsonResponseFormat.openapiRequiredFields) {
+      for (String requiredField : JsonObjectResponseFormat.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -182,16 +182,16 @@ public class JsonResponseFormat extends ResponseFormat {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!JsonResponseFormat.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'JsonResponseFormat' and its subtypes
+       if (!JsonObjectResponseFormat.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'JsonObjectResponseFormat' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<JsonResponseFormat> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(JsonResponseFormat.class));
+       final TypeAdapter<JsonObjectResponseFormat> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(JsonObjectResponseFormat.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<JsonResponseFormat>() {
+       return (TypeAdapter<T>) new TypeAdapter<JsonObjectResponseFormat>() {
            @Override
-           public void write(JsonWriter out, JsonResponseFormat value) throws IOException {
+           public void write(JsonWriter out, JsonObjectResponseFormat value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              obj.remove("additionalProperties");
              // serialize additional properties
@@ -219,12 +219,12 @@ public class JsonResponseFormat extends ResponseFormat {
            }
 
            @Override
-           public JsonResponseFormat read(JsonReader in) throws IOException {
+           public JsonObjectResponseFormat read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              JsonObject jsonObj = jsonElement.getAsJsonObject();
              // store additional fields in the deserialized instance
-             JsonResponseFormat instance = thisAdapter.fromJsonTree(jsonObj);
+             JsonObjectResponseFormat instance = thisAdapter.fromJsonTree(jsonObj);
              for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
                if (!openapiFields.contains(entry.getKey())) {
                  if (entry.getValue().isJsonPrimitive()) { // primitive type
@@ -251,18 +251,18 @@ public class JsonResponseFormat extends ResponseFormat {
   }
 
   /**
-   * Create an instance of JsonResponseFormat given an JSON string
+   * Create an instance of JsonObjectResponseFormat given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of JsonResponseFormat
-   * @throws IOException if the JSON string is invalid with respect to JsonResponseFormat
+   * @return An instance of JsonObjectResponseFormat
+   * @throws IOException if the JSON string is invalid with respect to JsonObjectResponseFormat
    */
-  public static JsonResponseFormat fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, JsonResponseFormat.class);
+  public static JsonObjectResponseFormat fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, JsonObjectResponseFormat.class);
   }
 
   /**
-   * Convert an instance of JsonResponseFormat to an JSON string
+   * Convert an instance of JsonObjectResponseFormat to an JSON string
    *
    * @return JSON string
    */

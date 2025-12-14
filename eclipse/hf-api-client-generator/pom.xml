@@ -44,7 +44,7 @@
                         <artifactDescription>OpenAPI-generated Java client for Hugging Face Inference API.</artifactDescription>
                         <artifactId>hf-inference-api</artifactId>
                         <artifactUrl>https://github.com/mzattera/hf-inference-api</artifactUrl>
-                        <artifactVersion>2.0.0</artifactVersion>
+                        <artifactVersion>3.0.0</artifactVersion>
 
                         <developerEmail>b2fjava@gmail.com</developerEmail>
                         <developerName>Massimiliano "Maxi" Zattera</developerName>
