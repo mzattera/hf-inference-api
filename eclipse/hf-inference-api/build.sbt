@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "io.github.mzattera",
     name := "hf-inference-api",
-    version := "4.0.0",
+    version := "5.0.0",
     scalaVersion := "2.11.12",
     scalacOptions ++= Seq("-feature"),
     compile / javacOptions ++= Seq("-Xlint:deprecation"),

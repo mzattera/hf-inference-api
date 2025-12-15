@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**_file** | [**FileContentPartAllOfFile**](FileContentPartAllOfFile.md) |  |  |
+|**_file** | **FileContentPartFile** |  |  |
 
 
 

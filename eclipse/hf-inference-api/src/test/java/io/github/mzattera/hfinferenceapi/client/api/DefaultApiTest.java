@@ -238,7 +238,7 @@ public class DefaultApiTest {
 
 			// Fake response
 			msg = new ToolMessage().toolCallId(call.getId()).content(new MessageContent("35F"))
-					.name("GetCurrentWeatherTool");
+					.name(fun.getName());
 			messages.add(msg);
 			chatCompletionRequest = new ChatCompletionRequest().messages(messages).tools(tools).model(MODEL);
 			response = api.chatCompletion(chatCompletionRequest);

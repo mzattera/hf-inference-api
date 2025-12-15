@@ -18,7 +18,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.FileContentPartAllOfFile;
+import io.github.mzattera.hfinferenceapi.client.model.FileContentPartFile;
 import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart;
 import java.io.IOException;
 import java.util.Arrays;

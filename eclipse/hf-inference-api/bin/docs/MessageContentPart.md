@@ -17,7 +17,6 @@
 |---- | -----|
 | TEXT | &quot;text&quot; |
 | IMAGE | &quot;image&quot; |
-| INPUT_AUDIO | &quot;input_audio&quot; |
 | FILE | &quot;file&quot; |
 | REFUSAL | &quot;refusal&quot; |
 

@@ -2,7 +2,7 @@
 
 HuggingFace Inference Provider API
 - API version: 1.0.0
-  - Build date: 2025-12-14T23:10:40.473939700+01:00[Europe/Berlin]
+  - Build date: 2025-12-15T15:08:12.430661700+01:00[Europe/Berlin]
   - Generator version: 7.17.0
 
 Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.github.mzattera</groupId>
   <artifactId>hf-inference-api</artifactId>
-  <version>4.0.0</version>
+  <version>5.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "io.github.mzattera:hf-inference-api:4.0.0"
+     implementation "io.github.mzattera:hf-inference-api:5.0.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hf-inference-api-4.0.0.jar`
+* `target/hf-inference-api-5.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -128,9 +128,6 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [AssistantMessage](docs/AssistantMessage.md)
- - [AssistantMessageAllOfAudio](docs/AssistantMessageAllOfAudio.md)
- - [AudioContentPart](docs/AudioContentPart.md)
- - [AudioContentPartAllOfInputAudio](docs/AudioContentPartAllOfInputAudio.md)
  - [ChatCompletionRequest](docs/ChatCompletionRequest.md)
  - [ChatCompletionRequestStreamOptions](docs/ChatCompletionRequestStreamOptions.md)
  - [ChatCompletionRequestToolChoice](docs/ChatCompletionRequestToolChoice.md)
@@ -143,13 +140,13 @@ Class | Method | HTTP request | Description
  - [EmbeddingsRequest](docs/EmbeddingsRequest.md)
  - [EmbeddingsResponse](docs/EmbeddingsResponse.md)
  - [FileContentPart](docs/FileContentPart.md)
- - [FileContentPartAllOfFile](docs/FileContentPartAllOfFile.md)
+ - [FileContentPartFile](docs/FileContentPartFile.md)
  - [Function](docs/Function.md)
  - [FunctionTool](docs/FunctionTool.md)
  - [FunctionToolCall](docs/FunctionToolCall.md)
  - [FunctionToolCallAllOfFunction](docs/FunctionToolCallAllOfFunction.md)
  - [ImageContentPart](docs/ImageContentPart.md)
- - [ImageContentPartAllOfImageUrl](docs/ImageContentPartAllOfImageUrl.md)
+ - [ImageContentPartUrl](docs/ImageContentPartUrl.md)
  - [ImageGenerationRequest](docs/ImageGenerationRequest.md)
  - [ImageGenerationRequestParameters](docs/ImageGenerationRequestParameters.md)
  - [ImageGenerationResponse](docs/ImageGenerationResponse.md)

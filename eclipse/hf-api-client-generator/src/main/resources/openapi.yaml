@@ -344,26 +344,17 @@ components:
         - $ref: '#/components/schemas/Message'
         - type: object      
           properties:
-            audio:
-              type: object
-              description: Data about a previous audio response from the model.
-              required:
-                - id
-              properties:
-                id:
-                  type: string
-                  description: Unique identifier for a previous audio response from the model.
             content:
-              $ref: '#/components/schemas/MessageContent'
-            reasoning: # Empirically found out HF returns this
               type: string
-            name:
+              description: Content of the message.
+            reasoning: # Empirically found out HF returns this
               type: string
             refusal:
               type: string
-              description: The refusal message by the assistant
+              description: The refusal message by the assistant, if any.
             tool_calls:
               type:  array
+              description: List of tool calls the agent is issuing.
               items:
                 $ref: '#/components/schemas/ToolCall'
 
@@ -381,9 +372,10 @@ components:
               $ref: '#/components/schemas/MessageContent'
             tool_call_id:
               type: string
-              description: FunctionTool call that this message is responding to
+              description: FunctionTool call that this message is responding to.
             name:
               type: string
+              description: Name of the function being called.
                                                 
     MessageContent: 
       description: The content of any the developer message, which can be a single string or an array of parts.
@@ -400,7 +392,6 @@ components:
         mapping:
           text: '#/components/schemas/TextContentPart'
           image: '#/components/schemas/ImageContentPart'
-          input_audio: '#/components/schemas/AudioContentPart'
           file: '#/components/schemas/FileContentPart'
           refusal: '#/components/schemas/RefusalContentPart'
       required:
@@ -412,7 +403,6 @@ components:
           enum:
             - text 
             - image
-            - input_audio
             - file
             - refusal  
               
@@ -437,38 +427,20 @@ components:
             - image_url
           properties:
             image_url:
-              type: object
-              required:
-                - url
-              properties:
-                url:
-                 type: string
-                 description: Either a URL of the image or the base64 encoded image data
-                detail:
-                 type: string
-                 description: Specifies the detail level of the image. 
+              $ref: '#/components/schemas/ImageContentPartUrl'
         
-    AudioContentPart:
-      additionalProperties: true
-      allOf:
-        - $ref: '#/components/schemas/MessageContentPart'
-        - type: object      
-          required:
-            - input_audio
-          properties:
-            input_audio:
-              type: object
-              required:
-                - data
-                - format
-              properties:
-                data:
-                  type: string
-                  description: Base64 encoded audio data
-                format:
-                  type: string
-                  description: The format of the encoded audio data
-                  example: wav 
+    ImageContentPartUrl:
+       type: object
+       required:
+         - url
+       additionalProperties: true
+       properties:
+         url:
+           type: string
+           description: Either a URL of the image or the base64 encoded image data
+         detail:
+           type: string
+           description: Specifies the detail level of the image. 
         
     FileContentPart:
       additionalProperties: true
@@ -479,17 +451,18 @@ components:
             - file
           properties:
             file:
-              type: object
-              properties:
-                file_data:
-                  type: string
-                  description: The base64 encoded file data
-                file_id:
-                  type: string
-                  description: The ID of an uploaded file to use as input
-                filename:
-                  type: string
-                  description: The name of the file, used when passing the file to the model as a string
+              $ref: '#/components/schemas/FileContentPartFile'
+
+    FileContentPartFile:
+      type: object
+      additionalProperties: true
+      properties:
+        file_data:
+          type: string
+          description: The base64 encoded file data
+        filename:
+          type: string
+          description: The name of the file, used when passing the file to the model as a string
                
     RefusalContentPart:
       additionalProperties: true

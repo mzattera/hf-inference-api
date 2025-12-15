@@ -24,33 +24,33 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AudioContentPartAllOfInputAudio
+ * Model tests for FileContentPartFile
  */
-public class AudioContentPartAllOfInputAudioTest {
-    private final AudioContentPartAllOfInputAudio model = new AudioContentPartAllOfInputAudio();
+public class FileContentPartFileTest {
+    private final FileContentPartFile model = new FileContentPartFile();
 
     /**
-     * Model tests for AudioContentPartAllOfInputAudio
+     * Model tests for FileContentPartFile
      */
     @Test
-    public void testAudioContentPartAllOfInputAudio() {
-        // TODO: test AudioContentPartAllOfInputAudio
+    public void testFileContentPartFile() {
+        // TODO: test FileContentPartFile
     }
 
     /**
-     * Test the property 'data'
+     * Test the property 'fileData'
      */
     @Test
-    public void dataTest() {
-        // TODO: test data
+    public void fileDataTest() {
+        // TODO: test fileData
     }
 
     /**
-     * Test the property 'format'
+     * Test the property 'filename'
      */
     @Test
-    public void formatTest() {
-        // TODO: test format
+    public void filenameTest() {
+        // TODO: test filename
     }
 
 }

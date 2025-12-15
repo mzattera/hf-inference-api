@@ -414,18 +414,16 @@ components:
       allOf:
       - $ref: "#/components/schemas/Message"
       - properties:
-          audio:
-            $ref: "#/components/schemas/AssistantMessage_allOf_audio"
           content:
-            $ref: "#/components/schemas/MessageContent"
+            description: Content of the message.
+            type: string
           reasoning:
             type: string
-          name:
-            type: string
           refusal:
-            description: The refusal message by the assistant
+            description: "The refusal message by the assistant, if any."
             type: string
           tool_calls:
+            description: List of tool calls the agent is issuing.
             items:
               $ref: "#/components/schemas/ToolCall"
             type: array
@@ -438,9 +436,10 @@ components:
           content:
             $ref: "#/components/schemas/MessageContent"
           tool_call_id:
-            description: FunctionTool call that this message is responding to
+            description: FunctionTool call that this message is responding to.
             type: string
           name:
+            description: Name of the function being called.
             type: string
         required:
         - content
@@ -460,7 +459,6 @@ components:
         mapping:
           text: "#/components/schemas/TextContentPart"
           image: "#/components/schemas/ImageContentPart"
-          input_audio: "#/components/schemas/AudioContentPart"
           file: "#/components/schemas/FileContentPart"
           refusal: "#/components/schemas/RefusalContentPart"
         propertyName: type
@@ -470,7 +468,6 @@ components:
           enum:
           - text
           - image
-          - input_audio
           - file
           - refusal
           type: string
@@ -494,30 +491,43 @@ components:
       - $ref: "#/components/schemas/MessageContentPart"
       - properties:
           image_url:
-            $ref: "#/components/schemas/ImageContentPart_allOf_image_url"
+            $ref: "#/components/schemas/ImageContentPartUrl"
         required:
         - image_url
         type: object
-    AudioContentPart:
+    ImageContentPartUrl:
       additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/MessageContentPart"
-      - properties:
-          input_audio:
-            $ref: "#/components/schemas/AudioContentPart_allOf_input_audio"
-        required:
-        - input_audio
-        type: object
+      properties:
+        url:
+          description: Either a URL of the image or the base64 encoded image data
+          type: string
+        detail:
+          description: Specifies the detail level of the image.
+          type: string
+      required:
+      - url
+      type: object
     FileContentPart:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/MessageContentPart"
       - properties:
           file:
-            $ref: "#/components/schemas/FileContentPart_allOf_file"
+            $ref: "#/components/schemas/FileContentPartFile"
         required:
         - file
         type: object
+    FileContentPartFile:
+      additionalProperties: true
+      properties:
+        file_data:
+          description: The base64 encoded file data
+          type: string
+        filename:
+          description: "The name of the file, used when passing the file to the model\
+            \ as a string"
+          type: string
+      type: object
     RefusalContentPart:
       additionalProperties: true
       allOf:
@@ -899,52 +909,6 @@ components:
         - required
         type: string
       - $ref: "#/components/schemas/ChatCompletionRequest_tool_choice_oneOf"
-      type: object
-    AssistantMessage_allOf_audio:
-      description: Data about a previous audio response from the model.
-      properties:
-        id:
-          description: Unique identifier for a previous audio response from the model.
-          type: string
-      required:
-      - id
-      type: object
-    ImageContentPart_allOf_image_url:
-      properties:
-        url:
-          description: Either a URL of the image or the base64 encoded image data
-          type: string
-        detail:
-          description: Specifies the detail level of the image.
-          type: string
-      required:
-      - url
-      type: object
-    AudioContentPart_allOf_input_audio:
-      properties:
-        data:
-          description: Base64 encoded audio data
-          type: string
-        format:
-          description: The format of the encoded audio data
-          example: wav
-          type: string
-      required:
-      - data
-      - format
-      type: object
-    FileContentPart_allOf_file:
-      properties:
-        file_data:
-          description: The base64 encoded file data
-          type: string
-        file_id:
-          description: The ID of an uploaded file to use as input
-          type: string
-        filename:
-          description: "The name of the file, used when passing the file to the model\
-            \ as a string"
-          type: string
       type: object
     FunctionToolCall_allOf_function:
       properties:

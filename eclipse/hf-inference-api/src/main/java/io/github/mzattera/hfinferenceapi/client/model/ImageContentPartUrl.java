@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.AudioContentPartAllOfInputAudio;
-import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.xml.bind.annotation.*;
@@ -51,41 +49,63 @@ import java.util.Locale;
 import io.github.mzattera.hfinferenceapi.JSON;
 
 /**
- * AudioContentPart
+ * ImageContentPartUrl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T23:10:40.473939700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
-@XmlRootElement(name = "AudioContentPart")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-15T15:08:12.430661700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@XmlRootElement(name = "ImageContentPartUrl")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-public class AudioContentPart extends MessageContentPart {
-  public static final String SERIALIZED_NAME_INPUT_AUDIO = "input_audio";
-  @XmlElement(name = "input_audio")
-  @SerializedName(SERIALIZED_NAME_INPUT_AUDIO)
+public class ImageContentPartUrl {
+  public static final String SERIALIZED_NAME_URL = "url";
+  @XmlElement(name = "url")
+  @SerializedName(SERIALIZED_NAME_URL)
   @javax.annotation.Nonnull
-  private AudioContentPartAllOfInputAudio inputAudio;
+  private String url;
 
-  public AudioContentPart() {
+  public static final String SERIALIZED_NAME_DETAIL = "detail";
+  @XmlElement(name = "detail")
+  @SerializedName(SERIALIZED_NAME_DETAIL)
+  @javax.annotation.Nullable
+  private String detail;
 
-    this.type = TypeEnum.INPUT_AUDIO;
-
+  public ImageContentPartUrl() {
   }
 
-  public AudioContentPart inputAudio(@javax.annotation.Nonnull AudioContentPartAllOfInputAudio inputAudio) {
-    this.inputAudio = inputAudio;
+  public ImageContentPartUrl url(@javax.annotation.Nonnull String url) {
+    this.url = url;
     return this;
   }
 
   /**
-   * Get inputAudio
-   * @return inputAudio
+   * Either a URL of the image or the base64 encoded image data
+   * @return url
    */
   @javax.annotation.Nonnull
-  public AudioContentPartAllOfInputAudio getInputAudio() {
-    return inputAudio;
+  public String getUrl() {
+    return url;
   }
 
-  public void setInputAudio(@javax.annotation.Nonnull AudioContentPartAllOfInputAudio inputAudio) {
-    this.inputAudio = inputAudio;
+  public void setUrl(@javax.annotation.Nonnull String url) {
+    this.url = url;
+  }
+
+
+  public ImageContentPartUrl detail(@javax.annotation.Nullable String detail) {
+    this.detail = detail;
+    return this;
+  }
+
+  /**
+   * Specifies the detail level of the image.
+   * @return detail
+   */
+  @javax.annotation.Nullable
+  public String getDetail() {
+    return detail;
+  }
+
+  public void setDetail(@javax.annotation.Nullable String detail) {
+    this.detail = detail;
   }
 
   /**
@@ -101,9 +121,9 @@ public class AudioContentPart extends MessageContentPart {
    *
    * @param key name of the property
    * @param value value of the property
-   * @return the AudioContentPart instance itself
+   * @return the ImageContentPartUrl instance itself
    */
-  public AudioContentPart putAdditionalProperty(String key, Object value) {
+  public ImageContentPartUrl putAdditionalProperty(String key, Object value) {
     if (this.additionalProperties == null) {
         this.additionalProperties = new HashMap<String, Object>();
     }
@@ -142,23 +162,23 @@ public class AudioContentPart extends MessageContentPart {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AudioContentPart audioContentPart = (AudioContentPart) o;
-    return Objects.equals(this.inputAudio, audioContentPart.inputAudio)&&
-        Objects.equals(this.additionalProperties, audioContentPart.additionalProperties) &&
-        super.equals(o);
+    ImageContentPartUrl imageContentPartUrl = (ImageContentPartUrl) o;
+    return Objects.equals(this.url, imageContentPartUrl.url) &&
+        Objects.equals(this.detail, imageContentPartUrl.detail)&&
+        Objects.equals(this.additionalProperties, imageContentPartUrl.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(inputAudio, super.hashCode(), additionalProperties);
+    return Objects.hash(url, detail, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AudioContentPart {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    inputAudio: ").append(toIndentedString(inputAudio)).append("\n");
+    sb.append("class ImageContentPartUrl {\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -181,30 +201,37 @@ public class AudioContentPart extends MessageContentPart {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("type", "input_audio"));
+    openapiFields = new HashSet<String>(Arrays.asList("url", "detail"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("input_audio", "type"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("url"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AudioContentPart
+   * @throws IOException if the JSON Element is invalid with respect to ImageContentPartUrl
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!AudioContentPart.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in AudioContentPart is not found in the empty JSON string", AudioContentPart.openapiRequiredFields.toString()));
+        if (!ImageContentPartUrl.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in ImageContentPartUrl is not found in the empty JSON string", ImageContentPartUrl.openapiRequiredFields.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : AudioContentPart.openapiRequiredFields) {
+      for (String requiredField : ImageContentPartUrl.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("url").toString()));
+      }
+      if ((jsonObj.get("detail") != null && !jsonObj.get("detail").isJsonNull()) && !jsonObj.get("detail").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `detail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("detail").toString()));
       }
   }
 
@@ -212,16 +239,16 @@ public class AudioContentPart extends MessageContentPart {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AudioContentPart.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AudioContentPart' and its subtypes
+       if (!ImageContentPartUrl.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ImageContentPartUrl' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AudioContentPart> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AudioContentPart.class));
+       final TypeAdapter<ImageContentPartUrl> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ImageContentPartUrl.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<AudioContentPart>() {
+       return (TypeAdapter<T>) new TypeAdapter<ImageContentPartUrl>() {
            @Override
-           public void write(JsonWriter out, AudioContentPart value) throws IOException {
+           public void write(JsonWriter out, ImageContentPartUrl value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              obj.remove("additionalProperties");
              // serialize additional properties
@@ -249,12 +276,12 @@ public class AudioContentPart extends MessageContentPart {
            }
 
            @Override
-           public AudioContentPart read(JsonReader in) throws IOException {
+           public ImageContentPartUrl read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              JsonObject jsonObj = jsonElement.getAsJsonObject();
              // store additional fields in the deserialized instance
-             AudioContentPart instance = thisAdapter.fromJsonTree(jsonObj);
+             ImageContentPartUrl instance = thisAdapter.fromJsonTree(jsonObj);
              for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
                if (!openapiFields.contains(entry.getKey())) {
                  if (entry.getValue().isJsonPrimitive()) { // primitive type
@@ -281,18 +308,18 @@ public class AudioContentPart extends MessageContentPart {
   }
 
   /**
-   * Create an instance of AudioContentPart given an JSON string
+   * Create an instance of ImageContentPartUrl given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AudioContentPart
-   * @throws IOException if the JSON string is invalid with respect to AudioContentPart
+   * @return An instance of ImageContentPartUrl
+   * @throws IOException if the JSON string is invalid with respect to ImageContentPartUrl
    */
-  public static AudioContentPart fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AudioContentPart.class);
+  public static ImageContentPartUrl fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ImageContentPartUrl.class);
   }
 
   /**
-   * Convert an instance of AudioContentPart to an JSON string
+   * Convert an instance of ImageContentPartUrl to an JSON string
    *
    * @return JSON string
    */

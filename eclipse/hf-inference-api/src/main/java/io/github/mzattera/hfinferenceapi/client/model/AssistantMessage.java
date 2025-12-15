@@ -20,9 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.AssistantMessageAllOfAudio;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
-import io.github.mzattera.hfinferenceapi.client.model.MessageContent;
 import io.github.mzattera.hfinferenceapi.client.model.ToolCall;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,34 +55,22 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * AssistantMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T23:10:40.473939700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-15T15:08:12.430661700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "AssistantMessage")
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class AssistantMessage extends Message {
-  public static final String SERIALIZED_NAME_AUDIO = "audio";
-  @XmlElement(name = "audio")
-  @SerializedName(SERIALIZED_NAME_AUDIO)
-  @javax.annotation.Nullable
-  private AssistantMessageAllOfAudio audio;
-
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @XmlElement(name = "content")
   @SerializedName(SERIALIZED_NAME_CONTENT)
   @javax.annotation.Nullable
-  private MessageContent content;
+  private String content;
 
   public static final String SERIALIZED_NAME_REASONING = "reasoning";
   @XmlElement(name = "reasoning")
   @SerializedName(SERIALIZED_NAME_REASONING)
   @javax.annotation.Nullable
   private String reasoning;
-
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @XmlElement(name = "name")
-  @SerializedName(SERIALIZED_NAME_NAME)
-  @javax.annotation.Nullable
-  private String name;
 
   public static final String SERIALIZED_NAME_REFUSAL = "refusal";
   @XmlElement(name = "refusal")
@@ -104,40 +90,21 @@ public class AssistantMessage extends Message {
 
   }
 
-  public AssistantMessage audio(@javax.annotation.Nullable AssistantMessageAllOfAudio audio) {
-    this.audio = audio;
-    return this;
-  }
-
-  /**
-   * Get audio
-   * @return audio
-   */
-  @javax.annotation.Nullable
-  public AssistantMessageAllOfAudio getAudio() {
-    return audio;
-  }
-
-  public void setAudio(@javax.annotation.Nullable AssistantMessageAllOfAudio audio) {
-    this.audio = audio;
-  }
-
-
-  public AssistantMessage content(@javax.annotation.Nullable MessageContent content) {
+  public AssistantMessage content(@javax.annotation.Nullable String content) {
     this.content = content;
     return this;
   }
 
   /**
-   * Get content
+   * Content of the message.
    * @return content
    */
   @javax.annotation.Nullable
-  public MessageContent getContent() {
+  public String getContent() {
     return content;
   }
 
-  public void setContent(@javax.annotation.Nullable MessageContent content) {
+  public void setContent(@javax.annotation.Nullable String content) {
     this.content = content;
   }
 
@@ -161,32 +128,13 @@ public class AssistantMessage extends Message {
   }
 
 
-  public AssistantMessage name(@javax.annotation.Nullable String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-   */
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
-  }
-
-  public void setName(@javax.annotation.Nullable String name) {
-    this.name = name;
-  }
-
-
   public AssistantMessage refusal(@javax.annotation.Nullable String refusal) {
     this.refusal = refusal;
     return this;
   }
 
   /**
-   * The refusal message by the assistant
+   * The refusal message by the assistant, if any.
    * @return refusal
    */
   @javax.annotation.Nullable
@@ -213,7 +161,7 @@ public class AssistantMessage extends Message {
   }
 
   /**
-   * Get toolCalls
+   * List of tool calls the agent is issuing.
    * @return toolCalls
    */
   @javax.annotation.Nullable
@@ -280,10 +228,8 @@ public class AssistantMessage extends Message {
       return false;
     }
     AssistantMessage assistantMessage = (AssistantMessage) o;
-    return Objects.equals(this.audio, assistantMessage.audio) &&
-        Objects.equals(this.content, assistantMessage.content) &&
+    return Objects.equals(this.content, assistantMessage.content) &&
         Objects.equals(this.reasoning, assistantMessage.reasoning) &&
-        Objects.equals(this.name, assistantMessage.name) &&
         Objects.equals(this.refusal, assistantMessage.refusal) &&
         Objects.equals(this.toolCalls, assistantMessage.toolCalls)&&
         Objects.equals(this.additionalProperties, assistantMessage.additionalProperties) &&
@@ -292,7 +238,7 @@ public class AssistantMessage extends Message {
 
   @Override
   public int hashCode() {
-    return Objects.hash(audio, content, reasoning, name, refusal, toolCalls, super.hashCode(), additionalProperties);
+    return Objects.hash(content, reasoning, refusal, toolCalls, super.hashCode(), additionalProperties);
   }
 
   @Override
@@ -300,10 +246,8 @@ public class AssistantMessage extends Message {
     StringBuilder sb = new StringBuilder();
     sb.append("class AssistantMessage {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    audio: ").append(toIndentedString(audio)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    reasoning: ").append(toIndentedString(reasoning)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("    toolCalls: ").append(toIndentedString(toolCalls)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
@@ -328,7 +272,7 @@ public class AssistantMessage extends Message {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("role", "audio", "content", "reasoning", "name", "refusal", "tool_calls"));
+    openapiFields = new HashSet<String>(Arrays.asList("role", "content", "reasoning", "refusal", "tool_calls"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("role"));

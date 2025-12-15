@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.FileContentPartAllOfFile;
+import io.github.mzattera.hfinferenceapi.client.model.FileContentPartFile;
 import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart;
 import java.io.IOException;
 import java.util.Arrays;
@@ -53,7 +53,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * FileContentPart
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T23:10:40.473939700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-15T15:08:12.430661700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "FileContentPart")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -62,7 +62,7 @@ public class FileContentPart extends MessageContentPart {
   @XmlElement(name = "file")
   @SerializedName(SERIALIZED_NAME_FILE)
   @javax.annotation.Nonnull
-  private FileContentPartAllOfFile _file;
+  private FileContentPartFile _file;
 
   public FileContentPart() {
 
@@ -70,7 +70,7 @@ public class FileContentPart extends MessageContentPart {
 
   }
 
-  public FileContentPart _file(@javax.annotation.Nonnull FileContentPartAllOfFile _file) {
+  public FileContentPart _file(@javax.annotation.Nonnull FileContentPartFile _file) {
     this._file = _file;
     return this;
   }
@@ -80,11 +80,11 @@ public class FileContentPart extends MessageContentPart {
    * @return _file
    */
   @javax.annotation.Nonnull
-  public FileContentPartAllOfFile getFile() {
+  public FileContentPartFile getFile() {
     return _file;
   }
 
-  public void setFile(@javax.annotation.Nonnull FileContentPartAllOfFile _file) {
+  public void setFile(@javax.annotation.Nonnull FileContentPartFile _file) {
     this._file = _file;
   }
 

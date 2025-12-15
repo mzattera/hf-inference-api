@@ -1,6 +1,6 @@
 
 
-# ImageContentPartAllOfImageUrl
+# ImageContentPartUrl
 
 
 ## Properties

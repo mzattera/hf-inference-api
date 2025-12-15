@@ -7,12 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**audio** | [**AssistantMessageAllOfAudio**](AssistantMessageAllOfAudio.md) |  |  [optional] |
-|**content** | [**MessageContent**](MessageContent.md) |  |  [optional] |
+|**content** | **String** | Content of the message. |  [optional] |
 |**reasoning** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**refusal** | **String** | The refusal message by the assistant |  [optional] |
-|**toolCalls** | [**List&lt;ToolCall&gt;**](ToolCall.md) |  |  [optional] |
+|**refusal** | **String** | The refusal message by the assistant, if any. |  [optional] |
+|**toolCalls** | [**List&lt;ToolCall&gt;**](ToolCall.md) | List of tool calls the agent is issuing. |  [optional] |
 
 
 

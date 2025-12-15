@@ -18,9 +18,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.AssistantMessageAllOfAudio;
 import io.github.mzattera.hfinferenceapi.client.model.Message;
-import io.github.mzattera.hfinferenceapi.client.model.MessageContent;
 import io.github.mzattera.hfinferenceapi.client.model.ToolCall;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,14 +50,6 @@ public class AssistantMessageTest {
     }
 
     /**
-     * Test the property 'audio'
-     */
-    @Test
-    public void audioTest() {
-        // TODO: test audio
-    }
-
-    /**
      * Test the property 'content'
      */
     @Test
@@ -73,14 +63,6 @@ public class AssistantMessageTest {
     @Test
     public void reasoningTest() {
         // TODO: test reasoning
-    }
-
-    /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
     }
 
     /**

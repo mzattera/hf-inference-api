@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.mzattera.hfinferenceapi.client.model.ImageContentPartUrl;
-import io.github.mzattera.hfinferenceapi.client.model.MessageContentPart;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.xml.bind.annotation.*;
@@ -51,41 +49,63 @@ import java.util.Locale;
 import io.github.mzattera.hfinferenceapi.JSON;
 
 /**
- * ImageContentPart
+ * FileContentPartFile
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-15T15:08:12.430661700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
-@XmlRootElement(name = "ImageContentPart")
+@XmlRootElement(name = "FileContentPartFile")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-public class ImageContentPart extends MessageContentPart {
-  public static final String SERIALIZED_NAME_IMAGE_URL = "image_url";
-  @XmlElement(name = "image_url")
-  @SerializedName(SERIALIZED_NAME_IMAGE_URL)
-  @javax.annotation.Nonnull
-  private ImageContentPartUrl imageUrl;
+public class FileContentPartFile {
+  public static final String SERIALIZED_NAME_FILE_DATA = "file_data";
+  @XmlElement(name = "file_data")
+  @SerializedName(SERIALIZED_NAME_FILE_DATA)
+  @javax.annotation.Nullable
+  private String fileData;
 
-  public ImageContentPart() {
+  public static final String SERIALIZED_NAME_FILENAME = "filename";
+  @XmlElement(name = "filename")
+  @SerializedName(SERIALIZED_NAME_FILENAME)
+  @javax.annotation.Nullable
+  private String filename;
 
-    this.type = TypeEnum.IMAGE;
-
+  public FileContentPartFile() {
   }
 
-  public ImageContentPart imageUrl(@javax.annotation.Nonnull ImageContentPartUrl imageUrl) {
-    this.imageUrl = imageUrl;
+  public FileContentPartFile fileData(@javax.annotation.Nullable String fileData) {
+    this.fileData = fileData;
     return this;
   }
 
   /**
-   * Get imageUrl
-   * @return imageUrl
+   * The base64 encoded file data
+   * @return fileData
    */
-  @javax.annotation.Nonnull
-  public ImageContentPartUrl getImageUrl() {
-    return imageUrl;
+  @javax.annotation.Nullable
+  public String getFileData() {
+    return fileData;
   }
 
-  public void setImageUrl(@javax.annotation.Nonnull ImageContentPartUrl imageUrl) {
-    this.imageUrl = imageUrl;
+  public void setFileData(@javax.annotation.Nullable String fileData) {
+    this.fileData = fileData;
+  }
+
+
+  public FileContentPartFile filename(@javax.annotation.Nullable String filename) {
+    this.filename = filename;
+    return this;
+  }
+
+  /**
+   * The name of the file, used when passing the file to the model as a string
+   * @return filename
+   */
+  @javax.annotation.Nullable
+  public String getFilename() {
+    return filename;
+  }
+
+  public void setFilename(@javax.annotation.Nullable String filename) {
+    this.filename = filename;
   }
 
   /**
@@ -101,9 +121,9 @@ public class ImageContentPart extends MessageContentPart {
    *
    * @param key name of the property
    * @param value value of the property
-   * @return the ImageContentPart instance itself
+   * @return the FileContentPartFile instance itself
    */
-  public ImageContentPart putAdditionalProperty(String key, Object value) {
+  public FileContentPartFile putAdditionalProperty(String key, Object value) {
     if (this.additionalProperties == null) {
         this.additionalProperties = new HashMap<String, Object>();
     }
@@ -142,23 +162,23 @@ public class ImageContentPart extends MessageContentPart {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ImageContentPart imageContentPart = (ImageContentPart) o;
-    return Objects.equals(this.imageUrl, imageContentPart.imageUrl)&&
-        Objects.equals(this.additionalProperties, imageContentPart.additionalProperties) &&
-        super.equals(o);
+    FileContentPartFile fileContentPartFile = (FileContentPartFile) o;
+    return Objects.equals(this.fileData, fileContentPartFile.fileData) &&
+        Objects.equals(this.filename, fileContentPartFile.filename)&&
+        Objects.equals(this.additionalProperties, fileContentPartFile.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(imageUrl, super.hashCode(), additionalProperties);
+    return Objects.hash(fileData, filename, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ImageContentPart {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
+    sb.append("class FileContentPartFile {\n");
+    sb.append("    fileData: ").append(toIndentedString(fileData)).append("\n");
+    sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -181,30 +201,30 @@ public class ImageContentPart extends MessageContentPart {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("type", "image_url"));
+    openapiFields = new HashSet<String>(Arrays.asList("file_data", "filename"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("image_url", "type"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ImageContentPart
+   * @throws IOException if the JSON Element is invalid with respect to FileContentPartFile
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!ImageContentPart.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in ImageContentPart is not found in the empty JSON string", ImageContentPart.openapiRequiredFields.toString()));
+        if (!FileContentPartFile.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in FileContentPartFile is not found in the empty JSON string", FileContentPartFile.openapiRequiredFields.toString()));
         }
       }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ImageContentPart.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("file_data") != null && !jsonObj.get("file_data").isJsonNull()) && !jsonObj.get("file_data").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `file_data` to be a primitive type in the JSON string but got `%s`", jsonObj.get("file_data").toString()));
+      }
+      if ((jsonObj.get("filename") != null && !jsonObj.get("filename").isJsonNull()) && !jsonObj.get("filename").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `filename` to be a primitive type in the JSON string but got `%s`", jsonObj.get("filename").toString()));
       }
   }
 
@@ -212,16 +232,16 @@ public class ImageContentPart extends MessageContentPart {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ImageContentPart.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ImageContentPart' and its subtypes
+       if (!FileContentPartFile.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FileContentPartFile' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ImageContentPart> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ImageContentPart.class));
+       final TypeAdapter<FileContentPartFile> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FileContentPartFile.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ImageContentPart>() {
+       return (TypeAdapter<T>) new TypeAdapter<FileContentPartFile>() {
            @Override
-           public void write(JsonWriter out, ImageContentPart value) throws IOException {
+           public void write(JsonWriter out, FileContentPartFile value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              obj.remove("additionalProperties");
              // serialize additional properties
@@ -249,12 +269,12 @@ public class ImageContentPart extends MessageContentPart {
            }
 
            @Override
-           public ImageContentPart read(JsonReader in) throws IOException {
+           public FileContentPartFile read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              JsonObject jsonObj = jsonElement.getAsJsonObject();
              // store additional fields in the deserialized instance
-             ImageContentPart instance = thisAdapter.fromJsonTree(jsonObj);
+             FileContentPartFile instance = thisAdapter.fromJsonTree(jsonObj);
              for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
                if (!openapiFields.contains(entry.getKey())) {
                  if (entry.getValue().isJsonPrimitive()) { // primitive type
@@ -281,18 +301,18 @@ public class ImageContentPart extends MessageContentPart {
   }
 
   /**
-   * Create an instance of ImageContentPart given an JSON string
+   * Create an instance of FileContentPartFile given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of ImageContentPart
-   * @throws IOException if the JSON string is invalid with respect to ImageContentPart
+   * @return An instance of FileContentPartFile
+   * @throws IOException if the JSON string is invalid with respect to FileContentPartFile
    */
-  public static ImageContentPart fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ImageContentPart.class);
+  public static FileContentPartFile fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FileContentPartFile.class);
   }
 
   /**
-   * Convert an instance of ImageContentPart to an JSON string
+   * Convert an instance of FileContentPartFile to an JSON string
    *
    * @return JSON string
    */

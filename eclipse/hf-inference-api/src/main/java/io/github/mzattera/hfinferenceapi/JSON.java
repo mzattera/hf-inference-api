@@ -70,15 +70,6 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "role"));
                     }
           })
-                .registerTypeSelector(io.github.mzattera.hfinferenceapi.client.model.AudioContentPart.class, new TypeSelector<io.github.mzattera.hfinferenceapi.client.model.AudioContentPart>() {
-                    @Override
-                    public Class<? extends io.github.mzattera.hfinferenceapi.client.model.AudioContentPart> getClassForElement(JsonElement readElement) {
-                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("AudioContentPart", io.github.mzattera.hfinferenceapi.client.model.AudioContentPart.class);
-                        return getClassByDiscriminator(classByDiscriminatorValue,
-                                getDiscriminatorValue(readElement, "type"));
-                    }
-          })
                 .registerTypeSelector(io.github.mzattera.hfinferenceapi.client.model.DeveloperMessage.class, new TypeSelector<io.github.mzattera.hfinferenceapi.client.model.DeveloperMessage>() {
                     @Override
                     public Class<? extends io.github.mzattera.hfinferenceapi.client.model.DeveloperMessage> getClassForElement(JsonElement readElement) {
@@ -162,7 +153,6 @@ public class JSON {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("file", io.github.mzattera.hfinferenceapi.client.model.FileContentPart.class);
                         classByDiscriminatorValue.put("image", io.github.mzattera.hfinferenceapi.client.model.ImageContentPart.class);
-                        classByDiscriminatorValue.put("input_audio", io.github.mzattera.hfinferenceapi.client.model.AudioContentPart.class);
                         classByDiscriminatorValue.put("refusal", io.github.mzattera.hfinferenceapi.client.model.RefusalContentPart.class);
                         classByDiscriminatorValue.put("text", io.github.mzattera.hfinferenceapi.client.model.TextContentPart.class);
                         classByDiscriminatorValue.put("MessageContentPart", io.github.mzattera.hfinferenceapi.client.model.MessageContentPart.class);
@@ -292,9 +282,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.AssistantMessage.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.AssistantMessageAllOfAudio.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.AudioContentPart.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.AudioContentPartAllOfInputAudio.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequestStreamOptions.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ChatCompletionRequestToolChoice.CustomTypeAdapterFactory());
@@ -307,13 +294,13 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.EmbeddingsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.EmbeddingsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.FileContentPart.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.FileContentPartAllOfFile.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.FileContentPartFile.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.Function.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.FunctionTool.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.FunctionToolCall.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.FunctionToolCallAllOfFunction.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ImageContentPart.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ImageContentPartAllOfImageUrl.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ImageContentPartUrl.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ImageGenerationRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ImageGenerationRequestParameters.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.mzattera.hfinferenceapi.client.model.ImageGenerationResponse.CustomTypeAdapterFactory());

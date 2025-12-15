@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**imageUrl** | [**ImageContentPartAllOfImageUrl**](ImageContentPartAllOfImageUrl.md) |  |  |
+|**imageUrl** | **ImageContentPartUrl** |  |  |
 
 
 

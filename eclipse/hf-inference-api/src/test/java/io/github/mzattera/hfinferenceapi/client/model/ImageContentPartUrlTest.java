@@ -24,41 +24,33 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FileContentPartAllOfFile
+ * Model tests for ImageContentPartUrl
  */
-public class FileContentPartAllOfFileTest {
-    private final FileContentPartAllOfFile model = new FileContentPartAllOfFile();
+public class ImageContentPartUrlTest {
+    private final ImageContentPartUrl model = new ImageContentPartUrl();
 
     /**
-     * Model tests for FileContentPartAllOfFile
+     * Model tests for ImageContentPartUrl
      */
     @Test
-    public void testFileContentPartAllOfFile() {
-        // TODO: test FileContentPartAllOfFile
+    public void testImageContentPartUrl() {
+        // TODO: test ImageContentPartUrl
     }
 
     /**
-     * Test the property 'fileData'
+     * Test the property 'url'
      */
     @Test
-    public void fileDataTest() {
-        // TODO: test fileData
+    public void urlTest() {
+        // TODO: test url
     }
 
     /**
-     * Test the property 'fileId'
+     * Test the property 'detail'
      */
     @Test
-    public void fileIdTest() {
-        // TODO: test fileId
-    }
-
-    /**
-     * Test the property 'filename'
-     */
-    @Test
-    public void filenameTest() {
-        // TODO: test filename
+    public void detailTest() {
+        // TODO: test detail
     }
 
 }

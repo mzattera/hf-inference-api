@@ -53,7 +53,7 @@ import io.github.mzattera.hfinferenceapi.JSON;
 /**
  * ToolMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-14T23:10:40.473939700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-15T15:08:12.430661700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
 @XmlRootElement(name = "ToolMessage")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -107,7 +107,7 @@ public class ToolMessage extends Message {
   }
 
   /**
-   * FunctionTool call that this message is responding to
+   * FunctionTool call that this message is responding to.
    * @return toolCallId
    */
   @javax.annotation.Nonnull
@@ -126,7 +126,7 @@ public class ToolMessage extends Message {
   }
 
   /**
-   * Get name
+   * Name of the function being called.
    * @return name
    */
   @javax.annotation.Nonnull
