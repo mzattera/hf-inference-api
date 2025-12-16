@@ -1,12 +1,12 @@
-# DefaultApi
+# HuggingFaceApi
 
 All URIs are relative to *https://router.huggingface.co*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**chatCompletion**](DefaultApi.md#chatCompletion) | **POST** /v1/chat/completions | Chat completion using messages |
-| [**featureExtraction**](DefaultApi.md#featureExtraction) | **POST** /{provider}/v1/embeddings | Get embeddings for input(s) |
-| [**textToImage**](DefaultApi.md#textToImage) | **POST** /{provider}/v1/images/generations | Text to Image generation |
+| [**chatCompletion**](HuggingFaceApi.md#chatCompletion) | **POST** /v1/chat/completions | Chat completion using messages |
+| [**featureExtraction**](HuggingFaceApi.md#featureExtraction) | **POST** /{provider}/v1/embeddings | Get embeddings for input(s) |
+| [**textToImage**](HuggingFaceApi.md#textToImage) | **POST** /{provider}/v1/images/generations | Text to Image generation |
 
 
 <a id="chatCompletion"></a>
@@ -23,7 +23,7 @@ import io.github.mzattera.hfinferenceapi.ApiException;
 import io.github.mzattera.hfinferenceapi.Configuration;
 import io.github.mzattera.hfinferenceapi.auth.*;
 import io.github.mzattera.hfinferenceapi.models.*;
-import io.github.mzattera.hfinferenceapi.client.api.DefaultApi;
+import io.github.mzattera.hfinferenceapi.client.api.HuggingFaceApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -34,13 +34,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
+    HuggingFaceApi apiInstance = new HuggingFaceApi(defaultClient);
     ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest(); // ChatCompletionRequest | 
     try {
       ChatCompletionResponse result = apiInstance.chatCompletion(chatCompletionRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#chatCompletion");
+      System.err.println("Exception when calling HuggingFaceApi#chatCompletion");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -90,7 +90,7 @@ import io.github.mzattera.hfinferenceapi.ApiException;
 import io.github.mzattera.hfinferenceapi.Configuration;
 import io.github.mzattera.hfinferenceapi.auth.*;
 import io.github.mzattera.hfinferenceapi.models.*;
-import io.github.mzattera.hfinferenceapi.client.api.DefaultApi;
+import io.github.mzattera.hfinferenceapi.client.api.HuggingFaceApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -101,14 +101,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
+    HuggingFaceApi apiInstance = new HuggingFaceApi(defaultClient);
     String provider = "provider_example"; // String | The specific inference provider.
     EmbeddingsRequest embeddingsRequest = new EmbeddingsRequest(); // EmbeddingsRequest | 
     try {
       EmbeddingsResponse result = apiInstance.featureExtraction(provider, embeddingsRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#featureExtraction");
+      System.err.println("Exception when calling HuggingFaceApi#featureExtraction");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -159,7 +159,7 @@ import io.github.mzattera.hfinferenceapi.ApiException;
 import io.github.mzattera.hfinferenceapi.Configuration;
 import io.github.mzattera.hfinferenceapi.auth.*;
 import io.github.mzattera.hfinferenceapi.models.*;
-import io.github.mzattera.hfinferenceapi.client.api.DefaultApi;
+import io.github.mzattera.hfinferenceapi.client.api.HuggingFaceApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -170,14 +170,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
+    HuggingFaceApi apiInstance = new HuggingFaceApi(defaultClient);
     String provider = "provider_example"; // String | The specific inference provider.
     ImageGenerationRequest imageGenerationRequest = new ImageGenerationRequest(); // ImageGenerationRequest | 
     try {
       ImageGenerationResponse result = apiInstance.textToImage(provider, imageGenerationRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#textToImage");
+      System.err.println("Exception when calling HuggingFaceApi#textToImage");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

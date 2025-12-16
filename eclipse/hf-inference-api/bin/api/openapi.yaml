@@ -7,6 +7,8 @@ info:
 servers:
 - description: Hugging Face Inference router endpoint.
   url: https://router.huggingface.co
+tags:
+- name: HuggingFace
 paths:
   /{provider}/v1/images/generations:
     post:
@@ -40,6 +42,8 @@ paths:
       security:
       - bearerAuth: []
       summary: Text to Image generation
+      tags:
+      - HuggingFace
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -66,6 +70,8 @@ paths:
       security:
       - bearerAuth: []
       summary: Chat completion using messages
+      tags:
+      - HuggingFace
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -101,6 +107,8 @@ paths:
       security:
       - bearerAuth: []
       summary: Get embeddings for input(s)
+      tags:
+      - HuggingFace
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -374,7 +382,6 @@ components:
       - role
       type: object
     DeveloperMessage:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/Message"
       - properties:
@@ -386,7 +393,6 @@ components:
         - content
         type: object
     SystemMessage:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/Message"
       - properties:
@@ -398,7 +404,6 @@ components:
         - content
         type: object
     UserMessage:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/Message"
       - properties:
@@ -429,7 +434,6 @@ components:
             type: array
         type: object
     ToolMessage:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/Message"
       - properties:

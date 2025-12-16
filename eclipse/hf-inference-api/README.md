@@ -2,7 +2,7 @@
 
 HuggingFace Inference Provider API
 - API version: 1.0.0
-  - Build date: 2025-12-15T15:08:12.430661700+01:00[Europe/Berlin]
+  - Build date: 2025-12-16T16:39:25.949455400+01:00[Europe/Berlin]
   - Generator version: 7.17.0
 
 Client for Hugging Face Chat Completions, Feature Extraction, and Text to Image APIs.
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.github.mzattera</groupId>
   <artifactId>hf-inference-api</artifactId>
-  <version>5.0.0</version>
+  <version>6.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "io.github.mzattera:hf-inference-api:5.0.0"
+     implementation "io.github.mzattera:hf-inference-api:6.0.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hf-inference-api-5.0.0.jar`
+* `target/hf-inference-api-6.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -86,7 +86,7 @@ import io.github.mzattera.hfinferenceapi.ApiException;
 import io.github.mzattera.hfinferenceapi.Configuration;
 import io.github.mzattera.hfinferenceapi.auth.*;
 import io.github.mzattera.hfinferenceapi.client.model.*;
-import io.github.mzattera.hfinferenceapi.client.api.DefaultApi;
+import io.github.mzattera.hfinferenceapi.client.api.HuggingFaceApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -97,13 +97,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
+    HuggingFaceApi apiInstance = new HuggingFaceApi(defaultClient);
     ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest(); // ChatCompletionRequest | 
     try {
       ChatCompletionResponse result = apiInstance.chatCompletion(chatCompletionRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#chatCompletion");
+      System.err.println("Exception when calling HuggingFaceApi#chatCompletion");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -120,9 +120,9 @@ All URIs are relative to *https://router.huggingface.co*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**chatCompletion**](docs/DefaultApi.md#chatCompletion) | **POST** /v1/chat/completions | Chat completion using messages
-*DefaultApi* | [**featureExtraction**](docs/DefaultApi.md#featureExtraction) | **POST** /{provider}/v1/embeddings | Get embeddings for input(s)
-*DefaultApi* | [**textToImage**](docs/DefaultApi.md#textToImage) | **POST** /{provider}/v1/images/generations | Text to Image generation
+*HuggingFaceApi* | [**chatCompletion**](docs/HuggingFaceApi.md#chatCompletion) | **POST** /v1/chat/completions | Chat completion using messages
+*HuggingFaceApi* | [**featureExtraction**](docs/HuggingFaceApi.md#featureExtraction) | **POST** /{provider}/v1/embeddings | Get embeddings for input(s)
+*HuggingFaceApi* | [**textToImage**](docs/HuggingFaceApi.md#textToImage) | **POST** /{provider}/v1/images/generations | Text to Image generation
 
 
 ## Documentation for Models

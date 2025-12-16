@@ -13,7 +13,7 @@
 
 package io.github.mzattera.hfinferenceapi;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-15T15:08:12.430661700+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T16:39:25.949455400+01:00[Europe/Berlin]", comments = "Generator version: 7.17.0")
 public class Pair {
   private final String name;
   private final String value;

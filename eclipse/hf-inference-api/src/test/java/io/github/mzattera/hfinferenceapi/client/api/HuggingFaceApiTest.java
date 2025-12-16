@@ -61,15 +61,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
- * API tests for DefaultApi
+ * API tests for HuggingFaceApi
  */
-public class DefaultApiTest {
+public class HuggingFaceApiTest {
 
 //	private static String MODEL = "Qwen/Qwen2.5-VL-3B-Instruct";
 	private static String MODEL = "openai/gpt-oss-120b";
 
 	// The static field to hold the initialized API client
-	private static DefaultApi api;
+	private static HuggingFaceApi api;
 
 	/**
 	 * Executes once before all tests to initialize the API client with the Bearer
@@ -127,8 +127,8 @@ public class DefaultApiTest {
 			throw new RuntimeException("API client authentication setup failed. Check your client generation.");
 		}
 
-		// 5. Initialize the DefaultApi service class using the configured ApiClient
-		api = new DefaultApi(apiClient);
+		// 5. Initialize the HuggingFaceApi service class using the configured ApiClient
+		api = new HuggingFaceApi(apiClient);
 
 		System.out.println("API Client initialized and ready for testing.");
 	}

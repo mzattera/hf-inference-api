@@ -8,6 +8,9 @@ servers:
   - url: https://router.huggingface.co
     description: Hugging Face Inference router endpoint.
 
+tags:
+  - name: HuggingFace
+
 paths:
   /{provider}/v1/images/generations:
     parameters:
@@ -18,6 +21,7 @@ paths:
         schema:
           type: string    
     post:
+      tags: [HuggingFace]
       summary: Text to Image generation
       operationId: textToImage
       security:
@@ -42,6 +46,7 @@ paths:
 
   /v1/chat/completions:
     post:
+      tags: [HuggingFace]
       summary: Chat completion using messages
       operationId: chatCompletion
       security:
@@ -73,6 +78,7 @@ paths:
         schema:
           type: string
     post:
+      tags: [HuggingFace]
       summary: Get embeddings for input(s)
       operationId: featureExtraction
       security:
@@ -300,7 +306,6 @@ components:
             - tool        
 
     DeveloperMessage:
-      additionalProperties: true
       allOf:
         - $ref: '#/components/schemas/Message'
         - type: object
@@ -313,7 +318,6 @@ components:
               type: string
 
     SystemMessage:
-      additionalProperties: true
       allOf:
         - $ref: '#/components/schemas/Message'
         - type: object
@@ -326,7 +330,6 @@ components:
               type: string
                         
     UserMessage:
-      additionalProperties: true
       allOf:
         - $ref: '#/components/schemas/Message'
         - type: object      
@@ -359,7 +362,6 @@ components:
                 $ref: '#/components/schemas/ToolCall'
 
     ToolMessage:
-      additionalProperties: true
       allOf:
         - $ref: '#/components/schemas/Message'
         - type: object      

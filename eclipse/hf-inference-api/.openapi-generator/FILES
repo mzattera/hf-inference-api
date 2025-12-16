@@ -14,7 +14,6 @@ docs/ChatCompletionRequestToolChoiceOneOf.md
 docs/ChatCompletionRequestToolChoiceOneOfFunction.md
 docs/ChatCompletionResponse.md
 docs/Choice.md
-docs/DefaultApi.md
 docs/DeveloperMessage.md
 docs/EmbeddingData.md
 docs/EmbeddingsRequest.md
@@ -25,6 +24,7 @@ docs/Function.md
 docs/FunctionTool.md
 docs/FunctionToolCall.md
 docs/FunctionToolCallAllOfFunction.md
+docs/HuggingFaceApi.md
 docs/ImageContentPart.md
 docs/ImageContentPartUrl.md
 docs/ImageGenerationRequest.md
@@ -77,7 +77,7 @@ src/main/java/io/github/mzattera/hfinferenceapi/auth/ApiKeyAuth.java
 src/main/java/io/github/mzattera/hfinferenceapi/auth/Authentication.java
 src/main/java/io/github/mzattera/hfinferenceapi/auth/HttpBasicAuth.java
 src/main/java/io/github/mzattera/hfinferenceapi/auth/HttpBearerAuth.java
-src/main/java/io/github/mzattera/hfinferenceapi/client/api/DefaultApi.java
+src/main/java/io/github/mzattera/hfinferenceapi/client/api/HuggingFaceApi.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/AbstractOpenApiSchema.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/AssistantMessage.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/ChatCompletionRequest.java
@@ -123,7 +123,7 @@ src/main/java/io/github/mzattera/hfinferenceapi/client/model/ToolMessage.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/Usage.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/UsageCompletionTokensDetails.java
 src/main/java/io/github/mzattera/hfinferenceapi/client/model/UserMessage.java
-src/test/java/io/github/mzattera/hfinferenceapi/client/api/DefaultApiTest.java
+src/test/java/io/github/mzattera/hfinferenceapi/client/api/HuggingFaceApiTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/AssistantMessageTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/ChatCompletionRequestStreamOptionsTest.java
 src/test/java/io/github/mzattera/hfinferenceapi/client/model/ChatCompletionRequestTest.java

@@ -40,16 +40,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DefaultApi {
+public class HuggingFaceApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public DefaultApi() {
+    public HuggingFaceApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public DefaultApi(ApiClient apiClient) {
+    public HuggingFaceApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 

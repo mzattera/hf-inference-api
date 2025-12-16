@@ -23,7 +23,7 @@
                 <version>7.17.0</version>
 
                 <configuration>
-                    <output>../hf-inference-api</output>
+                    <output>${project.basedir}/../hf-inference-api</output>
                     <generatorName>java</generatorName>
                     <library>okhttp-gson</library>
                     <invokerPackage>io.github.mzattera.hfinferenceapi</invokerPackage>
@@ -44,7 +44,7 @@
                         <artifactDescription>OpenAPI-generated Java client for Hugging Face Inference API.</artifactDescription>
                         <artifactId>hf-inference-api</artifactId>
                         <artifactUrl>https://github.com/mzattera/hf-inference-api</artifactUrl>
-                        <artifactVersion>5.0.0</artifactVersion>
+                        <artifactVersion>6.0.0</artifactVersion>
 
                         <developerEmail>b2fjava@gmail.com</developerEmail>
                         <developerName>Massimiliano "Maxi" Zattera</developerName>
@@ -63,7 +63,6 @@
                         <scmDeveloperConnection>scm:git:https://github.com:mzattera/hf-inference-api.git</scmDeveloperConnection>
                         <scmUrl>https://github.com/mzattera/hf-inference-api</scmUrl>
 
-                        <serializationLibrary>jackson</serializationLibrary>
                         <snapshotVersion>false</snapshotVersion>
                         <useRuntimeException>true</useRuntimeException>
 
