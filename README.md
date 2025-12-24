@@ -9,7 +9,7 @@ For the time being, this covers only Chat Completion, Feature Extraction (embedd
 
 ## How to Install
 
-The library is available as a Maven dependency:
+The library requires Java 8 or later and is available as a Maven dependency:
 
 ```
 <dependency>
