@@ -22,7 +22,7 @@ The library requires Java 8 or later and is available as a Maven dependency:
 
 ## How to Use
 
-Simple test code in [DeafaultApiTest.java](https://github.com/mzattera/hf-inference-api/tree/master/eclipse/hf-inference-api/src/test/java/io/github/mzattera/hfinferenceapi/client/api) shows basic usage of the API, which is detailed in the `openapi.yaml` file.
+Simple test code in [HuggingFaceApiTest.java](https://github.com/mzattera/hf-inference-api/tree/master/eclipse/hf-inference-api/src/test/java/io/github/mzattera/hfinferenceapi/client/api) shows basic usage of the API, which is detailed in the `openapi.yaml` file.
 
 
 ## How to Build
